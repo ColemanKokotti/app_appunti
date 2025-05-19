@@ -4,10 +4,11 @@ class AppTheme {
   // Colori principali del tema
   static const Color primaryColor = Color(0xFF00897B); // Teal più scuro
   static const Color accentColor = Color(0xFF4DB6AC);  // Teal più chiaro
-  static const Color backgroundColor = Color(0xFF121212); // Sfondo scuro
+  static const Color backgroundColor = Color(0xFF6C4675); // Sfondo scuro
   static const Color surfaceColor = Color(0xFF1E1E1E);  // Superficie elementi scura
   static const Color cardColor = Color(0xFF2C2C2C);     // Colore card più scuro
   static const Color iconColor = Colors.white;
+
   // Colori testo
   static const Color textPrimaryColor = Color(0xFFFFFFFF);   // Testo principale bianco
   static const Color textSecondaryColor = Color(0xFFB0B0B0); // Testo secondario grigio chiaro

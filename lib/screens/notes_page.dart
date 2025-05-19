@@ -145,6 +145,7 @@ class _NotesPageState extends State<NotesPage> {
     return widgets;
   }
 
+
   Widget _buildParagraphContent(String title, List<String> content) {
     return Container(
       padding: const EdgeInsets.all(12.0),
@@ -159,18 +160,117 @@ class _NotesPageState extends State<NotesPage> {
           // Verifica se la linea contiene una definizione (inizia con una parola seguita da :)
           final isDefinition = RegExp(r'^\w+(\s\w+)*:').hasMatch(line);
 
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 3.0),
-            child: Text(
-              line,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: isDefinition ? FontWeight.w500 : FontWeight.normal,
-                color: isDefinition ? AppTheme.subheadingColor : null,
+          // Invece di restituire un semplice Text widget, usiamo un RichText per formattare parti specifiche
+          if (line.contains(':') || (line.contains('(') && line.contains(')'))) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 3.0),
+              child: _buildRichText(line, isDefinition),
+            );
+          } else {
+            // Se non ci sono : o parentesi, usiamo il classico Text widget
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 3.0),
+              child: Text(
+                line,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: null,
+                ),
               ),
-            ),
-          );
+            );
+          }
         }).toList(),
+      ),
+    );
+  }
+
+  // Questo metodo costruisce un RichText con stili diversi per parti differenti del testo
+  Widget _buildRichText(String line, bool isDefinition) {
+    final List<TextSpan> spans = [];
+
+    // Caso di testo con i due punti
+    if (line.contains(':')) {
+      final parts = line.split(':');
+
+      // Parte prima dei due punti (il sottotitolo)
+      spans.add(TextSpan(
+        text: parts[0] + ':',
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          color: AppTheme.subheadingColor, // Colore per il sottotitolo
+        ),
+      ));
+
+      // Parte dopo i due punti (se esiste)
+      if (parts.length > 1) {
+        spans.add(TextSpan(
+          text: parts.sublist(1).join(':'),  // Nel caso ci siano più : nella stringa
+          style: const TextStyle(
+            fontSize: 16,
+            color: null, // Colore normale per il resto del testo
+          ),
+        ));
+      }
+    }
+    // Gestione del testo con parentesi
+    else if (line.contains('(') && line.contains(')')) {
+      final buffer = StringBuffer();
+      bool inParenthesis = false;
+
+      for (int i = 0; i < line.length; i++) {
+        final char = line[i];
+
+        if (char == '(') {
+          // Aggiungiamo il testo raccolto finora fuori dalle parentesi
+          if (buffer.isNotEmpty) {
+            spans.add(TextSpan(
+              text: buffer.toString(),
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+              ),
+            ));
+            buffer.clear();
+          }
+          buffer.write(char);
+          inParenthesis = true;
+        }
+        else if (char == ')' && inParenthesis) {
+          buffer.write(char);
+          // Aggiungiamo il testo tra parentesi con stile diverso
+          spans.add(TextSpan(
+            text: buffer.toString(),
+            style: const TextStyle(
+              fontSize: 16,
+              color: AppTheme.primaryColor, // Colore primario per il testo tra parentesi
+              fontStyle: FontStyle.italic,
+            ),
+          ));
+          buffer.clear();
+          inParenthesis = false;
+        }
+        else {
+          buffer.write(char);
+        }
+      }
+
+      // Se c'è ancora del testo nel buffer, aggiungiamolo
+      if (buffer.isNotEmpty) {
+        spans.add(TextSpan(
+          text: buffer.toString(),
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+          ),
+        ));
+      }
+    }
+
+    return RichText(
+      text: TextSpan(
+        children: spans,
       ),
     );
   }
