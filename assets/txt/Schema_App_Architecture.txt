@@ -1,0 +1,83 @@
+Schema App Architecture
+
+
+I. Fondamenti dell'Architettura di App
+
+A. Definizione di Architettura di App :
+Non è solo un diagramma statico, ma un insieme dinamico di principi, linee guida e decisioni che evolvono con il progetto.
+Include la definizione delle interfacce tra i componenti, i protocolli di comunicazione, i formati dei dati e le tecnologie utilizzate.
+Considera aspetti non funzionali cruciali come la gestibilità, la testabilità, la monitorabilità e la portabilità.
+B. Importanza dell'Architettura :
+Mitigazione dei Rischi: Una buona architettura previene problemi futuri legati a scalabilità, performance e sicurezza, riducendo i costi di manutenzione e rifattorizzazione.
+Facilitazione della Comunicazione: Fornisce un linguaggio comune e una visione condivisa per tutti i membri del team (sviluppatori, tester, DevOps, product owner).
+Supporto all'Evoluzione: Un'architettura ben definita facilita l'aggiunta di nuove funzionalità e l'integrazione con altri sistemi nel tempo.
+C. Fattori che influenzano la scelta dell'architettura :
+Requisiti Funzionali: Un'applicazione di e-commerce con elevati volumi di transazioni richiederà un'architettura scalabile e robusta (es. microservizi). Un'applicazione interna con pochi utenti potrebbe beneficiare di una struttura più semplice (es. monolitica).
+Requisiti Non Funzionali: Se la sicurezza dei dati degli utenti è critica, l'architettura dovrà prevedere meccanismi di autenticazione, autorizzazione e crittografia robusti. Se l'applicazione deve essere disponibile 24/7, l'architettura dovrà considerare la tolleranza agli errori e la ridondanza.
+Competenze del Team: Un team esperto in tecnologie cloud e architetture distribuite sarà più incline a scegliere i microservizi rispetto a un team con competenze prevalentemente su sistemi monolitici.
+Budget e Tempistiche: Un'architettura complessa come i microservizi può richiedere un investimento iniziale maggiore in termini di infrastruttura e competenze rispetto a un'architettura monolitica.
+II. Modelli Architetturali Fondamentali
+
+A. Monolitica :
+Struttura Interna: Spesso organizzata in moduli o layer logici (es. presentazione, business logic, data access) all'interno della stessa codebase.
+Deployment: Solitamente deployata come una singola unità eseguibile (es. file WAR, JAR).
+Scalabilità (Limiti): La scalabilità orizzontale (aggiungere più istanze del server) può diventare inefficiente perché si scala l'intera applicazione, anche i moduli che non sono sotto carico.
+Tecnologie: Tende ad essere sviluppata con un singolo stack tecnologico (linguaggio di programmazione, framework).
+B. Client-Server :
+Tipi di Client: Browser web, applicazioni desktop, applicazioni mobili, terminali.
+Tipi di Server: Server web (HTTP), server di database, file server, server di posta elettronica.
+Comunicazione: Solitamente basata su protocolli standardizzati (es. HTTP, TCP/IP).
+Vantaggi : Centralizzazione dei dati e della logica (facilita la gestione e la sicurezza), interfaccia utente dedicata (migliora l'esperienza utente per specifici task).
+Svantaggi : Il server può diventare un collo di bottiglia se il numero di client aumenta significativamente, dipendenza dalla connessione di rete.
+III. Architetture Multitier
+
+A. Definizione : L'obiettivo principale è la separazione delle preoccupazioni (Separation of Concerns - SoC), dove ogni livello ha una responsabilità ben definita, rendendo il sistema più modulare e gestibile.
+B. Vantaggi :
+Manutenibilità: Le modifiche a un livello hanno un impatto minore sugli altri livelli, semplificando gli aggiornamenti e la correzione dei bug.
+Scalabilità : Il livello applicativo può essere scalato orizzontalmente aggiungendo più server per gestire un aumento del carico di elaborazione. Il livello dati può essere ottimizzato separatamente per la gestione dei dati.
+Flessibilità : È possibile cambiare il database (data tier) senza dover riscrivere la logica di business (application tier), purché l'interfaccia tra i livelli rimanga la stessa.
+Sicurezza : È possibile implementare misure di sicurezza specifiche per ogni livello (es. firewall sul livello di presentazione, crittografia dei dati nel livello dati).
+C. Esempi Comuni :
+Three-Tier :
+Presentation Tier: HTML, CSS, JavaScript, Framework frontend (React, Angular, Vue.js).
+Application Tier: Linguaggi backend (Java, Python, Node.js, C#), Framework backend (Spring, Django, Express.js, .NET).
+Data Tier: Sistemi di gestione di database relazionali (MySQL, PostgreSQL, SQL Server), NoSQL (MongoDB, Cassandra).
+N-Tier : Utilizzato in applicazioni enterprise complesse dove sono necessari livelli aggiuntivi per l'integrazione con sistemi esterni (Integration Tier), la gestione della cache (Caching Tier), la sicurezza (Security Tier), ecc.
+IV. Architettura a Microservizi
+
+A. Definizione (Espansione): Ogni microservizio è un processo indipendente, deployabile autonomamente, costruito attorno a una specifica funzionalità di business. Comunicano spesso tramite API leggere (es. RESTful HTTP) o tramite sistemi di messaggistica asincrona (es. Kafka, RabbitMQ).
+B. Vantaggi :
+Scalabilità (Granularità): Solo i servizi sotto carico possono essere scalati, ottimizzando l'utilizzo delle risorse.
+Resilienza (Isolamento dei Guasti): Se un microservizio fallisce, gli altri continuano a funzionare (con meccanismi di fault tolerance implementati).
+Flessibilità Tecnologica (Polyglot Persistence and Programming): Ogni team può scegliere la tecnologia più adatta per il proprio servizio.
+Deployment (Frequenza e Velocità): I singoli servizi possono essere rilasciati e aggiornati frequentemente senza impattare l'intera applicazione, accelerando il time-to-market.
+Organizzazione del Team (Autonomia): Team piccoli e autonomi possono concentrarsi su specifici domini di business, migliorando l'agilità e la responsabilità.
+C. Svantaggi (Approfondimento e Soluzioni Comuni):
+Complessità di Gestione (Orchestrazione e Monitoring): Richiede piattaforme di orchestrazione (es. Kubernetes, Docker Swarm) e strumenti di monitoring centralizzati.
+Comunicazione tra Servizi (Latenza e Affidabilità): Richiede strategie per gestire la latenza, i fallimenti di rete e la coerenza dei dati tra i servizi (es. circuit breaker, retry mechanisms, eventual consistency).
+Test (Complessità di Integrazione): Richiede test di integrazione approfonditi per garantire che i servizi interagiscano correttamente.
+Tracciamento Distribuito (Troubleshooting): Difficile tracciare le richieste attraverso più servizi; necessita di strumenti di distributed tracing (es. Jaeger, Zipkin).
+V. Architettura di Sistema (System Architecture)
+
+A. Definizione : Include le decisioni sull'hardware (on-premise, cloud, ibrido), sul software di base (sistemi operativi, middleware), sulle reti (topologia, protocolli), sui sistemi di storage e backup, e sui servizi di supporto (DNS, load balancer).
+B. Aspetti Chiave (Approfondimento):
+Infrastruttura (Scelte Tecnologiche): Scelta tra server fisici, macchine virtuali, container, servizi serverless. Selezione del provider cloud (AWS, Azure, GCP).
+Scalabilità (Meccanismi): Auto-scaling, load balancing, database sharding, caching distribuito.
+Affidabilità (Strategie): Ridondanza hardware, failover automatico, backup e restore, disaster recovery.
+Sicurezza (Misure a Livello di Sistema): Firewall, intrusion detection systems, crittografia a riposo e in transito, gestione degli accessi (IAM).
+Performance (Ottimizzazioni a Basso Livello): Ottimizzazione della rete, configurazione del sistema operativo, tuning del database.
+Deployment (Automazione): Continuous Integration/Continuous Delivery (CI/CD), infrastruttura come codice (IaC).
+C. Relazione con la Software Architecture (Interdipendenze): Le decisioni sull'architettura software (es. microservizi) influenzano direttamente i requisiti dell'architettura di sistema (es. necessità di orchestrazione di container). Viceversa, i limiti e le capacità dell'infrastruttura (es. risorse cloud disponibili) possono influenzare le scelte di progettazione software.
+VI. Software Design Pattern e Architettura
+
+A. Definizione di Software Design Pattern : Forniscono un vocabolario comune per i progettisti di software e aiutano a comunicare soluzioni in modo efficiente. Sono il risultato di esperienza e best practice accumulate nel tempo.
+B. Model-View-Controller (MVC) :
+Model : Non si limita solo ai dati, ma include anche la logica per manipolare quei dati e le regole di business. Dovrebbe essere indipendente dalla View e dal Controller.
+View (Varianti): Passive View (la View è stupida e viene completamente aggiornata dal Model tramite il Controller), Smart View (contiene una minima logica di presentazione).
+Controller (Ruolo Centrale): Agisce come intermediario tra il Model e la View. Riceve gli input dell'utente dalla View, invoca i metodi appropriati sul Model per aggiornare i dati, e quindi aggiorna la View in base ai cambiamenti del Model.
+Flusso di Controllo Tipico: L'utente interagisce con la View -> La View notifica il Controller -> Il Controller interagisce con il Model -> Il Model notifica la View del cambiamento -> La View si aggiorna.
+Implementazioni: Presente in molti framework web (es. Ruby on Rails, Django, Spring MVC) e framework per interfacce grafiche.
+C. Altri Pattern Rilevanti :
+Observer (Scenari d'Uso): Aggiornamento automatico di più visualizzazioni di dati quando i dati sottostanti cambiano (es. grafici che si aggiornano in tempo reale), gestione degli eventi in sistemi distribuiti.
+Factory (Benefici): Nasconde la logica di creazione degli oggetti, facilita l'introduzione di nuove classi senza modificare il codice client, promuove un basso accoppiamento.
+Singleton (Considerazioni): Utilizzato per gestire risorse condivise (es. connessioni a database, configurazioni). Un uso eccessivo può portare a un accoppiamento globale indesiderato e rendere il codice più difficile da testare.

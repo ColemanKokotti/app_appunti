@@ -1,0 +1,144 @@
+Schema Ux Ui
+
+I. UX Thinking
+
+A.  Cos'è la User Experience (UX)?
+
+i. Definizione: L'insieme di emozioni, percezioni e reazioni che una persona prova quando utilizza un prodotto o servizio.
+ii. Riferimento Norma: ISO 9241-210.
+B.  User Experience Design
+
+i. Definizione: Il processo di miglioramento di fattori come utilità, facilità d'uso ed efficienza nell'interazione dell'utente con un prodotto o servizio.
+ii. Progettazione centrata sull'utente: Un processo di progettazione basato su esigenze e obiettivi dell'utente.
+C.  Il Ruolo dell'UX Designer
+
+i. Analisi e sviluppo: L'UX designer analizza, sviluppa, progetta, prototipa, testa, itera e perfeziona un prodotto per soddisfare le esigenze dell'utente.
+ii. Esempi di User Flow: Social log-in, abilitazione della localizzazione.
+D.  Morville's Honeycomb
+
+i. Utile: Deve soddisfare i reali bisogni dell'utente.
+ii. Utilizzabile: Facile da usare e veloce da imparare.
+
+iii. Desiderabile: Attrattivo ed esteticamente piacevole.
+
+iv. Trovabile: Informazioni facili da trovare e navigabili.
+
+v. Accessibile: Accessibile a tutte le persone.
+
+vi. Credibile: Affidabile e capace di ispirare fiducia.
+
+vii. Di Valore: Deve dare soddisfazione, facendo raggiungere un obiettivo.
+E.  Differenza tra UX, Interaction Design (ID) e User Interface (UI)
+
+i. User Experience Design: Progettazione delle emozioni e percezioni provate dall'utente.
+ii. Interaction Design: Progettazione delle interazioni per raggiungere obiettivi efficientemente.
+iii. User Interface Design: Progettazione visiva, studio dei colori, architettura delle informazioni e comunicazione.
+iv. Metafore: UI è la sella, le staffe e le redini; UX è l'emozione provata cavalcando.
+F.  Processo di UX Design
+
+i. Fasi: Discovery (Scoperta), Define (Definizione), Ideate (Ideazione), Design (Progettazione), Prototype (Prototipazione).
+ii. Attività per fase:
+a. Discovery: Questionari, Analisi dei Competitor.
+
+b. Define: Personas, Customer Journey, Lean Canvas.
+
+c. Ideate: Concept.
+
+d. Design: Architettura, Wireframe, User Flow, User Interface.
+
+e. Prototype: Prototipazione.
+
+G.  Usabilità
+
+i. Principi di Usabilità:
+a. Learnability (Apprendibilità): Facilità con cui gli utenti svolgono le operazioni di base la prima volta.
+b. Efficiency (Efficienza): Velocità con cui gli utenti eseguono le attività.
+c. Memorability (Memorizzabilità): Facilità con cui gli utenti ristabiliscono la confidenza dopo un periodo di inutilizzo.
+d. Errors (Errori): Numero, gravità e facilità di recupero dagli errori.
+e. Satisfaction (Soddisfazione): Piacevolezza d'uso.
+H.  10 Euristiche di Usabilità di Jakob Nielsen
+
+i. Visibilità dello stato del sistema: Informare sempre gli utenti su ciò che accade, con feedback appropriato e tempestivo.
+ii. Corrispondenza tra sistema e mondo reale: Usare il linguaggio degli utenti, con parole, frasi e concetti familiari. Seguire le convenzioni del mondo reale.
+iii. Controllo e libertà dell'utente: Offrire "uscite di emergenza" chiare e supportare le funzioni di annullamento e ripetizione.
+iv. Coerenza e standard: Mantenere la coerenza interna ed esterna (con le convenzioni del settore).
+v. Prevenzione degli errori: Prevenire gli errori piuttosto che limitarsi a gestirli con messaggi di errore.
+vi. Riconoscimento piuttosto che richiamo: Ridurre il carico di memoria rendendo visibili elementi, azioni e opzioni.
+vii. Flessibilità ed efficienza d'uso: Consentire la personalizzazione delle azioni frequenti e offrire scorciatoie per utenti esperti.
+II. Color Schemes (Schemi Cromatici)
+
+A.  Teoria dei Colori
+
+i. Modelli di Colore:
+a. RGB (Rosso, Verde, Blu): Sintesi additiva (luce).
+b. CMYK (Ciano, Magenta, Giallo, Nero): Sintesi sottrattiva (materia).
+ii. Colori Primari: Colori che permettono di creare tutti gli altri colori (Giallo, Blu, Rosso).
+iii. Colori Secondari: Colori creati sommando due colori primari (Verde, Arancione, Viola).
+iv. Colori Terziari: Colori creati sommando un colore primario ad uno secondario.
+B.  Proprietà dei Colori
+
+i. Tonalità (Hue): Qualità percettiva che dà un nome al colore (es., rosso, verde, blu).
+ii. Luminosità (Brightness): Attributo secondo cui un colore sembra inviare più o meno luce (Hue + Bianco).
+
+iii. Sfumatura (Shade): Hue + Nero.
+
+iv. Saturazione: Misura della purezza di un colore, calcolata in base alla quantità di grigio (Hue + Grigio).
+
+C.  Schemi Cromatici
+
+i. Obiettivo: Individuare palette di colori armoniche a partire da un colore primario.
+ii. Tipi di Schemi:
+a. Complementari.
+b. Analoghi.
+c. Split Complementari.
+d. Triade.
+e. Quadrato.
+f. Complementari Doppi.
+D.  Psicologia del Colore
+
+i. Colori Freddi: Calma, dolcezza, riposo, contemplazione, tristezza.
+ii. Colori Caldi: Gioia, forza, potenza, vivacità, passione.
+iii. Associazioni specifiche:
+a. Rosso: Calore, pericolo, passione, violenza.
+b. Arancione: Positività, ottimismo, entusiasmo.
+c. Giallo: Opportunità, entusiasmo, spontaneità.
+d. Verde: Sicurezza, natura, equilibrio.
+e. Blu: Calma, libertà, serenità.
+f. Viola: Tranquillità, spiritualità, mistero.
+g. Marrone: Struttura, sicurezza, comfort.
+h. Nero: Potere, mistero, serietà.
+i. Bianco: Amichevole, pulito.
+E.  Moodboard
+
+i. Definizione: Strumento visivo per stabilire la direzione creativa di un progetto.
+ii. Elementi: Collage di immagini, texture, colori e tipografia.
+iii. Obiettivi: Catturare l'atmosfera, lo stile e l'estetica di un progetto.
+iv. Considerazioni:
+a. Soggetto e pubblico del progetto.
+b. Stato d'animo ed emozione da evocare.
+c. Raccolta di riferimenti visivi.
+d. Organizzazione delle ispirazioni (colore, texture, tipografia, layout).
+e. Uso di una palette di colori limitata.
+f. Identificazione del colore primario del progetto.
+g. Sperimentazione con schemi cromatici.
+III. Wireframe
+
+A.  Architettura dell'Informazione (IA)
+
+i. Definizione: La struttura che organizza e collega i contenuti.
+ii. Obiettivo: Permettere all'utente di orientarsi e trovare le informazioni in modo efficiente.
+iii. Componenti chiave:
+a. Organizzazione.
+b. Navigazione.
+iv. Ruolo: Suggerisce quali informazioni e funzioni sono presenti nel sistema e dove si trovano.
+v. Considerazioni: Funzioni e numero di schermate dell'app.
+vi. Fase di Design: L'IA è una parte fondamentale della fase di design in UX/UI.
+B.  Wireframing
+
+i. Definizione: Processo di definizione dello scheletro dell'interfaccia grafica.
+ii. Obiettivi:
+a. Organizzare i gruppi di informazioni.
+b. Disegnare la struttura e il layout.
+c. Testare e validare l'interfaccia.
+iii. Processo: Processo evolutivo da macro a micro, focalizzato su contenuto, wireframe e graphic design. Non si usano colori.
+iv. User Flow: Serie di passaggi che un utente compie per raggiungere un obiettivo. Può essere combinato con i wireframe per creare i wireflow.

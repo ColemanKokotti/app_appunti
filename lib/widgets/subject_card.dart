@@ -54,10 +54,10 @@ class SubjectCard extends StatelessWidget {
                   color: AppTheme.primaryColor,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  IconMapper.getIconData(subject.iconName),
-                  size: 48,
-                  color: AppTheme.iconColor,
+                child: SizedBox(
+                  width: 48,
+                  height: 48,
+                  child: IconMapper.getIconWidget(subject.iconName, size: 48),
                 ),
               ),
               const SizedBox(height: 16),
