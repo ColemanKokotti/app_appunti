@@ -1,4 +1,5 @@
 import 'package:appunti/screens/home_page.dart';
+import 'package:appunti/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,10 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Appunti',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: AppTheme.darkTheme ,
       home: const HomePage(),
     );
   }

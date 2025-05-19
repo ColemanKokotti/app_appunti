@@ -4,12 +4,12 @@ class SubjectData {
   static List<Subject> getSubjects() {
     return [
       Subject(
-        name: 'Schema API',
+        name: 'API',
         iconName: 'api',
         assetPath: 'assets/Schema_API.txt',
       ),
       Subject(
-        name: 'Schema Copyright',
+        name: 'Copyright',
         iconName: 'copyright',
         assetPath: 'assets/Schema_Copyright.txt',
       ),
