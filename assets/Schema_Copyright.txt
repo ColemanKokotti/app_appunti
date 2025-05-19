@@ -1,0 +1,143 @@
+Schema Copyright
+
+I. Principi Generali di Diritto e Società
+
+Enti e Soggettività Giuridica:
+Gli enti sono identificati come centri di imputazione giuridica, analoghi alle persone fisiche, in quanto titolari di diritti e doveri.    
+La capacità giuridica è una caratteristica comune a tutti gli enti, che permette loro di essere soggetti di situazioni giuridiche soggettive come proprietà, credito, debito e responsabilità patrimoniale.    
+La personalità giuridica, invece, è posseduta solo da alcuni enti (ad esempio, le società di capitali).  Essa implica un'autonomia patrimoniale perfetta, ovvero la capacità di rispondere delle obbligazioni con il solo patrimonio dell'ente, distinguendolo dal patrimonio dei suoi membri.    
+Esempi di enti includono:
+Associazioni: Enti che perseguono finalità non economiche, basate sulla solidarietà e l'associativismo dei cittadini.    
+Fondazioni: Enti che perseguono scopi non economici, realizzabili anche attraverso lo svolgimento di attività economiche.    
+Società (di persone e di capitali): Enti con finalità economiche, che esercitano l'attività d'impresa.    
+Codice Civile - Libro V ("Del Lavoro"):
+Il Libro V del Codice Civile è dedicato al lavoro in tutte le sue forme.    
+L'attenzione si concentra sul fenomeno societario e sull'impresa, considerati rilevanti per l'inserimento nel mondo del lavoro.    
+Si sottolinea come l'opportunità di lavoro possa concretizzarsi nella costituzione di una società per sviluppare idee innovative (startup, brevetti, software) o per fornire servizi specializzati (es., animazione 3D).    
+Imprenditore (Art. 2082 c.c.):
+Definizione: "È imprenditore chi esercita professionalmente una attività economica organizzata al fine della produzione o dello scambio di beni o di servizi."    
+Piccoli Imprenditori (Art. 2083 c.c.):
+Categoria che include coltivatori diretti del fondo, artigiani, ecc.  (ulteriori dettagli non specificati nelle slide).   
+Diritto all'immagine (Art. 10 c.c.):
+Tutela la persona contro l'esposizione o pubblicazione della propria immagine al di fuori dei casi consentiti dalla legge, o con pregiudizio al decoro o alla reputazione.    
+Diritti della personalità:
+Includono una serie di diritti fondamentali come:
+Diritto al nome
+Diritto alla vita
+Diritto alla salute
+Diritto all'integrità morale e all'immagine
+Diritto alla privacy
+Diritto all'identità personale
+Diritti morali d'autore    
+
+II. Trattamento dei Dati Personali - GDPR
+
+Principi Fondamentali del GDPR:
+Liceità, Correttezza e Trasparenza:
+I dati personali devono essere trattati in modo lecito, ovvero nel rispetto delle basi giuridiche previste dal GDPR (es., consenso).    
+Il trattamento deve avvenire in modo corretto, nei limiti consentiti e per le finalità comunicate agli interessati.    
+È necessaria la trasparenza nell'informativa privacy, che deve essere chiara, completa e intellegibile.    
+Limitazione delle Finalità:
+I dati devono essere raccolti per finalità specifiche, esplicite e legittime.    
+L'ulteriore trattamento deve essere compatibile con le finalità iniziali, con eccezioni per archiviazione nel pubblico interesse, ricerca scientifica/storica o statistica.    
+Esempio: Non utilizzare i dati dei dipendenti dopo la cessazione del rapporto di lavoro, se non per obblighi legali o difesa in giudizio; non creare database statistici o di profilazione a partire dai dati degli iscritti alla newsletter.    
+Minimizzazione dei Dati:
+I dati devono essere adeguati, pertinenti e limitati a quanto necessario per le finalità del trattamento.    
+Esempio: Non richiedere il codice fiscale o l'indirizzo postale per la registrazione a un'app che richiede solo l'identificazione tramite user ID (e-mail).    
+Esattezza:
+I dati devono essere esatti e, se necessario, aggiornati.    
+Devono essere adottate misure ragionevoli per cancellare o rettificare tempestivamente i dati inesatti.    
+Esempio: Verificare la validità delle copie di documenti d'identità raccolti.    
+Limitazione della Conservazione:
+I dati devono essere conservati per il tempo necessario per le finalità del trattamento.    
+Il trattamento dei dati di un utente che cancella il proprio account dovrebbe cessare, salvo ragioni prevalenti (es., tutela giudiziaria).    
+Integrità e Riservatezza (Sicurezza):
+I dati devono essere trattati in modo da garantire un'adeguata sicurezza, proteggendoli da trattamenti illeciti, perdita, distruzione o accesso non autorizzato.    
+III. Cookie e Strumenti di Tracciamento
+
+Cookie:
+Sono strumenti di tracciamento che possono essere rimossi dall'utente, in quanto archiviati sul suo dispositivo.    
+Fingerprinting:
+Tecnica di identificazione del dispositivo basata sull'osservazione e analisi della configurazione.    
+L'utente non ha strumenti per contrastarlo direttamente, ma deve fare affidamento sull'azione del titolare del sito.    
+Non presuppone l'archiviazione di informazioni sul dispositivo dell'utente, ma la creazione di un "profilo" basato sulle caratteristiche uniche del dispositivo.    
+Accountability e Consenso:
+Lo scrolling può essere una componente di un processo di acquisizione del consenso, ma non è sufficiente da solo.    
+È necessario un processo più articolato che permetta all'utente di esprimere una scelta inequivoca e consapevole, che sia registrabile e documentabile.    
+I titolari devono valutare soluzioni tecniche per registrare il consenso espresso degli utenti all'installazione di cookie o altri strumenti di tracciamento.    
+Tipologie di Cookie:
+Cookie Analitici:
+Possono essere equiparati ai cookie tecnici se utilizzati per produrre statistiche aggregate relative a un singolo sito o app.    
+Per essere considerati tali, è necessario che per quelli di terze parti sia mascherata almeno la quarta componente dell'indirizzo IP e che le terze parti si astengano dal combinare i cookie con altre elaborazioni o dal trasmetterli ad altri terzi.    
+Altri Strumenti di Tracciamento:
+Esempi includono il Fingerprinting (già descritto) e il Pixel di Facebook (dichiarato illegittimo in Austria).    
+IV. Il Marchio
+
+Requisiti di Novità: Un marchio non deve essere:
+Identico a un marchio o segno distintivo (ragione sociale, ditta, nome a dominio) già utilizzato per prodotti identici.    
+Identico a un marchio o segno distintivo già utilizzato per prodotti simili, se c'è rischio di confusione nel pubblico.    
+Simile a un marchio o segno distintivo già utilizzato per prodotti identici, se c'è rischio di confusione nel pubblico.    
+Simile o identico a un marchio rinomato (es., Gucci, Bayer), anche per prodotti non affini, se l'uso del marchio successivo senza giusto motivo trae indebitamente vantaggio dal carattere distintivo o dalla rinomanza del marchio anteriore, o lo danneggia.    
+Capacità Distintiva: Il marchio deve essere distintivo.  Non possono essere registrati marchi costituiti esclusivamente da:
+Segni divenuti di uso comune nel linguaggio corrente o negli usi costanti del commercio.    
+Denominazioni generiche di prodotti o servizi o indicazioni descrittive che ad essi si riferiscono (es., segni che in commercio possono servire a designare specie, qualità, quantità, destinazione, valore, provenienza geografica, epoca di fabbricazione).    
+  
+V. E-commerce e Pubblicità
+
+Rapporto Venditore/Licenziatario/Distributore e Consumatore:
+Condizioni Generali di Contratto:
+Sono regole uniformi applicate dal venditore che disciplinano il rapporto con il consumatore.    
+Non sono negoziate, ma imposte dal venditore, e regolano aspetti come conclusione del contratto, pagamento, consegna, reso.    
+L'unilateralità di queste condizioni è mitigata dal Codice Civile (clausole vessatorie) e dal Codice del Consumo.    
+D.lgs. 206/2005 – Codice del Consumo:
+È il principale sistema di regole a tutela dei consumatori, incluse pubblicità, garanzia, recesso.    
+Assicura un elevato livello di tutela dei consumatori e degli utenti.    
+Diritti fondamentali dei consumatori:
+Tutela della salute
+Sicurezza e qualità di prodotti/servizi
+Adeguata informazione e corretta pubblicità   
+Pratiche commerciali secondo buona fede, correttezza e lealtà
+Educazione al consumo
+Correttezza, trasparenza ed equità nei rapporti contrattuali   
+Associazionismo libero, volontario e democratico
+Erogazione efficiente dei servizi pubblici    
+Informazioni al consumatore:
+Sicurezza, composizione e qualità dei prodotti/servizi sono obblighi informativi essenziali.    
+Le informazioni devono essere adeguate al mezzo di comunicazione, chiare e comprensibili.    
+Pubblicità Ingannevole e Comparativa: (Non dettagliato nelle slide fornite)
+Soggetti Coinvolti nell'E-commerce:
+Venditore
+Fornitori di servizi al venditore (storage, shipping, hosting, CRM, ecc.)
+Licenziatari (diritto di usare il marchio per vendere online) e distributori (diritto esclusivo di vendere online) del venditore
+VI. Diritto d'Autore
+
+Art. 2578 c.c. - Progetti di lavori:
+L'autore di progetti di ingegneria o altri lavori simili con soluzioni originali ha il diritto esclusivo di riprodurre i piani e disegni.    
+Ha anche diritto a un equo compenso da chi esegue il progetto tecnico a scopo di lucro senza il suo consenso.    
+Art. 2579 c.c. - Interpreti ed esecutori:
+Artisti, attori, interpreti di opere drammatiche/letterarie e artisti esecutori di opere musicali hanno diritto a un equo compenso per la diffusione o trasmissione delle loro prestazioni, anche se le opere sono di dominio pubblico.    
+Hanno il diritto di opporsi alla diffusione, trasmissione o riproduzione che possa danneggiare il loro onore o reputazione.    
+Art. 2580 c.c. - Soggetti del diritto:
+Il diritto d'autore spetta all'autore e ai suoi aventi causa, nei limiti fissati dalle leggi speciali.    
+Art. 2581 c.c. - Trasferimento dei diritti di utilizzazione:
+I diritti di utilizzazione sono trasferibili, e il trasferimento per atto tra vivi deve essere provato per iscritto.    
+Art. 2582 c.c. - Ritiro dell'opera dal commercio:
+L'autore ha il diritto di ritirare l'opera dal commercio per gravi ragioni morali, indennizzando chi ha acquistato i diritti di utilizzazione.    
+Questo diritto è personale e intrasmissibile.    
+Art. 2583 c.c. - Leggi speciali:
+L'esercizio e la durata dei diritti d'autore sono regolati dalle leggi speciali.    
+L. 633/1941 - Protezione del diritto d'autore:
+Acquisto a titolo originario: Il diritto d'autore si acquisisce a titolo originario, ovvero nasce direttamente in capo all'autore al momento della creazione dell'opera, non per cessione da altri.    
+VII. Diritto d'Autore - Creative Commons
+
+Creative Commons:
+È un progetto nato nel 2001 per creare un sistema intermedio tra il "tutti i diritti riservati" del diritto d'autore tradizionale e il pubblico dominio ("alcuni diritti riservati").    
+Permette agli autori di scegliere un set di condizioni di utilizzo per la loro opera, tramite licenze che possono essere combinate per definire il livello di restrizione.
+Esempi di Licenze Creative Commons:
+Attribuzione - Non opere derivate: Permette la condivisione dell'opera anche a fini commerciali, a condizione che sia attribuita all'autore e non ne siano create opere derivate (remix, trasformazioni).    
+Attribuzione - Non commerciale - Non opere derivate: Come la precedente, ma vieta l'utilizzo commerciale dell'opera.    
+VIII. Diritto d'Autore - Aspetti Specifici e Giurisprudenza
+
+Danno da violazione del diritto d'autore: Il danno può essere quantificato e liquidato in via equitativa anche senza prove del pregiudizio economico subito.    
+Caso pratico (Tribunale di Trieste):
+Riguardava la pubblicazione non autorizzata di una fotografia professionale.

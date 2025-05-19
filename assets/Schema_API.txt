@@ -1,0 +1,133 @@
+Schema API
+
+I. HTTP (HyperText Transfer Protocol)
+
+Definizione e Funzionamento
+
+HTTP è un protocollo a livello applicativo per la trasmissione di informazioni sul web, basato su un'architettura client-server.    
+Le specifiche sono gestite dal World Wide Web Consortium (W3C).    
+Un server HTTP è in ascolto delle richieste dei client sulla porta 80, utilizzando il protocollo TCP.    
+Metodi (Verbi) HTTP
+
+GET: Utilizzato per richiedere una risorsa al server (es., una pagina web, un file, dati da un'API). In ambito CRUD, corrisponde all'operazione di Read (R). 
+Esempio: http://api.meteo.it/town (per ottenere la lista di tutte le città) o http://api.meteo.it/town/tw00923 (per ottenere i dati della città con ID "tw00923").    
+  
+POST: Utilizzato per creare una nuova risorsa sul server. In ambito CRUD, corrisponde all'operazione di Create (C). 
+Esempio: Una richiesta POST a http://api.meteo.it/town con i dati di una nuova città nel corpo della richiesta.    
+  
+PUT/PATCH: Utilizzati per modificare una risorsa esistente sul server. In ambito CRUD, corrisponde all'operazione di Update (U). 
+È necessario specificare l'identificativo univoco della risorsa da modificare. Esempio: PATCH http://api.meteo.it/town/tw00923.    
+  
+DELETE: Utilizzato per cancellare una risorsa sul server. In ambito CRUD, corrisponde all'operazione di Delete (D). 
+Esempio: Una richiesta DELETE a http://api.meteo.it/town/tw00923 cancellerà la città con quell'ID.    
+  
+OPTIONS: Utilizzato per richiedere informazioni sulle opzioni di comunicazione disponibili per la risorsa.    
+Struttura della Comunicazione HTTP
+
+Request (Richiesta): Il messaggio inviato dal client al server per richiedere un'azione su una risorsa.    
+Response (Risposta): Il messaggio inviato dal server al client in risposta a una richiesta.    
+Sincrono vs. Asincrono:
+
+Sincrono: La richiesta attende una risposta immediata.    
+Asincrono: La richiesta non blocca l'esecuzione, la risposta può arrivare in seguito (concetto più astratto legato ad applicazioni web e mobile).    
+Codici di Risposta: Codici numerici che indicano l'esito della richiesta.    
+Stato: Il concetto di "stato" si riferisce alla memorizzazione di informazioni tra le richieste (es., sessioni), ma le API RESTful sono stateless.    
+II. REST e CRUD
+
+REST (REpresentational State Transfer)
+
+Un'architettura per la creazione di servizi web.    
+Si basa sul protocollo HTTP.    
+Utilizza URL per identificare le risorse e i metodi HTTP per manipolarle.    
+CRUD (Create, Read, Update, Delete)
+
+Le quattro operazioni fondamentali per la gestione persistente dei dati.    
+III. Codici di Stato HTTP
+
+Definizione
+
+Numeri che rappresentano l'esito di una richiesta HTTP.    
+Classi
+
+1xx (Informational): Richiesta ricevuta, in fase di elaborazione.    
+2xx (Success): Richiesta riuscita. 
+200 OK: Richiesta GET riuscita.    
+201 Created: Risorsa creata (es., dopo una POST).    
+204 No Content: Richiesta riuscita, ma nessun contenuto nella risposta (es., dopo una DELETE).    
+  
+3xx (Redirection): Richiesta reindirizzata. 
+301 Moved Permanently: La risorsa è stata spostata definitivamente a un nuovo URL.    
+302 Found: La risorsa è stata trovata temporaneamente ad un altro URL.    
+  
+4xx (Client Error): Errore lato client. 
+400 Bad Request: Richiesta malformata.    
+401 Unauthorized: Richiede autenticazione.    
+403 Forbidden: Richiesta vietata (il client è autenticato ma non autorizzato).    
+404 Not Found: Risorsa non trovata.    
+405 Method Not Allowed: Metodo HTTP non supportato per l'URL richiesto.    
+408 Request Timeout: La richiesta ha impiegato troppo tempo.    
+422 Unprocessable Entity: Richiesta non valida a causa di errori semantici (es., dati mancanti).    
+  
+5xx (Server Error): Errore lato server. 
+500 Internal Server Error: Errore generico del server.    
+502 Bad Gateway: Il server ha ricevuto una risposta non valida da un altro server.    
+503 Service Unavailable: Il server non è temporaneamente disponibile.    
+  
+IV. Headers HTTP
+
+Definizione
+
+Coppie "chiave-valore" che forniscono informazioni aggiuntive su richieste o risposte HTTP.    
+Formato
+
+Nome-Header: Valore-Header (il nome non è case-sensitive).    
+Esempi Comuni
+
+Accept: Indica i tipi di contenuto che il client può gestire (es., text/html, application/json).    
+Content-Type: Indica il tipo di contenuto del corpo della richiesta o della risposta (es., application/json, text/xml).    
+Authorization: Fornisce le credenziali per l'autenticazione.    
+V. OAuth e OAuth 2.0
+
+OAuth
+
+Un protocollo per l'autorizzazione.    
+Permette a un client di terze parti di accedere a risorse di un utente per conto di quest'ultimo, con la sua approvazione.    
+OAuth 2.0
+
+Il protocollo standard del settore per l'autorizzazione.    
+Elementi chiave: 
+Access Token: Una stringa che il client utilizza per accedere alle risorse protette.    
+Refresh Token: Una stringa che il client può utilizzare per ottenere un nuovo Access Token senza richiedere nuovamente l'autorizzazione all'utente.    
+Scope: I permessi specifici che l'utente concede al client (quali risorse può accedere).    
+  
+Flussi di Autorizzazione (Grant Types) in OAuth 2.0 
+Authorization Code Grant: Il client ottiene un codice di autorizzazione dal server di autorizzazione e lo scambia per un Access Token.    
+Password Grant: Il client ottiene l'Access Token fornendo le credenziali dell'utente (username e password) direttamente al server di autorizzazione.    
+Client Credentials Grant: Il client ottiene l'Access Token utilizzando le proprie credenziali (client ID e client secret), senza il coinvolgimento di un utente.    
+Refresh Token Grant: Il client utilizza un Refresh Token per ottenere un nuovo Access Token.    
+  
+VI. Sicurezza delle API
+
+HTTPS (Hypertext Transfer Protocol Secure) 
+Un protocollo per la comunicazione sicura su Internet.    
+Crittografa i dati scambiati per proteggerli da intercettazioni (utilizza TLS).    
+Fornisce: 
+Crittografia
+
+Integrità dei dati (previene modifiche)
+
+Autenticazione (verifica l'identità)
+
+  
+VII. Autenticazione vs. Autorizzazione
+
+Autenticazione 
+Il processo di verificare l'identità di un utente o di un client.    
+  
+Autorizzazione 
+Il processo di concedere a un utente o a un client il permesso di accedere a specifiche risorse.    
+  
+Metodi di Autenticazione API 
+API Keys: Una stringa univoca che identifica l'applicazione richiedente.    
+Bearer Token: Un token di sicurezza (spesso JWT) incluso nell'header della richiesta.    
+Basic Access Authentication: Invio di username e password (codificati in Base64) nell'header (meno sicuro).    
