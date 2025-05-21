@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../utils/syntax_highlighter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_code_editor/flutter_code_editor.dart';
+import '../../cubits/CodeBlocks/code_blocks_cubit.dart';
+import '../../cubits/CodeBlocks/code_blocks_state.dart';
+import '../../themes/app_theme.dart';
 
 class CodeBlockWidget extends StatelessWidget {
   final String code;
@@ -15,122 +19,97 @@ class CodeBlockWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Determine language based on file name if available, otherwise use subject
-    String language;
-    String languageLabel;
-
-    if (fileName != null) {
-      // Use the new function to identify language from filename
-      language = SyntaxHighlighter.identifyLanguageFromFilename(fileName!);
-      languageLabel = _getDisplayLanguageLabel(language);
-    } else if (subjectName != null) {
-      // This is kept for backward compatibility
-      language = _mapSubjectToLanguage(subjectName!);
-      languageLabel = _getDisplayLanguageLabel(language);
-    } else {
-      language = 'generic';
-      languageLabel = 'Code';
-    }
-
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 2.0),
-      decoration: BoxDecoration(
-        color: const Color(0xFF1E1E1E), // Dark background for code (VS Code dark theme)
-        borderRadius: BorderRadius.circular(8.0),
-        border: Border.all(color: const Color(0xFF3A3F58), width: 1),
+    return BlocProvider(
+      create: (context) => CodeBlockCubit(
+        code: code,
+        subjectName: subjectName,
+        fileName: fileName,
       ),
-      child: Stack(
-        children: [
-          // Code content with syntax highlighting
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.all(16.0),
-            child: RichText(
-              text: SyntaxHighlighter.highlightCode(code, language),
-              softWrap: false,
-              textAlign: TextAlign.start,
-              textDirection: TextDirection.ltr,
-              maxLines: null,
-              overflow: TextOverflow.clip,
-              textScaler: MediaQuery.textScalerOf(context),
-              strutStyle: const StrutStyle(
-                fontFamily: 'Consolas, Monaco, "Courier New", monospace',
-                fontSize: 14.0,
-                height: 1.5,
-              ),
+      child: BlocBuilder<CodeBlockCubit, CodeBlockState>(
+        builder: (context, state) {
+          return Container(
+            width: double.infinity,
+            margin: const EdgeInsets.symmetric(vertical: 2.0),
+            decoration: BoxDecoration(
+              color: AppTheme.codeBlockBackground,
+              borderRadius: BorderRadius.circular(8.0),
+              border: Border.all(color: AppTheme.codeBlockBorder),
             ),
-          ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Header
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                  decoration: const BoxDecoration(
+                    color: AppTheme.codeBlockHeader,
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(7.0)),
+                  ),
+                  child: Text(
+                    state.languageLabel,
+                    style: const TextStyle(
+                      color: Colors.white70,
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
 
-          // Language label
-          Positioned(
-            top: 0,
-            right: 0,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 4.0),
-              decoration: const BoxDecoration(
-                color: Color(0xFF38354A),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(8.0),
-                  topRight: Radius.circular(7.0),
+                // Fixed Code Display Area
+                SizedBox(
+                  height: 200, // Fixed height to avoid layout issues
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: SizedBox(
+                      // Ensure the code has a minimum width
+                      width: MediaQuery.of(context).size.width - 40, // Subtract some padding
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: CodeTheme(
+                          data: CodeThemeData(styles: AppTheme.codeTheme),
+                          child: CodeField(
+                            controller: state.controller,
+                            textStyle: const TextStyle(fontFamily: 'monospace'),
+                            readOnly: true,
+                            padding: const EdgeInsets.all(8.0),
+                            minLines: 3, // Minimum number of lines
+                            expands: false, // Don't expand to fill available space
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              child: Text(
-                languageLabel,
-                style: const TextStyle(
-                  color: Color(0xFFB180ED),
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.bold,
+
+                // Footer
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                  decoration: const BoxDecoration(
+                    color: AppTheme.codeBlockFooter,
+                    borderRadius: BorderRadius.vertical(bottom: Radius.circular(7.0)),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end, // Align to the right
+                    children: [
+                      Flexible( // Use Flexible instead of Expanded
+                        child: Text(
+                          'Note: ${fileName ?? subjectName ?? 'Code Block'}',
+                          style: const TextStyle(
+                            color: AppTheme.codeBlockFooterText,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
-  }
-
-  // Helper method to map subject name to language
-  String _mapSubjectToLanguage(String subject) {
-    // Legacy mapping logic, can be integrated into SyntaxHighlighter if needed
-    if (subject.contains('Programming Fundamentals')) {
-      return 'c#';
-    } else if (subject.contains('Android')) {
-      return 'kotlin';
-    } else if (subject.contains('React')) {
-      return 'typescript';
-    } else if (subject.contains('IOS')) {
-      return 'swift';
-    } else if (subject.contains('Linux')) {
-      return 'bash';
-    } else if (subject.contains('Flutter')) {
-      return 'dart';
-    } else if (subject.contains('Web')) {
-      return 'html/css/javascript';
-    } else {
-      return 'generic';
-    }
-  }
-
-  // Helper method to get a nice display label for the language
-  String _getDisplayLanguageLabel(String language) {
-    switch (language.toLowerCase()) {
-      case 'c#':
-        return 'C#';
-      case 'kotlin':
-        return 'Kotlin';
-      case 'typescript':
-        return 'TypeScript';
-      case 'swift':
-        return 'Swift';
-      case 'bash':
-        return 'Bash';
-      case 'dart':
-        return 'Dart';
-      case 'html/css/javascript':
-        return 'HTML/CSS/JS';
-      default:
-        return 'Code';
-    }
   }
 }

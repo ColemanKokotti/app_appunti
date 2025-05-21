@@ -68,6 +68,11 @@ class SubjectData {
         iconName: 'cybersecurity',
         assetPath: 'assets/txt/Schema_Cybersecurity.txt',
       ),
+      Subject(
+          name: 'Version Control',
+          iconName: 'git',
+          assetPath: 'assets/txt/Schema_Version_Control.txt'
+      )
     ];
   }
 }

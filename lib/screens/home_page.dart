@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../cubits/Subject/subjects_cubit.dart';
 import '../data/subject_data.dart';
 import '../models/subject.dart';
 import '../widgets/subject_card.dart';
 import '../themes/app_theme.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -40,7 +43,10 @@ class HomePage extends StatelessWidget {
                     itemCount: subjects.length,
                     itemBuilder: (context, index) {
                       final subject = subjects[index];
-                      return SubjectCard(subject: subject);
+                      return BlocProvider(
+                        create: (context) => SubjectSelectionCubit(),
+                        child: SubjectCard(subject: subject),
+                      );
                     },
                   ),
                 ),

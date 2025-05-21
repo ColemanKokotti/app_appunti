@@ -16,7 +16,44 @@ class AppTheme {
   // Colori paragrafi
   static const Color headingColor = Color(0xFF4DB6AC);  // Colore intestazioni (teal chiaro)
   static const Color subheadingColor = Color(0xFF26A69A); // Colore sottointestazioni
+  // Nuovi colori per il blocco di codice
+  static const Color codeBlockBackground = Color(0xFF1E1E1E); // Sfondo scuro per il codice (VS Code dark theme)
+  static const Color codeBlockBorder = Color(0xFF3A3A3A);    // Bordo leggero
+  static const Color codeBlockHeader = Color(0xFF282828);    // Sfondo per l'header del blocco di codice
+  static const Color codeBlockFooter = Color(0xFF282828);    // Sfondo per il footer del blocco di codice
+  static const Color codeBlockFooterText = Color(0xFFB180ED); // Colore del testo nel footer
 
+  // Tema per l'evidenziazione della sintassi (esempio, puoi personalizzarlo)
+  // Questi stili sovrascriveranno i valori predefiniti del tema di highlight
+  static Map<String, TextStyle> codeTheme = {
+    'root': const TextStyle(
+      backgroundColor: codeBlockBackground,
+      color: Color(0xFFD4D4D4), // Colore del testo generale del codice
+    ),
+    'keyword': const TextStyle(color: Color(0xFF569CD6)), // Esempio: parole chiave blu
+    'built_in': const TextStyle(color: Color(0xFF569CD6)),
+    'type': const TextStyle(color: Color(0xFF569CD6)),
+    'literal': const TextStyle(color: Color(0xFF569CD6)),
+    'number': const TextStyle(color: Color(0xFFB5CEA8)), // Esempio: numeri verdi
+    'string': const TextStyle(color: Color(0xFFD69D85)), // Esempio: stringhe arancioni
+    'comment': const TextStyle(color: Color(0xFF6A9955)), // Esempio: commenti verdi scuri
+    'variable': const TextStyle(color: Color(0xFF9CDCFE)),
+    'function': const TextStyle(color: Color(0xFFDCDCAA)),
+    'title': const TextStyle(color: Color(0xFFDCDCAA)),
+    'params': const TextStyle(color: Color(0xFF9CDCFE)),
+    'operator': const TextStyle(color: Color(0xFFD4D4D4)),
+    'selector-tag': const TextStyle(color: Color(0xFF569CD6)),
+    'tag': const TextStyle(color: Color(0xFF569CD6)),
+    'name': const TextStyle(color: Color(0xFFC586C0)),
+    'attr': const TextStyle(color: Color(0xFF9CDCFE)),
+    'attribute': const TextStyle(color: Color(0xFF9CDCFE)),
+    'class': const TextStyle(color: Color(0xFF4EC9B0)),
+    'regexp': const TextStyle(color: Color(0xFFD16969)),
+    'link': const TextStyle(color: Color(0xFF9CDCFE), decoration: TextDecoration.underline),
+    'meta': const TextStyle(color: Color(0xFF9CDCFE)),
+    'emphasis': const TextStyle(fontStyle: FontStyle.italic),
+    'strong': const TextStyle(fontWeight: FontWeight.bold),
+  };
   // Tema scuro dell'applicazione
   static final ThemeData darkTheme = ThemeData(
     useMaterial3: true,

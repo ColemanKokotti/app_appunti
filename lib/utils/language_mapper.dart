@@ -2,25 +2,25 @@ class LanguageMapper {
   static String getLanguageForSubject(String subjectName) {
     switch (subjectName) {
       case 'Programming Fundamentals':
-        return 'C#';
+        return 'csharp'; // Usiamo 'csharp' come nome del linguaggio per highlight
       case 'Android':
-        return 'Kotlin';
+        return 'kotlin';
       case 'React Native':
-        return 'TypeScript';
+        return 'typescript';
       case 'IOS':
-        return 'Swift';
+        return 'swift';
       case 'Linux':
-        return 'Bash';
+        return 'bash';
       case 'Flutter':
-        return 'Dart';
+        return 'dart';
       case 'Web':
-        return 'HTML/CSS/JavaScript';
-    case 'XML':
-    return 'XML';
-    case 'Compose':
-    return 'Kotlin';
+        return 'html'; // 'html' è un buon fallback per web (include js/css)
+      case 'XML':
+        return 'xml';
+      case 'Compose':
+        return 'kotlin'; // Compose è Kotlin
       default:
-        return 'Code';
+        return 'plaintext'; // Default per linguaggi non riconosciuti
     }
   }
 }

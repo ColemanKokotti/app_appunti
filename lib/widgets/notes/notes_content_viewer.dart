@@ -13,9 +13,13 @@ class NotesContentViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: NotesFormatter.formatNotes(context, notesContent,subject),
+    // Wrap in a Container with width constraint to ensure children have proper bounds
+    return Container(
+      width: MediaQuery.of(context).size.width - 20, // Full width minus padding
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: NotesFormatter.formatNotes(context, notesContent, subject),
+      ),
     );
   }
 }
