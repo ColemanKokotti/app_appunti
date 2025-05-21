@@ -15,7 +15,10 @@ class LanguageMapper {
         return 'Dart';
       case 'Web':
         return 'HTML/CSS/JavaScript';
-    // Default case for other subjects
+    case 'XML':
+    return 'XML';
+    case 'Compose':
+    return 'Kotlin';
       default:
         return 'Code';
     }

@@ -34,22 +34,15 @@ class CodeBlockWidget extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      margin: const EdgeInsets.symmetric(vertical: 2.0),
       decoration: BoxDecoration(
-        color: const Color(0xFF1E1E1E), // Colore di sfondo scuro per il codice (VS Code dark theme)
+        color: const Color(0xFF1E1E1E), // Dark background for code (VS Code dark theme)
         borderRadius: BorderRadius.circular(8.0),
         border: Border.all(color: const Color(0xFF3A3F58), width: 1),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black,
-            offset: const Offset(0, 2),
-            blurRadius: 4,
-          ),
-        ],
       ),
       child: Stack(
         children: [
-          // Contenuto del codice con evidenziazione sintassi
+          // Code content with syntax highlighting
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.all(16.0),
@@ -69,6 +62,7 @@ class CodeBlockWidget extends StatelessWidget {
             ),
           ),
 
+          // Language label
           Positioned(
             top: 0,
             right: 0,

@@ -26,6 +26,64 @@ class ParagraphFormatter {
     );
   }
 
+  // Questo è il metodo principale che costruisce un paragrafo completo
+  static Widget buildCompleteParagraph(BuildContext context, String title, List<Widget> contentWidgets) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Header del paragrafo
+        buildParagraphHeader(context, title),
+
+        // Container per tutto il contenuto del paragrafo
+        Container(
+          padding: const EdgeInsets.all(12.0),
+          margin: const EdgeInsets.only(left: 8.0, right: 0, bottom: 16.0),
+          decoration: BoxDecoration(
+            color: AppTheme.surfaceColor,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: contentWidgets,
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Questo metodo crea un widget per il testo del paragrafo
+  static Widget buildParagraphTextContent(BuildContext context, List<String> content) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: content.map((line) {
+        // Verifica se la linea contiene una definizione (inizia con una parola seguita da :)
+        final isDefinition = RegExp(r'^\w+(\s\w+)*:').hasMatch(line);
+
+        // Invece di restituire un semplice Text widget, usiamo un RichText per formattare parti specifiche
+        if (line.contains(':') || (line.contains('(') && line.contains(')'))) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 3.0),
+            child: TextContentFormatter.buildRichText(line, isDefinition),
+          );
+        } else {
+          // Se non ci sono : o parentesi, usiamo il classico Text widget
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 3.0),
+            child: Text(
+              line,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+                color: null,
+              ),
+            ),
+          );
+        }
+      }).toList(),
+    );
+  }
+
+  // Manteniamo per compatibilità con il codice esistente
   static Widget buildParagraphContent(BuildContext context, List<String> content) {
     return Container(
       padding: const EdgeInsets.all(12.0),
@@ -34,34 +92,7 @@ class ParagraphFormatter {
         color: AppTheme.surfaceColor,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: content.map((line) {
-          // Verifica se la linea contiene una definizione (inizia con una parola seguita da :)
-          final isDefinition = RegExp(r'^\w+(\s\w+)*:').hasMatch(line);
-
-          // Invece di restituire un semplice Text widget, usiamo un RichText per formattare parti specifiche
-          if (line.contains(':') || (line.contains('(') && line.contains(')'))) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 3.0),
-              child: TextContentFormatter.buildRichText(line, isDefinition),
-            );
-          } else {
-            // Se non ci sono : o parentesi, usiamo il classico Text widget
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 3.0),
-              child: Text(
-                line,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.normal,
-                  color: null,
-                ),
-              ),
-            );
-          }
-        }).toList(),
-      ),
+      child: buildParagraphTextContent(context, content),
     );
   }
 }

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 abstract class BaseFormatter {
   static bool isNewParagraphStart(String line) {
     return line.startsWith('I.') || line.startsWith('II.') ||
@@ -11,8 +9,13 @@ abstract class BaseFormatter {
   }
 
   static bool isCodeBlockStart(String trimmedLine) {
-    return trimmedLine.startsWith('```') ||
-        trimmedLine == 'C#' ||
+    // Riconoscimento del delimitatore di codice Markdown
+    if (trimmedLine.startsWith('```')) {
+      return true;
+    }
+
+    // Riconoscimento di C# (esistente)
+    if (trimmedLine == 'C#' ||
         trimmedLine.startsWith('int[') ||
         trimmedLine.startsWith('int ') ||
         trimmedLine.startsWith('double ') ||
@@ -38,6 +41,35 @@ abstract class BaseFormatter {
         trimmedLine.startsWith('else ') ||
         trimmedLine.contains(' => ') ||
         trimmedLine == 'do' ||
-        (trimmedLine.startsWith('using ') && trimmedLine.contains('('));
+        (trimmedLine.startsWith('using ') && trimmedLine.contains('('))) {
+      return true;
+    }
+
+    // Aggiunta del riconoscimento per XML
+    // I tag XML iniziano con '<' seguito da una lettera o '/'
+    if (trimmedLine.startsWith('<') && (RegExp(r'^<[a-zA-Z/]').hasMatch(trimmedLine))) {
+      return true;
+    }
+    // Aggiunta del riconoscimento per Kotlin/Compose
+    // Parole chiave Kotlin comuni che possono indicare l'inizio di un blocco di codice
+    // e parole chiave specifiche di Compose
+    if (trimmedLine.startsWith('fun ') ||
+        trimmedLine.startsWith('val ') ||
+        trimmedLine.startsWith('var ') ||
+        trimmedLine.startsWith('class ') ||
+        trimmedLine.startsWith('object ') ||
+        trimmedLine.startsWith('interface ') ||
+        trimmedLine.startsWith('import ') ||
+        trimmedLine.startsWith('@Composable') ||
+        trimmedLine.startsWith('Column') ||
+        trimmedLine.startsWith('Row') ||
+        trimmedLine.startsWith('Box') ||
+        trimmedLine.startsWith('Text(') ||
+        trimmedLine.startsWith('Button(') ||
+        trimmedLine.startsWith('Modifier.')) {
+      return true;
+    }
+
+    return false;
   }
 }

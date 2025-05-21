@@ -13,6 +13,7 @@ class NotesFormatter {
     bool isInParagraph = false;
     String currentParagraph = '';
     List<String> paragraphContent = [];
+    List<Widget> paragraphWidgets = []; // Per contenere sia testo che blocchi di codice nel paragrafo
 
     // Reset code block formatter state and set subject name
     CodeBlockFormatter.reset();
@@ -29,15 +30,41 @@ class NotesFormatter {
         continue;
       }
 
-      // Rileva inizio o fine di un blocco di codice
-      if (BaseFormatter.isCodeBlockStart(trimmedLine)) {
-        // Se stiamo entrando in un blocco di codice
-        if (!CodeBlockFormatter.isInCodeBlock) {
-          // Se eravamo in un paragrafo, salviamo il suo contenuto
-          if (isInParagraph && paragraphContent.isNotEmpty) {
-            widgets.add(ParagraphFormatter.buildParagraphContent(context, paragraphContent));
+      // Identifica i paragrafi con numeri romani
+      if (BaseFormatter.isNewParagraphStart(trimmedLine)) {
+        // Se era già in un paragrafo, salva il contenuto precedente
+        if (isInParagraph) {
+          if (paragraphContent.isNotEmpty) {
+            // Aggiunge i testi normali come RichText
+            paragraphWidgets.add(
+                ParagraphFormatter.buildParagraphTextContent(context, paragraphContent)
+            );
             paragraphContent = [];
           }
+
+          // Crea un widget di paragrafo completo con tutti i contenuti raccolti
+          if (paragraphWidgets.isNotEmpty) {
+            widgets.add(ParagraphFormatter.buildCompleteParagraph(context, currentParagraph, paragraphWidgets));
+            paragraphWidgets = [];
+          }
+        }
+
+        // Nuovo paragrafo
+        currentParagraph = trimmedLine;
+        isInParagraph = true;
+      }
+      // Rileva inizio o fine di un blocco di codice
+      else if (BaseFormatter.isCodeBlockStart(trimmedLine)) {
+        // Se stiamo entrando in un blocco di codice
+        if (!CodeBlockFormatter.isInCodeBlock) {
+          // Se c'è testo accumulato nel paragrafo, lo salviamo prima
+          if (paragraphContent.isNotEmpty) {
+            paragraphWidgets.add(
+                ParagraphFormatter.buildParagraphTextContent(context, paragraphContent)
+            );
+            paragraphContent = [];
+          }
+
           CodeBlockFormatter.isInCodeBlock = true;
 
           // Se la riga non è solo un delimitatore, aggiungiamola al buffer
@@ -47,46 +74,40 @@ class NotesFormatter {
         }
         // Se stavamo già in un blocco di codice e troviamo un delimitatore di fine
         else if (trimmedLine.startsWith('```')) {
-          // Aggiungiamo il blocco di codice ai widget
-          widgets.add(CodeBlockFormatter.buildCodeBlockWidget());
+          // Aggiungiamo il blocco di codice ai widget del paragrafo
+          if (isInParagraph) {
+            paragraphWidgets.add(CodeBlockFormatter.buildCodeBlockWidget());
+          } else {
+            // Se non siamo in un paragrafo, aggiungiamo un blocco di codice standalone
+            widgets.add(CodeBlockFormatter.buildCodeBlockWidget());
+          }
           CodeBlockFormatter.isInCodeBlock = false;
         }
         // Altrimenti aggiungiamo la riga al buffer del codice
         else {
           CodeBlockFormatter.appendLine(line);
         }
-        continue;
       }
-
       // Se siamo in un blocco di codice, aggiungiamo la riga al buffer
-      if (CodeBlockFormatter.isInCodeBlock) {
+      else if (CodeBlockFormatter.isInCodeBlock) {
         CodeBlockFormatter.appendLine(line);
 
         // Se dovremmo chiudere il blocco di codice
         if (CodeBlockFormatter.shouldCloseBlock(lines, i)) {
-          widgets.add(CodeBlockFormatter.buildCodeBlockWidget());
+          if (isInParagraph) {
+            paragraphWidgets.add(CodeBlockFormatter.buildCodeBlockWidget());
+          } else {
+            widgets.add(CodeBlockFormatter.buildCodeBlockWidget());
+          }
           CodeBlockFormatter.isInCodeBlock = false;
         }
-        continue;
       }
-
-      // Identifica i paragrafi con numeri romani
-      if (BaseFormatter.isNewParagraphStart(trimmedLine)) {
-        // Se era già in un paragrafo, salva il contenuto precedente
-        if (isInParagraph && paragraphContent.isNotEmpty) {
-          widgets.add(ParagraphFormatter.buildParagraphContent(context, paragraphContent));
-          paragraphContent = [];
-        }
-
-        // Nuovo paragrafo
-        currentParagraph = trimmedLine;
-        isInParagraph = true;
-        widgets.add(ParagraphFormatter.buildParagraphHeader(context, currentParagraph));
-      } else if (isInParagraph && trimmedLine.isNotEmpty) {
-        // Contenuto del paragrafo
+      // Contenuto del paragrafo normale
+      else if (isInParagraph && trimmedLine.isNotEmpty) {
         paragraphContent.add(line);
-      } else if (trimmedLine.isNotEmpty) {
-        // Testo normale non associato a un paragrafo
+      }
+      // Testo normale non associato a un paragrafo
+      else if (trimmedLine.isNotEmpty) {
         widgets.add(
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
@@ -100,13 +121,26 @@ class NotesFormatter {
     }
 
     // Aggiungi l'ultimo paragrafo se esiste
-    if (isInParagraph && paragraphContent.isNotEmpty) {
-      widgets.add(ParagraphFormatter.buildParagraphContent(context, paragraphContent));
+    if (isInParagraph) {
+      if (paragraphContent.isNotEmpty) {
+        paragraphWidgets.add(
+            ParagraphFormatter.buildParagraphTextContent(context, paragraphContent)
+        );
+      }
+
+      if (paragraphWidgets.isNotEmpty) {
+        widgets.add(ParagraphFormatter.buildCompleteParagraph(context, currentParagraph, paragraphWidgets));
+      }
     }
 
     // Aggiungi l'ultimo blocco di codice se esiste
     if (CodeBlockFormatter.isInCodeBlock) {
-      widgets.add(CodeBlockFormatter.buildCodeBlockWidget());
+      if (isInParagraph) {
+        paragraphWidgets.add(CodeBlockFormatter.buildCodeBlockWidget());
+        widgets.add(ParagraphFormatter.buildCompleteParagraph(context, currentParagraph, paragraphWidgets));
+      } else {
+        widgets.add(CodeBlockFormatter.buildCodeBlockWidget());
+      }
     }
 
     return widgets;

@@ -1,144 +1,239 @@
 Schema Ux Ui
 
-I. UX Thinking
+I.UX Thinking
 
-A.  Cos'è la User Experience (UX)?
+   A.Cos'è la User Experience (UX)?:
 
-i. Definizione: L'insieme di emozioni, percezioni e reazioni che una persona prova quando utilizza un prodotto o servizio.
-ii. Riferimento Norma: ISO 9241-210.
-B.  User Experience Design
+   Definizione: L'insieme di emozioni, percezioni e reazioni che una persona prova quando utilizza un prodotto o servizio.
+   Riferimento Norma: ISO 9241-210.
 
-i. Definizione: Il processo di miglioramento di fattori come utilità, facilità d'uso ed efficienza nell'interazione dell'utente con un prodotto o servizio.
-ii. Progettazione centrata sull'utente: Un processo di progettazione basato su esigenze e obiettivi dell'utente.
-C.  Il Ruolo dell'UX Designer
+   B.User Experience Design:
 
-i. Analisi e sviluppo: L'UX designer analizza, sviluppa, progetta, prototipa, testa, itera e perfeziona un prodotto per soddisfare le esigenze dell'utente.
-ii. Esempi di User Flow: Social log-in, abilitazione della localizzazione.
-D.  Morville's Honeycomb
+   Definizione: Il processo di miglioramento di fattori come utilità, facilità d'uso ed efficienza nell'interazione dell'utente con un prodotto o servizio.
+   Progettazione centrata sull'utente: Un processo di progettazione basato su esigenze e obiettivi dell'utente.
 
-i. Utile: Deve soddisfare i reali bisogni dell'utente.
-ii. Utilizzabile: Facile da usare e veloce da imparare.
+   C.Il Ruolo dell'UX Designer:
 
-iii. Desiderabile: Attrattivo ed esteticamente piacevole.
+   Analisi e sviluppo: L'UX designer analizza, sviluppa, progetta, prototipa, testa, itera e perfeziona un prodotto per soddisfare le esigenze dell'utente.
+   Esempi di User Flow: Social log-in, abilitazione della localizzazione.
 
-iv. Trovabile: Informazioni facili da trovare e navigabili.
+   D.Morville's Honeycomb:
 
-v. Accessibile: Accessibile a tutte le persone.
+   Utile: Deve soddisfare i reali bisogni dell'utente.
+   Utilizzabile: Facile da usare e veloce da imparare.
+   Desiderabile: Attrattivo ed esteticamente piacevole.
+   Trovabile: Informazioni facili da trovare e navigabili.
+   Accessibile: Accessibile a tutte le persone.
+   Credibile: Affidabile e capace di ispirare fiducia.
+   Di Valore: Deve dare soddisfazione, facendo raggiungere un obiettivo.
 
-vi. Credibile: Affidabile e capace di ispirare fiducia.
+   E.Differenza tra UX, Interaction Design (ID) e User Interface (UI):
 
-vii. Di Valore: Deve dare soddisfazione, facendo raggiungere un obiettivo.
-E.  Differenza tra UX, Interaction Design (ID) e User Interface (UI)
+   User Experience Design: Progettazione delle emozioni e percezioni provate dall'utente.
+   Interaction Design: Progettazione delle interazioni per raggiungere obiettivi efficientemente.
+   User Interface Design: Progettazione visiva, studio dei colori, architettura delle informazioni e comunicazione.
+   Metafore: UI è la sella, le staffe e le redini; UX è l'emozione provata cavalcando.
 
-i. User Experience Design: Progettazione delle emozioni e percezioni provate dall'utente.
-ii. Interaction Design: Progettazione delle interazioni per raggiungere obiettivi efficientemente.
-iii. User Interface Design: Progettazione visiva, studio dei colori, architettura delle informazioni e comunicazione.
-iv. Metafore: UI è la sella, le staffe e le redini; UX è l'emozione provata cavalcando.
-F.  Processo di UX Design
+   F.Processo di UX Design:
 
-i. Fasi: Discovery (Scoperta), Define (Definizione), Ideate (Ideazione), Design (Progettazione), Prototype (Prototipazione).
-ii. Attività per fase:
-a. Discovery: Questionari, Analisi dei Competitor.
+   Fasi: Discovery (Scoperta), Define (Definizione), Ideate (Ideazione), Design (Progettazione), Prototype (Prototipazione).
+   Attività per fase:
+   Discovery: Questionari, Analisi dei Competitor.
+   Define: Personas, Customer Journey, Lean Canvas.
+   Ideate: Concept.
+   Design: Architettura, Wireframe, User Flow, User Interface.
+   Prototype: Prototipazione.
 
-b. Define: Personas, Customer Journey, Lean Canvas.
+   G.Usabilità: Principi Fondamentali:
 
-c. Ideate: Concept.
+   Learnability (Apprendibilità):
+   Definizione: Quanto è facile per gli utenti svolgere le operazioni di base la prima volta che interagiscono con il prodotto.
+   Efficiency (Efficienza):
+   Definizione: Quanto velocemente gli utenti possono eseguire le attività dopo aver appreso l'uso del prodotto.
+   Memorability (Memorizzabilità):
+   Definizione: Quando gli utenti tornano dopo un periodo di inutilizzo, quanto facilmente possono ristabilire la confidenza e le loro competenze.
+   Errors (Errori):
+   Definizione: Il numero di errori commessi dagli utenti, la loro gravità e la facilità di recupero da tali errori.
+   Satisfaction (Soddisfazione):
+   Definizione: Quanto è piacevole l'utilizzo del prodotto per gli utenti.
 
-d. Design: Architettura, Wireframe, User Flow, User Interface.
+   H.10 Euristiche di Usabilità di Jakob Nielsen:
 
-e. Prototype: Prototipazione.
+   Visibilità dello stato del sistema: Il sistema deve sempre tenere gli utenti informati su ciò che sta accadendo, attraverso un feedback appropriato e in tempi ragionevoli (es. barra di caricamento, messaggi di conferma).
+   Corrispondenza tra sistema e mondo reale: Il sistema deve parlare il linguaggio degli utenti, con parole, frasi e concetti a loro familiari, piuttosto che termini tecnici. Deve seguire le convenzioni del mondo reale (metafore).
+   Controllo e libertà dell'utente: Gli utenti hanno bisogno di un chiaro "uscita di emergenza" per uscire da stati indesiderati. Supportare funzioni di annullamento (undo) e ripetizione (redo).
+   Coerenza e standard: Mantenere la coerenza interna (stesso design e terminologia all'interno del prodotto) ed esterna (rispettare le convenzioni di settore).
+   Prevenzione degli errori: Meglio prevenire gli errori che limitarsi a fornire messaggi di errore. Progettare in modo da impedire che gli errori si verifichino.
+   Riconoscimento piuttosto che richiamo: Ridurre il carico di memoria dell'utente rendendo visibili elementi, azioni e opzioni. Gli utenti non dovrebbero dover ricordare informazioni da una parte all'altra dell'interfaccia.
+   Flessibilità ed efficienza d'uso: Prevedere la possibilità per gli utenti esperti di accelerare le interazioni (es. scorciatoie) e per gli utenti meno esperti di essere guidati. Il sistema deve essere personalizzabile.
+   Estetica e design minimale: Le interfacce non dovrebbero contenere informazioni irrilevanti o raramente necessarie, in quanto ogni informazione aggiuntiva compete con quelle veramente importanti.
+   Aiutare gli utenti a riconoscere, diagnosticare e recuperare dagli errori: I messaggi di errore devono essere chiari, concisi ed esprimere il problema in linguaggio semplice, suggerendo una soluzione.
+   Aiuto e documentazione: Anche se è meglio che il sistema sia utilizzabile senza documentazione, potrebbe essere necessario fornire aiuto e documentazione chiara, concisa, orientata al compito e facile da cercare.
 
-G.  Usabilità
+   II. Color Schemes (Schemi Cromatici)
 
-i. Principi di Usabilità:
-a. Learnability (Apprendibilità): Facilità con cui gli utenti svolgono le operazioni di base la prima volta.
-b. Efficiency (Efficienza): Velocità con cui gli utenti eseguono le attività.
-c. Memorability (Memorizzabilità): Facilità con cui gli utenti ristabiliscono la confidenza dopo un periodo di inutilizzo.
-d. Errors (Errori): Numero, gravità e facilità di recupero dagli errori.
-e. Satisfaction (Soddisfazione): Piacevolezza d'uso.
-H.  10 Euristiche di Usabilità di Jakob Nielsen
+   A.Teoria dei Colori:
 
-i. Visibilità dello stato del sistema: Informare sempre gli utenti su ciò che accade, con feedback appropriato e tempestivo.
-ii. Corrispondenza tra sistema e mondo reale: Usare il linguaggio degli utenti, con parole, frasi e concetti familiari. Seguire le convenzioni del mondo reale.
-iii. Controllo e libertà dell'utente: Offrire "uscite di emergenza" chiare e supportare le funzioni di annullamento e ripetizione.
-iv. Coerenza e standard: Mantenere la coerenza interna ed esterna (con le convenzioni del settore).
-v. Prevenzione degli errori: Prevenire gli errori piuttosto che limitarsi a gestirli con messaggi di errore.
-vi. Riconoscimento piuttosto che richiamo: Ridurre il carico di memoria rendendo visibili elementi, azioni e opzioni.
-vii. Flessibilità ed efficienza d'uso: Consentire la personalizzazione delle azioni frequenti e offrire scorciatoie per utenti esperti.
-II. Color Schemes (Schemi Cromatici)
+   Modelli di Colore:
+   RGB (Rosso, Verde, Blu): Sintesi additiva (luce); usata per schermi digitali.
+   CMYK (Ciano, Magenta, Giallo, Nero): Sintesi sottrattiva (materia); usata per la stampa.
+   Colori Primari: Colori che permettono di creare tutti gli altri colori (Giallo, Blu, Rosso).
+   Colori Secondari: Colori creati sommando due colori primari (Verde, Arancione, Viola).
+   Colori Terziari: Colori creati sommando un colore primario ad uno secondario (es. Giallo-Verde, Rosso-Arancione).
 
-A.  Teoria dei Colori
+   B.Proprietà dei Colori:
 
-i. Modelli di Colore:
-a. RGB (Rosso, Verde, Blu): Sintesi additiva (luce).
-b. CMYK (Ciano, Magenta, Giallo, Nero): Sintesi sottrattiva (materia).
-ii. Colori Primari: Colori che permettono di creare tutti gli altri colori (Giallo, Blu, Rosso).
-iii. Colori Secondari: Colori creati sommando due colori primari (Verde, Arancione, Viola).
-iv. Colori Terziari: Colori creati sommando un colore primario ad uno secondario.
-B.  Proprietà dei Colori
+   Tonalità (Hue): La qualità che dà un nome al colore (es., rosso, verde, blu puro).
+   Luminosità (Brightness): Attributo secondo cui un colore sembra inviare più o meno luce; è il risultato dell'aggiunta di bianco ad una tonalità.
+   Sfumatura (Shade): Una tonalità a cui è stato aggiunto del nero.
+   Saturazione: Misura della purezza di un colore, calcolata in base alla quantità di grigio presente; un colore molto saturo è vivido, uno poco saturo è più spento.
 
-i. Tonalità (Hue): Qualità percettiva che dà un nome al colore (es., rosso, verde, blu).
-ii. Luminosità (Brightness): Attributo secondo cui un colore sembra inviare più o meno luce (Hue + Bianco).
+   C.Schemi Cromatici:
 
-iii. Sfumatura (Shade): Hue + Nero.
+   Obiettivo: Individuare palette di colori armoniche a partire da un colore primario, per creare un'estetica piacevole e funzionale.
+   Tipi di Schemi (basati sul cerchio cromatico):
+   Complementari: Due colori direttamente opposti sul cerchio cromatico (es. rosso e verde). Creano alto contrasto ed energia.
+   Analoghi: Tre colori vicini tra loro sul cerchio cromatico (es. blu, blu-verde, verde). Creano armonia e tranquillità.
+   Split Complementari: Un colore di base e i due colori adiacenti al suo complementare. Offre un contrasto elevato ma meno teso rispetto ai complementari.
+   Triade: Tre colori equidistanti sul cerchio cromatico (es. rosso, giallo, blu). Offrono equilibrio e vivacità.
+   Quadrato: Quattro colori equidistanti sul cerchio cromatico. Offrono ricchezza e varietà, ma richiedono attenzione per mantenere l'equilibrio.
+   Complementari Doppi (Rettangolo): Due coppie di colori complementari. Offrono grande varietà cromatica e sono ideali per temi complessi.
 
-iv. Saturazione: Misura della purezza di un colore, calcolata in base alla quantità di grigio (Hue + Grigio).
+   D.Psicologia del Colore:
 
-C.  Schemi Cromatici
+   Colori Freddi: Associati a calma, dolcezza, riposo, contemplazione, ma anche tristezza. (es. blu, verde, viola).
+   Colori Caldi: Associati a gioia, forza, potenza, vivacità, passione, energia. (es. rosso, arancione, giallo).
+   Associazioni specifiche:
+   -Rosso: Calore, pericolo, passione, violenza, amore, energia.
+   -Arancione: Positività, ottimismo, entusiasmo, creatività, amicizia.
+   -Giallo: Opportunità, entusiasmo, spontaneità, felicità, attenzione.
+   -Verde: Sicurezza, natura, equilibrio, crescita, armonia, speranza.
+   -Blu: Calma, libertà, serenità, fiducia, professionalità, freschezza.
+   -Viola: Tranquillità, spiritualità, mistero, lusso, creatività.
+   -Marrone: Struttura, sicurezza, comfort, natura, stabilità.
+   -Nero: Potere, mistero, serietà, eleganza, autorità, morte.
+   -Bianco: Amichevole, pulito, purezza, innocenza, semplicità.
 
-i. Obiettivo: Individuare palette di colori armoniche a partire da un colore primario.
-ii. Tipi di Schemi:
-a. Complementari.
-b. Analoghi.
-c. Split Complementari.
-d. Triade.
-e. Quadrato.
-f. Complementari Doppi.
-D.  Psicologia del Colore
+   E.Moodboard:
 
-i. Colori Freddi: Calma, dolcezza, riposo, contemplazione, tristezza.
-ii. Colori Caldi: Gioia, forza, potenza, vivacità, passione.
-iii. Associazioni specifiche:
-a. Rosso: Calore, pericolo, passione, violenza.
-b. Arancione: Positività, ottimismo, entusiasmo.
-c. Giallo: Opportunità, entusiasmo, spontaneità.
-d. Verde: Sicurezza, natura, equilibrio.
-e. Blu: Calma, libertà, serenità.
-f. Viola: Tranquillità, spiritualità, mistero.
-g. Marrone: Struttura, sicurezza, comfort.
-h. Nero: Potere, mistero, serietà.
-i. Bianco: Amichevole, pulito.
-E.  Moodboard
+   Definizione: Strumento visivo per stabilire la direzione creativa e l'estetica di un progetto.
+   Elementi: Collage di immagini, texture, colori e tipografia.
+   Obiettivi: Catturare l'atmosfera, lo stile e l'estetica di un progetto, comunicando l'essenza visiva.
+   Considerazioni e Passaggi:
+   -Definire il soggetto e il pubblico del progetto.
+   -Determinare lo stato d'animo e l'emozione da evocare.
+   -Raccogliere riferimenti visivi (immagini, texture, pattern).
+   -Organizzare le ispirazioni: raggruppare per colore, texture, tipografia, layout.
+   -Utilizzare una palette di colori limitata (1-3 colori dominanti).
+   -Identificare il colore primario del progetto e sperimentare con schemi cromatici.
+   Non essere troppo rigidi all'inizio, ma raffinare man mano che si definisce l'identità visiva.
 
-i. Definizione: Strumento visivo per stabilire la direzione creativa di un progetto.
-ii. Elementi: Collage di immagini, texture, colori e tipografia.
-iii. Obiettivi: Catturare l'atmosfera, lo stile e l'estetica di un progetto.
-iv. Considerazioni:
-a. Soggetto e pubblico del progetto.
-b. Stato d'animo ed emozione da evocare.
-c. Raccolta di riferimenti visivi.
-d. Organizzazione delle ispirazioni (colore, texture, tipografia, layout).
-e. Uso di una palette di colori limitata.
-f. Identificazione del colore primario del progetto.
-g. Sperimentazione con schemi cromatici.
-III. Wireframe
+   III. Wireframe e Architettura dell'Informazione (IA)
 
-A.  Architettura dell'Informazione (IA)
+   A.Architettura dell'Informazione (IA):
 
-i. Definizione: La struttura che organizza e collega i contenuti.
-ii. Obiettivo: Permettere all'utente di orientarsi e trovare le informazioni in modo efficiente.
-iii. Componenti chiave:
-a. Organizzazione.
-b. Navigazione.
-iv. Ruolo: Suggerisce quali informazioni e funzioni sono presenti nel sistema e dove si trovano.
-v. Considerazioni: Funzioni e numero di schermate dell'app.
-vi. Fase di Design: L'IA è una parte fondamentale della fase di design in UX/UI.
-B.  Wireframing
+   Definizione: La struttura che organizza e collega i contenuti di un prodotto digitale.
+   Obiettivo: Permettere all'utente di orientarsi, trovare le informazioni in modo efficiente e comprendere dove si trova all'interno del sistema.
+   Componenti chiave:
+   -Organizzazione: Come i contenuti sono raggruppati e categorizzati.
+   -Navigazione: Come gli utenti si muovono tra le informazioni (es. menu, breadcrumbs).
+   -Ruolo: Suggerisce quali informazioni e funzioni sono presenti nel sistema e dove si trovano, garantendo coerenza e prevedibilità.
+   -Considerazioni: Funzioni e numero di schermate dell'app, complessità dei contenuti.
+   Fase di Design: L'IA è una parte fondamentale della fase di design in UX/UI, spesso precedendo la creazione dei wireframe.
 
-i. Definizione: Processo di definizione dello scheletro dell'interfaccia grafica.
-ii. Obiettivi:
-a. Organizzare i gruppi di informazioni.
-b. Disegnare la struttura e il layout.
-c. Testare e validare l'interfaccia.
-iii. Processo: Processo evolutivo da macro a micro, focalizzato su contenuto, wireframe e graphic design. Non si usano colori.
-iv. User Flow: Serie di passaggi che un utente compie per raggiungere un obiettivo. Può essere combinato con i wireframe per creare i wireflow.
+   B.Wireframing:
+
+   Definizione: Processo di definizione dello "scheletro" o della struttura di base dell'interfaccia grafica di un prodotto digitale.
+   Obiettivi:
+   -Organizzare i gruppi di informazioni e i loro spazi all'interno della pagina.
+   -Disegnare la struttura e il layout degli elementi dell'interfaccia.
+   -Testare e validare l'interfaccia a un livello basilare, concentrandosi sulla funzionalità.
+   Caratteristiche del Processo:
+   -Processo evolutivo: Si evolve dal macro (layout generale) al micro (dettagli dei componenti).
+   -Focus primario: Contenuto, struttura e funzionalità.
+   -Aspetti visivi: I colori non vengono utilizzati; l'enfasi è sulla disposizione degli elementi, i testi segnaposto e le funzionalità.
+   -Materiali: Possono essere realizzati a mano (sketch), con strumenti digitali dedicati (es. Figma, Sketch, Adobe XD) o template.
+   User Flow e Wireflow:
+   -User Flow: Rappresenta una serie di passaggi che un utente compie per raggiungere un obiettivo specifico all'interno del prodotto.
+   -Wireflow: Combinazione di wireframe e user flow, che mostra la sequenza di schermate attraverso cui un utente si muove per completare un'attività.
+
+   IV. Strumenti di User Research e Strategia
+
+   A.Sondaggi:
+
+   Finalità: Fornire dati quantitativi (numerici) da un grande numero di persone.
+   Vantaggi: Economici, richiedono poche risorse, permettono di raccogliere informazioni non approfondite ma su larga scala.
+   Strumenti: Google Forms, Typeform, SurveyMonkey.
+
+   B.Interviste:
+
+   Finalità: Fornire dati qualitativi (approfonditi) da un numero limitato di persone.
+   Vantaggi: Permettono di ottenere informazioni approfondite su esperienze, motivazioni e problemi degli utenti.
+   Svantaggi: Richiedono un certo dispendio di tempo e risorse.
+
+   C.Obiettivi della Ricerca (Generali):
+
+   Quali sono le abitudini del mio target?
+   Quali sono i problemi e i bisogni del mio target?
+   Le soluzioni ipotizzate sono valide?
+
+   D.Competitor Analysis (Analisi dei Competitor):
+
+   Importanza: Fondamentale per comprendere il mercato e identificare come inserirsi efficacemente.
+   Chi sono i competitor: Tutti i prodotti/servizi che risolvono lo stesso problema per l'utente.
+   Cosa analizzare nei competitor:
+   -Key Objectives: Il messaggio principale (claim) dei competitor.
+   -Overall Strategy: La strategia di business complessiva.
+   -Market Advantage: Il vantaggio competitivo.
+   -Marketing Strategy: Le azioni che i competitor intraprendono per farsi conoscere dagli utenti.
+   -Product: I prodotti/servizi offerti.
+   -Pricing & Costs: Gli schemi di prezzo.
+   -UX/UI: Valutare ogni aspetto dell'esperienza utente (usando ad es. Morville's Honeycomb).
+   -Content: Valutare la qualità e la pertinenza del contenuto.
+
+   E.Analisi SWOT Applicata ai Competitor:
+
+   Strengths (Punti di Forza): Quali sono i loro punti di forza? (es. brand recognition, tecnologia innovativa).
+   Weaknesses (Punti di Debolezza): Quali sono le loro debolezze? (es. cattiva usabilità, assistenza clienti scadente).
+   Opportunities (Opportunità): Quali opportunità ci sono nei confronti dei competitor? (es. nicchie di mercato non coperte, nuove tecnologie da adottare).
+   Threats (Minacce): Quali sono le minacce a cui dover stare attenti? (es. nuovi competitor emergenti, cambiamenti normativi).
+
+   F.User Personas (Personas Utente):
+
+   Definizione: Archetipi semi-fittizi di utenti ideali, basati su dati di ricerca e interviste.
+   Obiettivo: Comprendere profondamente le esigenze, i comportamenti, le motivazioni e gli obiettivi degli utenti.
+   Elementi tipici: Nome, età, occupazione, obiettivi, frustrazioni, abitudini digitali, citazioni significative.
+   Importanza: Aiutano a creare empatia con gli utenti e a prendere decisioni di design basate sulle loro esigenze reali.
+
+   G.User Journey (Percorso Utente):
+
+   Definizione: Rappresentazione visiva dei passi che un utente compie per raggiungere un obiettivo specifico interagendo con un prodotto o servizio.
+   Obiettivo: Identificare punti di contatto, emozioni, pensieri e opportunità di miglioramento lungo il percorso dell'utente.
+   Elementi tipici:
+   -Scenario: Il contesto in cui l'utente si trova.
+   -Goals: Gli obiettivi che l'utente vuole raggiungere.
+   -Touchpoints: I punti di contatto con il prodotto/servizio (es. sito web, app, email).
+   -Actions: Le azioni specifiche compiute dall'utente.
+   -Thoughts: I pensieri dell'utente in ogni fase.
+   -Emotions: Le emozioni provate (felicità, frustrazione, etc.).
+   -Opportunities: Le opportunità di migliorare l'esperienza in quel punto del percorso.
+
+   H.Lean Canvas:
+
+   Definizione: Strumento di business plan strategico che riassume le ipotesi chiave di un prodotto/servizio in un'unica pagina. È adattato dal Business Model Canvas.
+   Obiettivo: Aiutare a visualizzare rapidamente il modello di business, identificare rischi e opportunità, e focalizzarsi su un "Minimum Viable Product" (MVP).
+   "Minimum Viable Product (MVP)":
+   -Eric Ries: "La versione di un nuovo prodotto che consente a un team di raccogliere la massima quantità di informazioni validate sui clienti con il minimo sforzo."
+   -Product Plan: "Un prodotto con caratteristiche sufficienti ad attirare i clienti che si avvicinano per la prima volta e a convalidare un'idea di prodotto nelle prime fasi del ciclo di sviluppo."
+   -Principio: Minima spesa / massima resa.
+   Sezioni del Lean Canvas (tipiche, possono variare leggermente):
+   -Problem (Problema): I 1-3 problemi principali che il tuo prodotto risolve per i clienti.
+   -Solution (Soluzione): La tua proposta per risolvere i problemi identificati.
+   -Key Metrics (Metriche Chiave): Le attività chiave da misurare per capire il successo del prodotto.
+   -Unique Value Proposition (Proposta di Valore Unica): Cosa rende il tuo prodotto diverso e perché i clienti dovrebbero sceglierlo.
+   -Unfair Advantage (Vantaggio Ingiusto): Qualcosa che non può essere facilmente copiato o comprato dai competitor.
+   -Channels (Canali): Come raggiungerai i tuoi clienti (es. social media, email, negozi).
+   -Customer Segments (Segmenti di Clientela): Chi sono i tuoi clienti ideali.
+   -Cost Structure (Struttura dei Costi): I costi operativi per lanciare e mantenere il prodotto.
+   -Revenue Streams (Flussi di Ricavo): Come il prodotto genererà entrate.
+   Contesto nel processo UX: Solitamente compilato dopo l'analisi dei competitor e la definizione di personas/user journey, e prima delle User Stories.

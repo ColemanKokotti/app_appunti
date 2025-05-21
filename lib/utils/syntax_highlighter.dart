@@ -188,7 +188,7 @@ class SyntaxHighlighter {
     return spans;
   }
 
-  // Kotlin syntax highlighting
+// Enhanced Kotlin syntax highlighting with Compose support
   static TextSpan highlightKotlin(String code) {
     final List<TextSpan> spans = [];
     final List<String> lines = code.split('\n');
@@ -210,9 +210,15 @@ class SyntaxHighlighter {
   static List<TextSpan> _highlightKotlinLine(String line) {
     final List<TextSpan> spans = [];
 
-    // Regex patterns per Kotlin
+    // Regex patterns for Kotlin
     final RegExp keywordPattern = RegExp(
         r'\b(abstract|actual|annotation|as|break|by|catch|class|companion|const|constructor|continue|crossinline|data|do|dynamic|else|enum|expect|external|false|field|final|finally|for|fun|get|if|import|in|infix|init|inline|inner|interface|internal|is|lateinit|noinline|null|object|open|operator|out|override|package|private|protected|public|reified|return|sealed|set|super|suspend|tailrec|this|throw|true|try|typealias|val|var|vararg|when|where|while)\b',
+        caseSensitive: true
+    );
+
+    // Added Compose keywords
+    final RegExp composeKeywordPattern = RegExp(
+        r'\b(Composable|remember|derivedStateOf|produceState|LaunchedEffect|DisposableEffect|SideEffect|rememberCoroutineScope|rememberUpdatedState|rememberSaveable|mutableStateOf|rememberSaveable|collectAsState)\b',
         caseSensitive: true
     );
 
@@ -221,11 +227,18 @@ class SyntaxHighlighter {
         caseSensitive: true
     );
 
+    // Added Compose types
+    final RegExp composeTypePattern = RegExp(
+        r'\b(Column|Row|Box|Spacer|Text|Button|Surface|Card|Scaffold|TopAppBar|BottomAppBar|FloatingActionButton|Icon|Image|LazyColumn|LazyRow|Modifier|Color|State|MutableState|Dp|BoxScope|RowScope|ColumnScope|CompositionLocal|MaterialTheme|TextStyle|FontWeight|LocalContext|LocalDensity|LocalLayoutDirection)\b',
+        caseSensitive: true
+    );
+
     final RegExp stringPattern = RegExp(r'"[^"]*"|\''[^\']*\'');
     final RegExp commentPattern = RegExp(r'//.*|/\*[\s\S]*?\*/');
     final RegExp numberPattern = RegExp(r'\b\d+(\.\d+)?\b');
+    final RegExp annotationPattern = RegExp(r'@\w+');
 
-    // Apply similar highlighting logic as C# but with Kotlin patterns
+    // Apply highlighting logic
     if (commentPattern.hasMatch(line)) {
       final Match match = commentPattern.firstMatch(line)!;
 
@@ -264,9 +277,12 @@ class SyntaxHighlighter {
 
     while (remaining.isNotEmpty) {
       Match? keywordMatch = keywordPattern.firstMatch(remaining);
+      Match? composeKeywordMatch = composeKeywordPattern.firstMatch(remaining);
       Match? typeMatch = typePattern.firstMatch(remaining);
+      Match? composeTypeMatch = composeTypePattern.firstMatch(remaining);
       Match? stringMatch = stringPattern.firstMatch(remaining);
       Match? numberMatch = numberPattern.firstMatch(remaining);
+      Match? annotationMatch = annotationPattern.firstMatch(remaining);
 
       Match? firstMatch;
       String? matchType;
@@ -278,10 +294,22 @@ class SyntaxHighlighter {
         minStart = keywordMatch.start;
       }
 
+      if (composeKeywordMatch != null && composeKeywordMatch.start < minStart) {
+        firstMatch = composeKeywordMatch;
+        matchType = 'composeKeyword';
+        minStart = composeKeywordMatch.start;
+      }
+
       if (typeMatch != null && typeMatch.start < minStart) {
         firstMatch = typeMatch;
         matchType = 'type';
         minStart = typeMatch.start;
+      }
+
+      if (composeTypeMatch != null && composeTypeMatch.start < minStart) {
+        firstMatch = composeTypeMatch;
+        matchType = 'composeType';
+        minStart = composeTypeMatch.start;
       }
 
       if (stringMatch != null && stringMatch.start < minStart) {
@@ -294,6 +322,12 @@ class SyntaxHighlighter {
         firstMatch = numberMatch;
         matchType = 'number';
         minStart = numberMatch.start;
+      }
+
+      if (annotationMatch != null && annotationMatch.start < minStart) {
+        firstMatch = annotationMatch;
+        matchType = 'annotation';
+        minStart = annotationMatch.start;
       }
 
       if (firstMatch != null) {
@@ -310,14 +344,24 @@ class SyntaxHighlighter {
             color = const Color(0xFFC679DD); // Purple for Kotlin keywords
             weight = FontWeight.bold;
             break;
+          case 'composeKeyword':
+            color = const Color(0xFFD19A66); // Orange for Compose keywords
+            weight = FontWeight.bold;
+            break;
           case 'type':
             color = const Color(0xFF4EC9B0); // Aqua for types
+            break;
+          case 'composeType':
+            color = const Color(0xFF56B6C2); // Light blue for Compose types
             break;
           case 'string':
             color = const Color(0xFFCE9178); // Orange/brown for strings
             break;
           case 'number':
             color = const Color(0xFFB5CEA8); // Light green for numbers
+            break;
+          case 'annotation':
+            color = const Color(0xFFD19A66); // Orange for annotations
             break;
           default:
             color = const Color(0xFFE6E6E6); // White for normal text
@@ -330,6 +374,223 @@ class SyntaxHighlighter {
             fontWeight: weight,
           ),
         ));
+
+        remaining = remaining.substring(firstMatch.start + matchText.length);
+      } else {
+        addNormalText(remaining);
+        break;
+      }
+    }
+
+    return spans;
+  }
+
+// New XML syntax highlighting
+  static TextSpan highlightXml(String code) {
+    final List<TextSpan> spans = [];
+    final List<String> lines = code.split('\n');
+
+    for (int i = 0; i < lines.length; i++) {
+      final String line = lines[i];
+      final List<TextSpan> lineSpans = _highlightXmlLine(line);
+
+      spans.add(TextSpan(children: lineSpans));
+
+      if (i < lines.length - 1) {
+        spans.add(const TextSpan(text: '\n'));
+      }
+    }
+
+    return TextSpan(children: spans);
+  }
+
+  static List<TextSpan> _highlightXmlLine(String line) {
+    final List<TextSpan> spans = [];
+
+    // XML patterns
+    final RegExp tagPattern = RegExp(r'</?[a-zA-Z][^>]*>|</?>');
+    final RegExp attrNamePattern = RegExp(r'(\s+)([a-zA-Z:_][a-zA-Z0-9:_\-\.]*)(=)');
+    final RegExp attrValuePattern = RegExp(r'("[^"]*"|\''[^\']*\')');
+    final RegExp commentPattern = RegExp(r'<!--.*?-->');
+    final RegExp cdataPattern = RegExp(r'<!\[CDATA\[.*?\]\]>');
+    final RegExp entityPattern = RegExp(r'&[a-zA-Z0-9#]+;');
+
+    if (commentPattern.hasMatch(line)) {
+      final Match match = commentPattern.firstMatch(line)!;
+
+      if (match.start > 0) {
+        spans.add(TextSpan(
+          text: line.substring(0, match.start),
+          style: const TextStyle(color: Color(0xFFE6E6E6)),
+        ));
+      }
+
+      spans.add(TextSpan(
+        text: match.group(0),
+        style: const TextStyle(color: Color(0xFF6A9955)), // Green for comments
+      ));
+
+      if (match.end < line.length) {
+        spans.add(TextSpan(
+          text: line.substring(match.end),
+          style: const TextStyle(color: Color(0xFFE6E6E6)),
+        ));
+      }
+
+      return spans;
+    }
+
+    if (cdataPattern.hasMatch(line)) {
+      final Match match = cdataPattern.firstMatch(line)!;
+
+      if (match.start > 0) {
+        spans.add(TextSpan(
+          text: line.substring(0, match.start),
+          style: const TextStyle(color: Color(0xFFE6E6E6)),
+        ));
+      }
+
+      spans.add(TextSpan(
+        text: match.group(0),
+        style: const TextStyle(color: Color(0xFFD7BA7D)), // Orange-ish for CDATA
+      ));
+
+      if (match.end < line.length) {
+        spans.add(TextSpan(
+          text: line.substring(match.end),
+          style: const TextStyle(color: Color(0xFFE6E6E6)),
+        ));
+      }
+
+      return spans;
+    }
+
+    String remaining = line;
+
+    void addNormalText(String text) {
+      if (text.isNotEmpty) {
+        spans.add(TextSpan(
+          text: text,
+          style: const TextStyle(color: Color(0xFFE6E6E6)),
+        ));
+      }
+    }
+
+    while (remaining.isNotEmpty) {
+      Match? tagMatch = tagPattern.firstMatch(remaining);
+      Match? entityMatch = entityPattern.firstMatch(remaining);
+
+      Match? firstMatch;
+      String? matchType;
+      int minStart = remaining.length;
+
+      if (tagMatch != null && tagMatch.start < minStart) {
+        firstMatch = tagMatch;
+        matchType = 'tag';
+        minStart = tagMatch.start;
+      }
+
+      if (entityMatch != null && entityMatch.start < minStart) {
+        firstMatch = entityMatch;
+        matchType = 'entity';
+        minStart = entityMatch.start;
+      }
+
+      if (firstMatch != null) {
+        if (firstMatch.start > 0) {
+          addNormalText(remaining.substring(0, firstMatch.start));
+        }
+
+        final String matchText = firstMatch.group(0)!;
+
+        if (matchType == 'tag') {
+          // Process the tag to highlight attributes
+          String tagText = matchText;
+          List<TextSpan> tagSpans = [];
+
+          // Tag brackets and name
+          RegExp tagNameRegex = RegExp(r'</?([^\s>]*)');
+          Match? tagNameMatch = tagNameRegex.firstMatch(tagText);
+
+          if (tagNameMatch != null) {
+            String tagOpen = tagNameMatch.group(0)!;
+
+            // Opening bracket and tag name
+            tagSpans.add(TextSpan(
+              text: tagOpen[0], // < or </
+              style: const TextStyle(color: Color(0xFF808080)), // Gray for brackets
+            ));
+
+            if (tagOpen.length > 1) {
+              tagSpans.add(TextSpan(
+                text: tagOpen.substring(1),
+                style: const TextStyle(
+                  color: Color(0xFF569CD6), // Blue for tag names
+                  fontWeight: FontWeight.bold,
+                ),
+              ));
+            }
+
+            // Process attributes
+            String attributesPart = tagText.substring(tagNameMatch.end);
+
+            while (attributesPart.isNotEmpty) {
+              Match? attrNameMatch = attrNamePattern.firstMatch(attributesPart);
+
+              if (attrNameMatch != null) {
+                // Whitespace before attribute
+                tagSpans.add(TextSpan(
+                  text: attrNameMatch.group(1),
+                  style: const TextStyle(color: Color(0xFFE6E6E6)),
+                ));
+
+                // Attribute name
+                tagSpans.add(TextSpan(
+                  text: attrNameMatch.group(2),
+                  style: const TextStyle(color: Color(0xFF9CDCFE)), // Light blue for attribute names
+                ));
+
+                // Equals sign
+                tagSpans.add(TextSpan(
+                  text: attrNameMatch.group(3),
+                  style: const TextStyle(color: Color(0xFFE6E6E6)),
+                ));
+
+                attributesPart = attributesPart.substring(attrNameMatch.end);
+
+                // Attribute value
+                Match? attrValueMatch = attrValuePattern.firstMatch(attributesPart);
+                if (attrValueMatch != null) {
+                  tagSpans.add(TextSpan(
+                    text: attrValueMatch.group(0),
+                    style: const TextStyle(color: Color(0xFFCE9178)), // Orange/brown for attribute values
+                  ));
+                  attributesPart = attributesPart.substring(attrValueMatch.end);
+                }
+              } else {
+                // Closing part of tag including >
+                tagSpans.add(TextSpan(
+                  text: attributesPart,
+                  style: const TextStyle(color: Color(0xFF808080)), // Gray for brackets
+                ));
+                break;
+              }
+            }
+
+            spans.addAll(tagSpans);
+          } else {
+            // Fallback if regex fails
+            spans.add(TextSpan(
+              text: matchText,
+              style: const TextStyle(color: Color(0xFF569CD6)),
+            ));
+          }
+        } else if (matchType == 'entity') {
+          spans.add(TextSpan(
+            text: matchText,
+            style: const TextStyle(color: Color(0xFFD7BA7D)), // Orange-ish for entities
+          ));
+        }
 
         remaining = remaining.substring(firstMatch.start + matchText.length);
       } else {
