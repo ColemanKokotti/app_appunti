@@ -20,7 +20,7 @@ class CodeBlockWidget extends StatelessWidget {
         border: Border.all(color: const Color(0xFF3A3F58), width: 1),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.25),
+            color: Colors.black,
             offset: const Offset(0, 2),
             blurRadius: 4,
           ),
@@ -48,7 +48,6 @@ class CodeBlockWidget extends StatelessWidget {
             ),
           ),
 
-          // Indicatore decorativo "C#" nell'angolo superiore destro
           Positioned(
             top: 0,
             right: 0,

@@ -17,15 +17,21 @@ Valore (struct): int, float, double, bool, char, decimal.
 int numeroIntero = 10;
 double numeroDecimale = 3.14;
 bool valoreBooleano = true;
+
 Riferimento (class): string, array, classi definite dall'utente.
 
 
 string testo = "Ciao";
 int[] numeri = { 1, 2, 3 };
+
 Variabili:
+
 Dichiarazione: tipo nomeVariabile;
+
 Assegnazione: nomeVariabile = valore;
+
 Inizializzazione: tipo nomeVariabile = valore;
+
 Operatori:
 Aritmetici: +, -, *, /, %.
 Relazionali: ==, !=, >, <, >=, <=.
@@ -33,8 +39,8 @@ Logici: && (AND), || (OR), ! (NOT).
 Assegnamento: =, +=, -=, *=, /=, %=.
 Strutture di Controllo:
 Condizionali:
-if:
 
+if:
 
 if (numeroIntero > 5)
 {
@@ -70,7 +76,6 @@ else
 
 switch:
 
-
 switch (numeroIntero)
 {
     case 1:
@@ -83,7 +88,9 @@ switch (numeroIntero)
         Console.WriteLine("Il numero non è uno o due.");
         break;
 }
+
 Cicliche (Iterative):
+
 for:
 
 
@@ -92,7 +99,6 @@ for (int i = 0; i < 5; i++)
     Console.WriteLine($"Valore di i: {i}");
 }
 while:
-
 
 int contatore = 0;
 while (contatore < 3)
@@ -117,18 +123,20 @@ foreach (int numero in numeriArray)
 {
     Console.WriteLine($"Elemento: {numero}");
 }
+
 Funzioni (Metodi):
+
 Definizione: [modificatore di accesso] [static] tipoRestituito NomeMetodo([parametri]) { // corpo del metodo; [return valoreRestituito;] }
-Chiamata: NomeMetodo(valoriParametri); <!-- end list -->
+
+Chiamata: NomeMetodo(valoriParametri);
 
 static int Somma(int a, int b)
 {
     return a + b;
 }
-
-// Chiamata
-int risultato = Somma(5, 3);
+// Chiamata int risultato = Somma(5, 3);
 Console.WriteLine($"La somma è: {risultato}");
+
 II. Array
 Definizione: Una collezione di elementi dello stesso tipo di dati, memorizzati in locazioni di memoria contigue.
 Dichiarazione: tipo[] nomeArray;
@@ -155,6 +163,7 @@ for (int i = 0; i < numeriArray.Length; i++)
 {
     Console.WriteLine($"Elemento all'indice {i}: {numeriArray[i]}");
 }
+
 III. Matrici (Array Multidimensionali)
 Definizione: Un array di array, utilizzato per rappresentare tabelle o griglie di dati.
 Dichiarazione: tipo[,] nomeMatrice; (per una matrice bidimensionale)
@@ -163,15 +172,24 @@ Inizializzazione:
 
 
 int[,] matrice = { { 1, 2, 3 }, { 4, 5, 6 } };
-Accesso agli elementi: Tramite indici di riga e colonna (base zero). nomeMatrice[indiceRiga, indiceColonna]
-C#
+
+
+Accesso agli elementi:
+Tramite indici di riga e colonna (base zero). nomeMatrice[indiceRiga, indiceColonna]
+
 
 Console.WriteLine($"Elemento alla riga 0, colonna 1: {matrice[0, 1]}"); // Output: 2
-Proprietà Rank: Restituisce il numero di dimensioni della matrice.
+
+
+Proprietà Rank:
+Restituisce il numero di dimensioni della matrice.
 
 
 int dimensioni = matrice.Rank; // Output: 2
-Proprietà GetLength(dimensione): Restituisce la lunghezza della dimensione specificata (0 per le righe, 1 per le colonne in una matrice bidimensionale).
+
+
+Proprietà GetLength(dimensione):
+Restituisce la lunghezza della dimensione specificata (0 per le righe, 1 per le colonne in una matrice bidimensionale).
 
 
 int numeroRighe = matrice.GetLength(0); // Output: 2
@@ -187,40 +205,48 @@ for (int i = 0; i < numeroRighe; i++)
     }
     Console.WriteLine();
 }
+
+
 IV. Strutture Dati
 Definizione: Modi specifici per organizzare e memorizzare i dati in modo efficiente per determinate operazioni.
 Strutture Dati Fondamentali (Spesso fornite dalle librerie):
 Liste (List<T>):
 Collezione dinamica di elementi dello stesso tipo.
 Ridimensionamento automatico.
-Metodi per aggiungere (Add), rimuovere (Remove, RemoveAt), cercare (Contains, IndexOf), ecc. <!-- end list -->
+Metodi per aggiungere (Add), rimuovere (Remove, RemoveAt), cercare (Contains, IndexOf), ecc.
 
 List<string> nomi = new List<string>();
 nomi.Add("Alice");
 nomi.Add("Bob");
 Console.WriteLine(nomi[0]); // Output: Alice
+
+
 Pile (Stack<T>):
 Struttura LIFO (Last-In, First-Out).
-Operazioni principali: Push (aggiungi), Pop (rimuovi e restituisci l'ultimo), Peek (restituisci l'ultimo senza rimuoverlo). <!-- end list -->
+Operazioni principali: Push (aggiungi), Pop (rimuovi e restituisci l'ultimo), Peek (restituisci l'ultimo senza rimuoverlo).
 
 
 Stack<int> pila = new Stack<int>();
 pila.Push(1);
 pila.Push(2);
 Console.WriteLine(pila.Pop()); // Output: 2
+
+
 Code (Queue<T>):
 Struttura FIFO (First-In, First-Out).
-Operazioni principali: Enqueue (aggiungi), Dequeue (rimuovi e restituisci il primo), Peek (restituisci il primo senza rimuoverlo). <!-- end list -->
+Operazioni principali: Enqueue (aggiungi), Dequeue (rimuovi e restituisci il primo), Peek (restituisci il primo senza rimuoverlo).
 
 
 Queue<string> coda = new Queue<string>();
 coda.Enqueue("Uno");
 coda.Enqueue("Due");
 Console.WriteLine(coda.Dequeue()); // Output: Uno
+
+
 Dizionari (Dictionary<TKey, TValue>):
 Collezione di coppie chiave-valore.
 Le chiavi devono essere uniche.
-Accesso efficiente ai valori tramite chiave. <!-- end list -->
+Accesso efficiente ai valori tramite chiave.
 
 
 Dictionary<string, int> eta = new Dictionary<string, int>();
@@ -228,19 +254,23 @@ eta.Add("Carlo", 30);
 eta.Add("Diana", 25);
 Console.WriteLine($"L'età di Carlo è: {eta["Carlo"]}"); // Output: 30
 Set (HashSet<T>):
+
+
 Collezione di elementi unici.
 Non mantiene un ordine specifico.
-Operazioni efficienti per verificare l'appartenenza, l'unione, l'intersezione, ecc. <!-- end list -->
+Operazioni efficienti per verificare l'appartenenza, l'unione, l'intersezione, ecc.
 
 HashSet<int> numeriUnici = new HashSet<int>();
 numeriUnici.Add(1);
 numeriUnici.Add(2);
 numeriUnici.Add(1); // Ignorato (elemento duplicato)
 Console.WriteLine(numeriUnici.Contains(2)); // Output: True
+
 V. Programmazione OOP (Object-Oriented Programming)
 Concetti Fondamentali:
 Oggetti: Istanza di una classe, rappresentano entità del mondo reale con proprietà (attributi) e comportamenti (metodi).
-Classi: Modelli o progetti per creare oggetti. Definiscono la struttura (campi/proprietà) e il comportamento (metodi) degli oggetti di quel tipo. <!-- end list -->
+Classi: Modelli o progetti per creare oggetti.
+Definiscono la struttura (campi/proprietà) e il comportamento (metodi) degli oggetti di quel tipo.
 
 
 // Definizione di una classe
@@ -254,16 +284,22 @@ class Cane
         Console.WriteLine("Bau!");
     }
 }
-
 // Creazione di un oggetto (istanza della classe Cane)
 Cane mioCane = new Cane();
 mioCane.Nome = "Fido";
 mioCane.Razza = "Labrador";
 mioCane.Abbaia(); // Output: Bau!
-Incapsulamento: Raggruppare dati (attributi) e metodi che operano su tali dati all'interno di una singola unità (la classe), e controllare l'accesso ai dati tramite modificatori di accesso (public, private, protected, internal).
-Astrazione: Concentrarsi sulle informazioni essenziali di un oggetto, nascondendo i dettagli implementativi complessi. Si realizza spesso tramite classi astratte e interfacce.
-Ereditarietà: Meccanismo che consente a una classe (classe derivata o sottoclasse) di ereditare proprietà e metodi da un'altra classe (classe base o superclasse), promuovendo il riuso del codice.
-Polimorfismo: Capacità di un oggetto di assumere più forme. Si realizza tramite l'overriding di metodi nelle sottoclassi e l'implementazione di interfacce.
+
+
+Incapsulamento:
+Raggruppare dati (attributi) e metodi che operano su tali dati all'interno di una singola unità (la classe), e controllare l'accesso ai dati tramite modificatori di accesso (public, private, protected, internal).
+Astrazione:
+Concentrarsi sulle informazioni essenziali di un oggetto, nascondendo i dettagli implementativi complessi. Si realizza spesso tramite classi astratte e interfacce.
+Ereditarietà:
+Meccanismo che consente a una classe (classe derivata o sottoclasse) di ereditare proprietà e metodi da un'altra classe (classe base o superclasse), promuovendo il riuso del codice.
+Polimorfismo:
+Capacità di un oggetto di assumere più forme. Si realizza tramite l'overriding di metodi nelle sottoclassi e l'implementazione di interfacce.
+
 VI. Ereditarietà
 Definizione: Una classe derivata eredita i membri (campi, proprietà, metodi) della sua classe base.
 Sintassi: class ClasseDerivata : ClasseBase { // ... }
@@ -271,7 +307,7 @@ Benefici: Riuso del codice, estensibilità, gerarchie di classi.
 base keyword: Usata nella classe derivata per chiamare costruttori o membri della classe base.
 virtual e override keywords:
 virtual: Permette a un metodo della classe base di essere sovrascritto (ridden) in una classe derivata.
-override: Implementa una versione specifica di un metodo virtual ereditato. <!-- end list -->
+override: Implementa una versione specifica di un metodo virtual ereditato.
 
 
 class Animale
@@ -312,7 +348,7 @@ Classi Astratte:
 Dichiarate con la keyword abstract.
 Non possono essere istanziate direttamente.
 Possono contenere metodi astratti (dichiarati con abstract e senza implementazione) e metodi non astratti (con implementazione).
-Le classi derivate devono implementare tutti i metodi astratti della classe base. <!-- end list -->
+Le classi derivate devono implementare tutti i metodi astratti della classe base.
 
 
 abstract class Forma
@@ -350,7 +386,10 @@ c.StampaNome("cerchio"); // Output: Questa è una cerchio
 VIII. Polimorfismo
 Definizione: "Molte forme". La capacità di un oggetto di assumere diverse forme.
 Tipi di Polimorfismo:
-Polimorfismo in fase di compilazione (Static Polymorphism o Overloading): Si verifica quando più metodi nella stessa classe hanno lo stesso nome ma firme (numero e/o tipo di parametri) diverse. Il compilatore decide quale metodo chiamare in base agli argomenti passati.
+Polimorfismo in fase di compilazione (Static Polymorphism o Overloading):
+Si verifica quando più metodi nella stessa classe hanno lo stesso nome ma firme (numero e/o tipo di parametri) diverse.
+Il compilatore decide quale metodo chiamare in base agli argomenti passati.
+
 
             class Calcolatrice
             {
@@ -362,30 +401,34 @@ Polimorfismo in fase di compilazione (Static Polymorphism o Overloading): Si ver
             {
                 return a + b;
             }
-
             public int Somma(int a, int b, int c)
             {
                 return a + b + c;
             }
-        }
-
+            }
         Calcolatrice calc = new Calcolatrice();
         Console.WriteLine(calc.Somma(2, 3));       // Chiama Somma(int, int) - Output: 5
         Console.WriteLine(calc.Somma(2.5, 3.5));   // Chiama Somma(double, double) - Output: 6
         Console.WriteLine(calc.Somma(1, 2, 3));    // Chiama Somma(int, int, int) - Output: 6
-        ```
-      * **Polimorfismo in fase di esecuzione (Dynamic Polymorphism o Overriding):** Si verifica tramite l'ereditarietà e l'overriding di metodi `virtual`. Il metodo effettivo chiamato viene determinato a runtime in base al tipo effettivo dell'oggetto, non al tipo della variabile di riferimento. (Vedi l'esempio sull'Ereditarietà).
 
 
-### IX. Interfacce
+* **Polimorfismo in fase di esecuzione (Dynamic Polymorphism o Overriding):**
+Si verifica tramite l'ereditarietà e l'overriding di metodi `virtual`.
+Il metodo effettivo chiamato viene determinato a runtime in base al tipo effettivo dell'oggetto, non al tipo della variabile di riferimento. (Vedi l'esempio sull'Ereditarietà).
+
+
+IX. Interfacce
 
 1.  **Definizione:** Un contratto che definisce un insieme di metodi, proprietà, eventi o indicizzatori che una classe o uno struct deve implementare.
+
 2.  **Sintassi:** `interface NomeInterfaccia { // membri }`
+
 3.  **Caratteristiche:**
       * Contengono solo dichiarazioni di membri (senza implementazione).
       * I membri sono implicitamente `public` e `abstract`.
       * Una classe può implementare più interfacce.
       * Le interfacce non possono essere istanziate direttamente.
+
 4.  **Implementazione:** Una classe implementa un'interfaccia fornendo un'implementazione concreta per tutti i membri dichiarati nell'interfaccia.
 
 
@@ -424,31 +467,31 @@ Polimorfismo in fase di compilazione (Static Polymorphism o Overloading): Si ver
             Console.WriteLine($"Disegno un rettangolo con larghezza {Larghezza} e altezza {Altezza}.");
         }
     }
-
     // Esempio di utilizzo
     Cerchio mioCerchio = new Cerchio { Raggio = 3 };
     Rettangolo mioRettangolo = new Rettangolo { Larghezza = 5, Altezza = 10 };
-
     mioCerchio.Draw();       // Output: Disegno un cerchio con raggio 3.
     mioCerchio.Resize(10, 10); // Output: Ridimensiono il cerchio a larghezza 10 e altezza 10 (proporzionalmente).
     mioRettangolo.Draw();   // Output: Disegno un rettangolo con larghezza 5 e altezza 10.
-
     IDrawable oggettoDisegnabile1 = mioCerchio;
     IDrawable oggettoDisegnabile2 = mioRettangolo;
-
     oggettoDisegnabile1.Draw(); // Output: Disegno un cerchio con raggio 3.
     oggettoDisegnabile2.Draw(); // Output: Disegno un rettangolo con larghezza 5 e altezza 10.
 
 
-### X. Collezioni di Dati
+X. Collezioni di Dati
 
 1.  **Definizione:** Strutture che consentono di memorizzare e gestire gruppi di oggetti. Il namespace principale in C\# per le collezioni è `System.Collections` e `System.Collections.Generic`.
+
 2.  **Namespace `System.Collections` (Collezioni Non Generiche - meno comuni nell'uso moderno):**
+
       * `ArrayList`: Simile a `List<object>`, ma non type-safe.
       * `Hashtable`: Simile a `Dictionary<object, object>`, ma non type-safe.
       * `Queue`: Coda FIFO (già vista).
       * `Stack`: Pila LIFO (già vista).
+
 3.  **Namespace `System.Collections.Generic` (Collezioni Generiche - preferite per la type safety e le prestazioni):**
+
       * `List<T>`: Lista dinamica tipizzata (già vista).
       * `Dictionary<TKey, TValue>`: Dizionario tipizzato (già visto).
       * `Queue<T>`: Coda tipizzata (già vista).
@@ -457,6 +500,7 @@ Polimorfismo in fase di compilazione (Static Polymorphism o Overloading): Si ver
       * `LinkedList<T>`: Lista concatenata.
       * `SortedList<TKey, TValue>`: Dizionario ordinato per chiave.
       * `SortedSet<T>`: Insieme ordinato di elementi unici.
+
 4.  **LINQ (Language Integrated Query):** Un potente strumento per interrogare e manipolare dati da diverse fonti, incluse le collezioni.
 
 
@@ -466,7 +510,6 @@ Polimorfismo in fase di compilazione (Static Polymorphism o Overloading): Si ver
     var numeriPari = from n in numeri
                      where n % 2 == 0
                      select n;
-
     foreach (var numero in numeriPari)
     {
         Console.WriteLine(numero); // Output: 2 4 6
@@ -475,9 +518,10 @@ Polimorfismo in fase di compilazione (Static Polymorphism o Overloading): Si ver
 
 
 
-### XI. Accesso ai File
+XI. Accesso ai File
 
 1.  **Namespace `System.IO`:** Contiene classi per lavorare con file e directory.
+
 2.  **Classi Principali:**
       * `File`: Fornisce metodi statici per operazioni comuni sui file (creazione, eliminazione, copia, lettura, scrittura, ecc.).
       * `Directory`: Fornisce metodi statici per operazioni comuni sulle directory (creazione, eliminazione, spostamento, enumerazione di file e sottodirectory, ecc.).
@@ -486,6 +530,7 @@ Polimorfismo in fase di compilazione (Static Polymorphism o Overloading): Si ver
       * `FileStream`: Stream per leggere e scrivere file.
       * `StreamReader`: Fornisce metodi per leggere testo da uno Stream (come un `FileStream`).
       * `StreamWriter`: Fornisce metodi per scrivere testo in uno Stream (come un `FileStream`).
+
 3.  **Lettura da un File di Testo:**
 
 

@@ -23,7 +23,7 @@ class TextContentFormatter {
       // Parte dopo i due punti (se esiste)
       if (parts.length > 1) {
         spans.add(TextSpan(
-          text: parts.sublist(1).join(':'),  // Nel caso ci siano più : nella stringa
+          text: parts.sublist(1).join(':'),
           style: const TextStyle(
             fontSize: 16,
             color: null, // Colore normale per il resto del testo

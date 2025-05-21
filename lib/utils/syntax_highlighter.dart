@@ -68,7 +68,6 @@ class SyntaxHighlighter {
 
     // Tokenizzazione e colorazione
     String remaining = line;
-    int currentPosition = 0;
 
     // Funzione per aggiungere uno span di testo normale
     void addNormalText(String text) {
