@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../themes/app_theme.dart';
+import '../../themes/app_theme.dart';
 
 class TextContentFormatter {
   // Questo metodo costruisce un RichText con stili diversi per parti differenti del testo

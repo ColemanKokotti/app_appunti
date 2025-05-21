@@ -1,1 +1,634 @@
 Schema Android
+
+I. Basi della Programmazione Kotlin
+I.1. Introduzione a Kotlin
+Linguaggio Moderno:
+Sviluppato da JetBrains.
+Completamente interoperabile con Java.
+Sintassi concisa ed espressiva.
+Sicuro contro le NullPointerException (null-safety).
+Supporta paradigmi di programmazione orientata agli oggetti (OOP) e funzionale.
+Vantaggi:
+Riduzione del codice (meno boilerplate).
+Migliore leggibilità.
+Maggiore sicurezza.
+Perfetto per lo sviluppo Android.
+I.2. Tipi di Dati e Variabili
+Tipi di Dati Primitivi:
+Numerici: Byte, Short, Int, Long, Float, Double.
+Booleani: Boolean (true/false).
+Caratteri: Char.
+Stringhe: String.
+Dichiarazione di Variabili:
+val (immutable): Valore assegnato una sola volta (equivalente a final in Java).
+Kotlin
+
+val nome: String = "Alice"
+val età = 30 // Inferenza di tipo
+var (mutable): Valore che può essere riassegnato.
+Kotlin
+
+var contatore: Int = 0
+contatore = 1
+I.3. Operatori
+Aritmetici: +, -, *, /, %.
+Relazionali: ==, !=, <, >, <=, >=.
+Logici: && (AND), || (OR), ! (NOT).
+Assegnazione: =, +=, -=, *=, /=, %=.
+I.4. Strutture di Controllo del Flusso
+Condizionali:
+if/else if/else:
+Kotlin
+
+val voto = 75
+if (voto >= 60) {
+    println("Promosso")
+} else {
+    println("Bocciato")
+}
+when (equivalente a switch in Java, ma più potente):
+Kotlin
+
+val giorno = "Lunedì"
+when (giorno) {
+    "Lunedì", "Martedì" -> println("Inizio settimana")
+    "Sabato", "Domenica" -> println("Fine settimana")
+    else -> println("Giorno feriale")
+}
+Cicli (Loop):
+for: Iterazione su intervalli, array, collection.
+Kotlin
+
+for (i in 1..5) { // Intervallo inclusivo
+    println(i)
+}
+val numeri = listOf(10, 20, 30)
+for (numero in numeri) {
+    println(numero)
+}
+while: Esegue un blocco di codice finché una condizione è vera.
+do-while: Esegue il blocco di codice almeno una volta, poi controlla la condizione.
+I.5. Funzioni
+Definizione: Blocco di codice riutilizzabile.
+Sintassi:
+Kotlin
+
+fun nomeFunzione(parametro1: Tipo, parametro2: Tipo): TipoRitorno {
+    // Corpo della funzione
+    return risultato
+}
+Funzioni a Singola Espressione:
+Kotlin
+
+fun somma(a: Int, b: Int) = a + b
+Parametri di Default e Named Arguments:
+Kotlin
+
+fun saluta(nome: String, messaggio: String = "Ciao") {
+    println("$messaggio, $nome!")
+}
+saluta(nome = "Mario") // Output: Ciao, Mario!
+saluta(nome = "Luigi", messaggio = "Buongiorno") // Output: Buongiorno, Luigi!
+I.6. Classi e Oggetti (OOP)
+Classi: Blueprint per creare oggetti.
+Kotlin
+
+class Persona(val nome: String, var età: Int) {
+    fun saluta() {
+        println("Ciao, sono $nome e ho $età anni.")
+    }
+}
+Oggetti: Istanze di una classe.
+Kotlin
+
+val mario = Persona("Mario", 30)
+mario.saluta()
+mario.età = 31
+Ereditarietà: Una classe può ereditare proprietà e metodi da un'altra.
+Kotlin
+
+open class Animale(val nome: String) { // 'open' per essere ereditabile
+    open fun faiVerso() { // 'open' per essere sovrascrivibile
+        println("Verso generico")
+    }
+}
+class Cane(nome: String) : Animale(nome) {
+    override fun faiVerso() {
+        println("Bau!")
+    }
+}
+val fido = Cane("Fido")
+fido.faiVerso()
+Interfacce: Definiscono un contratto di comportamento.
+Kotlin
+
+interface Volante {
+    fun vola()
+}
+class Uccello : Volante {
+    override fun vola() {
+        println("L'uccello vola.")
+    }
+}
+Data Class: Classi speciali per contenere dati. Vengono generate automaticamente equals(), hashCode(), toString(), copy().
+Kotlin
+
+data class Utente(val id: Int, val username: String)
+val utente1 = Utente(1, "alice")
+val utente2 = utente1.copy(username = "bob")
+I.7. Null Safety
+Tipi Nullable: Usare ? per indicare che una variabile può contenere null.
+Kotlin
+
+var testo: String? = "Hello"
+testo = null // OK
+Operatore Safe Call (?.): Esegue un'operazione solo se l'oggetto non è null.
+Kotlin
+
+val lunghezza = testo?.length // lunghezza sarà null se testo è null
+Operatore Elvis (?:): Fornisce un valore di default se l'espressione è null.
+Kotlin
+
+val lunghezzaNonNull = testo?.length ?: 0 // Se testo è null, lunghezzaNonNull è 0
+Operatore Not-Null Asserted Call (!!): Forza l'accesso a un valore nullable, ma lancerà una NullPointerException se il valore è null (da usare con cautela).
+Kotlin
+
+// val lunghezzaPericolosa = testo!!.length // Rischioso!
+I.8. Estensioni
+Funzioni di Estensione: Aggiungere nuove funzioni a classi esistenti senza modificarle.
+Kotlin
+
+fun String.capitalizzaPrimaLettera(): String {
+    return this.substring(0, 1).uppercase() + this.substring(1)
+}
+val nome = "paolo"
+println(nome.capitalizzaPrimaLettera()) // Output: Paolo
+II. Basi di XML per Layout Android
+II.1. Introduzione a XML in Android
+Scopo: Descrivere l'interfaccia utente (UI) delle app Android in modo dichiarativo.
+File Layout: I file XML per i layout sono tipicamente in res/layout/.
+Struttura: Albero gerarchico di View e ViewGroup.
+View: Elementi UI individuali (es. TextView, Button, ImageView).
+ViewGroup: Contenitori che possono contenere altre View o ViewGroup (es. LinearLayout, RelativeLayout, ConstraintLayout).
+II.2. Elementi Fondamentali del Layout
+Root Element: Solitamente un ViewGroup.
+Attributi: Proprietà degli elementi XML.
+android:id: Identificatore unico per la View (es. @+id/myTextView).
+android:layout_width / android:layout_height:
+match_parent: Occupa tutto lo spazio disponibile del genitore.
+wrap_content: Occupa solo lo spazio necessario per il suo contenuto.
+Dimensioni specifiche (es. 100dp, 50px).
+android:text: Testo per TextView, Button.
+android:src: Immagine per ImageView.
+android:background: Colore o drawable di sfondo.
+android:padding / android:paddingLeft etc.: Spazio interno al bordo.
+android:layout_margin / android:layout_marginLeft etc.: Spazio esterno al bordo.
+II.3. Tipi Comuni di View
+TextView: Visualizza testo.
+XML
+
+<TextView
+    android:id="@+id/myTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Ciao Mondo!"
+    android:textSize="20sp"
+    android:textColor="#FF0000"/>
+Button: Bottone interattivo.
+XML
+
+<Button
+    android:id="@+id/myButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Clicca qui"/>
+EditText: Campo di input per l'utente.
+XML
+
+<EditText
+    android:id="@+id/myEditText"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Inserisci il tuo nome"
+    android:inputType="textPersonName"/>
+ImageView: Visualizza immagini.
+XML
+
+<ImageView
+    android:id="@+id/myImageView"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:src="@drawable/ic_launcher_foreground"
+    android:contentDescription="Icona dell'app"/>
+RecyclerView: Per liste scorrevoli di elementi (più efficiente di ListView). Richiede un Adapter e un LayoutManager.
+II.4. Tipi Comuni di ViewGroup (Layout Managers)
+LinearLayout: Organizza gli elementi in una singola riga o colonna.
+android:orientation: vertical o horizontal.
+android:layout_weight: Distribuisce lo spazio rimanente tra le View. <!-- end list -->
+XML
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView .../>
+    <Button .../>
+</LinearLayout>
+RelativeLayout: Posiziona gli elementi in relazione tra loro o con il genitore.
+android:layout_below="@+id/another_view"
+android:layout_alignParentLeft="true"
+android:layout_centerInParent="true" <!-- end list -->
+XML
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Testo in alto"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_top"
+        android:layout_centerHorizontal="true"
+        android:text="Bottone sotto"/>
+</RelativeLayout>
+FrameLayout: Usato per impilare elementi uno sopra l'altro. Utile per frammenti o overlay.
+ConstraintLayout: Layout flessibile e potente che permette di posizionare le View definendo "vincoli" (constraints) rispetto ad altre View, al genitore, o a linee guida. Consigliato per layout complessi.
+app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintEnd_toEndOf="parent" * app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintVertical_bias / app:layout_constraintHorizontal_bias
+app:layout_constraintDimensionRatio <!-- end list -->
+XML
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Centro"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+II.5. Risorse Android e XML
+res/values/strings.xml: Per stringhe di testo.
+XML
+
+<string name="app_name">My App</string>
+(Riferimento in XML: @string/app_name)
+res/values/colors.xml: Per colori.
+XML
+
+<color name="my_blue">#0000FF</color>
+(Riferimento in XML: @color/my_blue)
+res/values/dimens.xml: Per dimensioni (dp, sp).
+XML
+
+<dimen name="margin_medium">16dp</dimen>
+(Riferimento in XML: @dimen/margin_medium)
+res/drawable/: Per immagini e drawables XML.
+res/mipmap/: Per icone dell'applicazione.
+III. Jetpack Compose: Un Approccio Moderno alla UI
+III.1. Introduzione a Jetpack Compose
+Cos'è: Toolkit UI moderno di Android per costruire interfacce native.
+Paradigma Dichiarativo: Invece di manipolare la UI (come con XML) basandosi su modifiche di stato, si descrive la UI per ogni stato, e Compose si occupa di aggiornarla automaticamente.
+Basato su Kotlin: Completamente scritto in Kotlin, sfrutta le sue caratteristiche.
+Sostituzione di XML tradizionale: Offre un'alternativa all'approccio basato su XML per i layout.
+III.2. Concetti Chiave di Compose
+Composable Functions (@Composable):
+Funzioni speciali che descrivono parti dell'UI.
+Possono essere annidate.
+Devono essere chiamate solo all'interno di altre funzioni @Composable.
+Non restituiscono View ma emettono elementi UI. <!-- end list -->
+Kotlin
+
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Ciao, $name!")
+}
+State (Stato):
+Dati che possono cambiare nel tempo e influenzare la UI.
+Compose reagisce ai cambiamenti di stato per "ricomporre" (ridisegnare) solo le parti della UI che dipendono da quello stato.
+remember: Memorizza un oggetto nel composable tree tra le ricomposizioni.
+mutableStateOf: Crea un MutableState<T> che innesca una ricomposizione quando il suo valore cambia.
+Kotlin
+
+@Composable
+fun Counter() {
+    var count by remember { mutableStateOf(0) } // Delegation
+    Button(onClick = { count++ }) {
+        Text(text = "Conteggio: $count")
+    }
+}
+Recomposition (Ricomposizione):
+Il processo di ridisegno della UI quando lo stato cambia.
+Compose è intelligente e ricompone solo i composable che sono influenzati dal cambiamento di stato.
+III.3. Layout in Compose
+Column: Dispone gli elementi verticalmente.
+Kotlin
+
+Column {
+    Text("Elemento 1")
+    Text("Elemento 2")
+}
+Row: Dispone gli elementi orizzontalmente.
+Kotlin
+
+Row {
+    Text("Elemento A")
+    Text("Elemento B")
+}
+Box: Impila gli elementi uno sopra l'altro (simile a FrameLayout).
+Kotlin
+
+Box {
+    Text("Sotto")
+    Text("Sopra")
+}
+Modifier: Oggetti che permettono di decorare o aggiungere comportamenti ai composable.
+modifier.padding()
+modifier.fillMaxSize()
+modifier.clickable()
+modifier.background() <!-- end list -->
+Kotlin
+
+Text(
+    text = "Hello",
+    modifier = Modifier
+        .padding(16.dp)
+        .background(Color.Blue)
+)
+Material Design Components: Compose fornisce componenti Material Design già pronti (Button, Card, TextField, Scaffold, TopAppBar, BottomNavigation, ecc.).
+III.4. Vantaggi di Compose
+Meno Codice: Riduce significativamente la quantità di codice UI.
+Sviluppo Accelerato: Iterazioni più veloci con preview in Android Studio.
+UI Dinamica: Più facile gestire la UI che cambia in base ai dati.
+Migliore Performance: Ottimizzato per ricomposizioni efficienti.
+Interoperabilità: È possibile usare Composable in un'app basata su XML e viceversa.
+IV. Firebase
+IV.1. Introduzione a Firebase
+Piattaforma di Google: Offre servizi backend per applicazioni mobili e web.
+BaaS (Backend as a Service): Elimina la necessità di gestire un server backend proprio.
+Servizi Offerti:
+Autenticazione
+Database (Firestore, Realtime Database)
+Cloud Storage
+Hosting
+Cloud Functions
+Machine Learning (ML Kit)
+Analytics
+Crashlytics
+Remote Config
+Cloud Messaging (FCM)
+...e molti altri.
+IV.2. Integrazione di Firebase in un Progetto Android
+1. Creare un Progetto Firebase:
+Accedi alla console Firebase (console.firebase.google.com).
+Crea un nuovo progetto.
+2. Registrare la tua App Android:
+Nella console Firebase, aggiungi un'app Android al progetto.
+Fornisci il package name della tua app (lo trovi in build.gradle (Module :app)).
+Fornisci lo SHA-1 fingerprint (necessario per alcuni servizi come l'autenticazione con Google Sign-In). Puoi ottenerlo da Android Studio: Gradle -> app -> Tasks -> android -> signingReport.
+3. Scaricare google-services.json:
+Firebase ti chiederà di scaricare questo file.
+Copia google-services.json nella directory app/ del tuo progetto Android Studio.
+4. Aggiungere le Dipendenze Firebase (a breve nel Capitolo V):
+Modifica i file build.gradle (a livello di progetto e modulo) per includere il plugin Google Services e le librerie Firebase necessarie.
+IV.3. Servizi Firebase Comuni
+Firebase Authentication:
+Gestisce l'autenticazione degli utenti (email/password, Google, Facebook, ecc.).
+Semplifica la registrazione, il login e la gestione delle sessioni utente.
+Cloud Firestore:
+Database NoSQL orientato ai documenti (document-oriented).
+Sincronizzazione in tempo reale, offline support.
+Ideale per dati strutturati e scalabilità.
+Dati organizzati in collezioni (collections) e documenti (documents).
+Firebase Realtime Database:
+Database NoSQL basato su JSON.
+Sincronizzazione in tempo reale.
+Meno strutturato di Firestore, utile per dati semplici o giochi.
+Firebase Cloud Storage:
+Archiviazione di file binari (immagini, video, audio).
+Sicuro, scalabile.
+Firebase Cloud Messaging (FCM):
+Invia messaggi e notifiche push a dispositivi mobili.
+Firebase Crashlytics:
+Report dettagliati degli arresti anomali (crash) e degli errori non fatali.
+Aiuta a identificare e risolvere i problemi dell'app.
+IV.4. Esempio di Utilizzo (Firebase Authentication - Email/Password)
+Aggiungi dipendenza:
+Gradle
+
+// build.gradle (Module :app)
+implementation 'com.google.firebase:firebase-auth-ktx'
+ 2. **Codice per registrazione/login:**kotlin
+// In un Activity/Fragment
+import com.google.firebase.auth.FirebaseAuth
+
+class AuthActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // ...
+        auth = FirebaseAuth.getInstance()
+    }
+
+    fun registerUser(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Registrazione riuscita
+                    val user = auth.currentUser
+                    println("Utente registrato: ${user?.email}")
+                } else {
+                    // Registrazione fallita
+                    println("Errore di registrazione: ${task.exception?.message}")
+                }
+            }
+    }
+
+    fun loginUser(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Login riuscito
+                    val user = auth.currentUser
+                    println("Utente loggato: ${user?.email}")
+                } else {
+                    // Login fallito
+                    println("Errore di login: ${task.exception?.message}")
+                }
+            }
+    }
+}
+```
+V. Implementazione di Librerie su Android Studio
+V.1. Cosa sono le Librerie e le Dipendenze
+Libreria: Un pacchetto di codice precompilato che offre funzionalità specifiche, riutilizzabili in diversi progetti.
+Dipendenza: Indica al sistema di build (Gradle in Android Studio) che il tuo progetto ha bisogno di una certa libreria per compilare ed eseguire.
+V.2. Il File build.gradle (Module: app)
+Questo è il file chiave per gestire le dipendenze della tua app.
+Si trova nella directory app/ del tuo progetto.
+La sezione dependencies { ... } è dove dichiari le librerie.
+V.3. Aggiungere Dipendenze
+Sintassi Generale:
+Gradle
+
+dependencies {
+    implementation 'group:artifact:version'
+    // Altre configurazioni comuni:
+    // api 'group:artifact:version' // Rende la dipendenza disponibile anche per i moduli che dipendono da questo modulo
+    // testImplementation 'group:artifact:version' // Solo per test unitari
+    // androidTestImplementation 'group:artifact:version' // Solo per test di strumentazione
+}
+implementation: La configurazione più comune. Indica che il modulo corrente dipende dalla libreria specificata. La libreria non sarà esposta ai moduli dipendenti (migliora i tempi di build).
+V.4. Esempi di Implementazione di Librerie Comuni
+V.4.1. Core Kotlin Extensions (KTX)
+Forniscono estensioni Kotlin per le API Android, rendendo il codice più idiomatico e conciso.
+Esempio: androidx.core:core-ktx
+Gradle
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.13.1' // Versione attuale al 2025/05/21
+}
+V.4.2. Android Jetpack (Librerie Core)
+Collezione di librerie che aiutano a seguire le best practice e a ridurre il boilerplate.
+
+ViewModel & LiveData (per architettura MVVM/MVI):
+
+ViewModel: Gestisce i dati UI-related in modo che sopravvivano ai cambiamenti di configurazione (es. rotazione dello schermo).
+LiveData: Observable data holder che è lifecycle-aware.
+
+
+Gradle
+
+dependencies {
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0' // Versione attuale al 2025/05/21
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.0'
+}
+Navigation Component:
+
+Per gestire la navigazione tra le destinazioni all'interno della tua app.
+
+
+Gradle
+
+dependencies {
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7' // Versione attuale al 2025/05/21
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'
+}
+Room (Database Persistente):
+
+Livello di astrazione su SQLite, semplifica il lavoro con i database.
+<!-- end list -->
+
+Gradle
+
+dependencies {
+    implementation 'androidx.room:room-runtime:2.6.1' // Versione attuale al 2025/05/21
+    kapt 'androidx.room:room-compiler:2.6.1' // Annotation processor
+    implementation 'androidx.room:room-ktx:2.6.1' // Kotlin Extensions per coroutine
+}
+Nota: per kapt devi aggiungere il plugin Kotlin-kapt nel tuo build.gradle (Module: app) in cima:
+
+Gradle
+
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt' // Aggiungi questa riga
+}
+V.4.3. Librerie per la Rete (HTTP Requests)
+Retrofit (per REST APIs):
+Un type-safe HTTP client per Android e Java. Semplifica la creazione di richieste API. <!-- end list -->
+Gradle
+
+dependencies {
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0' // Versione attuale al 2025/05/21
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // Per la conversione JSON (es. con Gson)
+}
+OkHttp (per HTTP):
+Client HTTP efficiente. Retrofit lo usa internamente. <!-- end list -->
+Gradle
+
+dependencies {
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0' // Versione attuale al 2025/05/21
+}
+V.4.4. Librerie per Immagini
+Coil (per caricamento immagini):
+Una libreria di caricamento immagini basata su Coroutines. <!-- end list -->
+Gradle
+
+dependencies {
+    implementation 'io.coil-kt:coil:2.6.0' // Versione attuale al 2025/05/21
+}
+V.4.5. Librerie per Jetpack Compose
+Queste dipendenze sono fondamentali per lo sviluppo di UI con Compose.
+Vengono solitamente aggiunte automaticamente quando crei un progetto con Compose.
+Gradle
+
+dependencies {
+    // UI Core
+    implementation 'androidx.compose.ui:ui:1.6.7' // Versione attuale al 2025/05/21
+    implementation 'androidx.compose.ui:ui-tooling-preview:1.6.7'
+
+    // Material Design
+    implementation 'androidx.compose.material3:material3:1.2.1' // Versione attuale al 2025/05/21
+
+    // Activity integration (for Compose)
+    implementation 'androidx.activity:activity-compose:1.9.0'
+
+    // Lifecycle ViewModel support for Compose
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0'
+
+    // Navigation for Compose
+    implementation 'androidx.navigation:navigation-compose:2.7.7'
+
+    // Tooling for previews and inspection (debug/release variants)
+    debugImplementation 'androidx.compose.ui:ui-tooling:1.6.7'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest:1.6.7'
+}
+V.4.6. Librerie Firebase
+Come menzionato nel Capitolo IV, ogni servizio Firebase ha una sua dipendenza.
+Configurazione iniziale (build.gradle (Project: YourApp)):
+Gradle
+
+buildscript {
+    dependencies {
+        classpath 'com.google.gms:google-services:4.4.1' // Versione attuale al 2025/05/21
+        }
+}
+```
+
+Configurazione iniziale (build.gradle (Module: app)):
+Gradle
+
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services' // Aggiungi questa riga
+}
+// ...
+dependencies {
+    // Base Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:33.0.0') // Versione attuale al 2025/05/21
+    implementation 'com.google.firebase:firebase-analytics-ktx' // Esempio: Analytics
+
+    // Specific Firebase services
+    implementation 'com.google.firebase:firebase-auth-ktx' // Autenticazione
+    implementation 'com.google.firebase:firebase-firestore-ktx' // Cloud Firestore
+    implementation 'com.google.firebase:firebase-storage-ktx' // Cloud Storage
+    // ... altre a seconda delle necessità
+}
+Nota: L'uso di firebase-bom ti permette di gestire tutte le versioni delle librerie Firebase con una sola versione, garantendo compatibilità.
+5. Sincronizzare il Progetto con i File Gradle
+Dopo aver modificato il file build.gradle, Android Studio ti chiederà di "Sync Now" (Sincronizza ora) o di fare clic sul pulsante a forma di elefante con la freccia verde nella barra degli strumenti. Questo scaricherà le dipendenze e le aggiungerà al tuo progetto.

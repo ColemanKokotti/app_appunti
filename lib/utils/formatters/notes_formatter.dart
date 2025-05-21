@@ -1,11 +1,11 @@
+import 'package:appunti/utils/formatters/paragraph_formatter.dart';
+import 'package:appunti/utils/formatters/title_formatter.dart';
 import 'package:flutter/material.dart';
-import 'formatters/base_formatter.dart';
-import 'formatters/code_block_formatter.dart';
-import 'formatters/paragraph_formatter.dart';
-import 'formatters/title_formatter.dart';
+import 'base_formatter.dart';
+import 'code_block_formatter.dart';
 
 class NotesFormatter {
-  static List<Widget> formatNotes(BuildContext context, String content) {
+  static List<Widget> formatNotes(BuildContext context, String content, String subjectName) {
     final List<Widget> widgets = [];
     final List<String> lines = content.split('\n');
 
@@ -14,8 +14,9 @@ class NotesFormatter {
     String currentParagraph = '';
     List<String> paragraphContent = [];
 
-    // Reset code block formatter state
+    // Reset code block formatter state and set subject name
     CodeBlockFormatter.reset();
+    CodeBlockFormatter.setSubjectName(subjectName);
 
     for (int i = 0; i < lines.length; i++) {
       final String line = lines[i];

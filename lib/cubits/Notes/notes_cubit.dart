@@ -28,17 +28,4 @@ class NotesCubit extends Cubit<NotesState> {
       ));
     }
   }
-
-  void toggleMagnifier() {
-    emit(state.copyWith(
-      showMagnifier: !state.showMagnifier,
-    ));
-  }
-
-  void adjustZoomLevel(double change) {
-    final newZoomLevel = (state.zoomLevel + change).clamp(1.2, 3.0);
-    emit(state.copyWith(
-      zoomLevel: newZoomLevel,
-    ));
-  }
 }

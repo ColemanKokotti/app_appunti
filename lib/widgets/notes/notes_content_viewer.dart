@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../utils/notes_formatter.dart';
+import '../../utils/formatters/notes_formatter.dart';
 
 class NotesContentViewer extends StatelessWidget {
   final String notesContent;
@@ -15,7 +15,7 @@ class NotesContentViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: NotesFormatter.formatNotes(context, notesContent),
+      children: NotesFormatter.formatNotes(context, notesContent,subject),
     );
   }
 }

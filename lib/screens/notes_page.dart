@@ -52,7 +52,7 @@ class _NotesPageContent extends StatelessWidget {
                       color: Theme.of(context).scaffoldBackgroundColor,
                     ),
                     child: SingleChildScrollView(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(10),
                       child: NotesContentViewer(
                         notesContent: state.notesContent,
                         subject: subject.name,

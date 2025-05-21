@@ -3,14 +3,35 @@ import '../../utils/syntax_highlighter.dart';
 
 class CodeBlockWidget extends StatelessWidget {
   final String code;
+  final String? subjectName;
+  final String? fileName;
 
   const CodeBlockWidget({
     super.key,
     required this.code,
+    this.subjectName,
+    this.fileName,
   });
 
   @override
   Widget build(BuildContext context) {
+    // Determine language based on file name if available, otherwise use subject
+    String language;
+    String languageLabel;
+
+    if (fileName != null) {
+      // Use the new function to identify language from filename
+      language = SyntaxHighlighter.identifyLanguageFromFilename(fileName!);
+      languageLabel = _getDisplayLanguageLabel(language);
+    } else if (subjectName != null) {
+      // This is kept for backward compatibility
+      language = _mapSubjectToLanguage(subjectName!);
+      languageLabel = _getDisplayLanguageLabel(language);
+    } else {
+      language = 'generic';
+      languageLabel = 'Code';
+    }
+
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(vertical: 8.0),
@@ -33,7 +54,7 @@ class CodeBlockWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.all(16.0),
             child: RichText(
-              text: SyntaxHighlighter.highlightCSharp(code),
+              text: SyntaxHighlighter.highlightCode(code, language),
               softWrap: false,
               textAlign: TextAlign.start,
               textDirection: TextDirection.ltr,
@@ -60,9 +81,9 @@ class CodeBlockWidget extends StatelessWidget {
                   topRight: Radius.circular(7.0),
                 ),
               ),
-              child: const Text(
-                'C#',
-                style: TextStyle(
+              child: Text(
+                languageLabel,
+                style: const TextStyle(
                   color: Color(0xFFB180ED),
                   fontSize: 12.0,
                   fontWeight: FontWeight.bold,
@@ -73,5 +94,49 @@ class CodeBlockWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  // Helper method to map subject name to language
+  String _mapSubjectToLanguage(String subject) {
+    // Legacy mapping logic, can be integrated into SyntaxHighlighter if needed
+    if (subject.contains('Programming Fundamentals')) {
+      return 'c#';
+    } else if (subject.contains('Android')) {
+      return 'kotlin';
+    } else if (subject.contains('React')) {
+      return 'typescript';
+    } else if (subject.contains('IOS')) {
+      return 'swift';
+    } else if (subject.contains('Linux')) {
+      return 'bash';
+    } else if (subject.contains('Flutter')) {
+      return 'dart';
+    } else if (subject.contains('Web')) {
+      return 'html/css/javascript';
+    } else {
+      return 'generic';
+    }
+  }
+
+  // Helper method to get a nice display label for the language
+  String _getDisplayLanguageLabel(String language) {
+    switch (language.toLowerCase()) {
+      case 'c#':
+        return 'C#';
+      case 'kotlin':
+        return 'Kotlin';
+      case 'typescript':
+        return 'TypeScript';
+      case 'swift':
+        return 'Swift';
+      case 'bash':
+        return 'Bash';
+      case 'dart':
+        return 'Dart';
+      case 'html/css/javascript':
+        return 'HTML/CSS/JS';
+      default:
+        return 'Code';
+    }
   }
 }

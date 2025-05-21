@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../themes/app_theme.dart';
-import '../text_content_formatter.dart';
+import 'text_content_formatter.dart';
 
 class ParagraphFormatter {
   static Widget buildParagraphHeader(BuildContext context, String title) {

@@ -4,10 +4,15 @@ import '../../widgets/notes/code_block_widget.dart';
 class CodeBlockFormatter {
   static bool isInCodeBlock = false;
   static StringBuffer codeBuffer = StringBuffer();
+  static String? subjectName;
 
   static void reset() {
     isInCodeBlock = false;
     codeBuffer.clear();
+  }
+
+  static void setSubjectName(String name) {
+    subjectName = name;
   }
 
   static void appendLine(String line) {
@@ -15,7 +20,10 @@ class CodeBlockFormatter {
   }
 
   static Widget buildCodeBlockWidget() {
-    Widget widget = CodeBlockWidget(code: codeBuffer.toString().trim());
+    Widget widget = CodeBlockWidget(
+      code: codeBuffer.toString().trim(),
+      subjectName: subjectName,
+    );
     codeBuffer.clear();
     return widget;
   }
