@@ -1,1 +1,427 @@
 Schema Cybersecurity
+
+I. Introduzione alla Cybersecurity
+1. Cos'è la Sicurezza?:
+Definizione di Rischio: La probabilità che accada un certo evento capace di causare un danno.
+Componenti del Rischio:
+Minaccia: Sorgente di pericolo.
+Vulnerabilità: Punto debole del sistema.
+Impatto: Entità del danno potenziale.
+Obiettivi della Sicurezza (CIA Triad):
+Confidenzialità (Confidentiality): Protezione delle informazioni da accessi non autorizzati. Solo gli utenti autorizzati possono accedere ai dati.
+Integrità (Integrity): Garanzia che le informazioni non siano alterate in modo non autorizzato. I dati devono essere completi, accurati e non modificati illecitamente.
+Disponibilità (Availability): Garanzia che i sistemi e i dati siano accessibili agli utenti autorizzati quando necessario.
+2. Tipi di Attacchi e Concetti Chiave:
+Attaccante: Chi sfrutta vulnerabilità per causare un danno.
+Hacker: Termine generico, spesso associato a esploratori di sistemi.
+Cracker: Chi viola sistemi di sicurezza per scopi malevoli.
+Black Hat: Hacker con intenti malevoli.
+White Hat: Hacker etici, lavorano per migliorare la sicurezza.
+Gray Hat: Si muovono in un'area grigia, a volte violando la legge per scopi non strettamente malevoli.
+Script Kiddie: Utenti con scarse conoscenze che usano strumenti preesistenti.
+Stato Nazione: Gruppi sponsorizzati da stati per attività di spionaggio o sabotaggio.
+Hacktivist: Hacker con motivazioni politiche o sociali.
+Vulnerabilità: Punti deboli in un sistema.
+Software: Buffer overflow, injection, broken authentication, broken access control, security misconfiguration.
+Hardware: Spectre & Meltdown, Rowhammer, Secure Enclave.
+Protocolli/Procedure: Procedure di sicurezza inadeguate, controllo degli accessi insufficiente, componenti obsoleti, sicurezza fisica.
+Zero Day: Una vulnerabilità sconosciuta al pubblico e non ancora patchata.
+Exploit: Un attacco che sfrutta una vulnerabilità per eseguire un rootkit o creare comportamenti imprevisti.
+Backdoor: Metodo alternativo all'autenticazione per superare le difese informatiche.
+Rootkit: Software malevolo che maschera la propria presenza per abilitare l'accesso al sistema.
+Malware: Software malevolo.
+Virus: Si auto-replica allegandosi ad altri programmi.
+Trojan: Si presenta come software legittimo ma nasconde funzionalità dannose.
+Worm: Si auto-replica e si diffonde attraverso la rete.
+Ransomware: Crittografa i dati della vittima e chiede un riscatto.
+Spyware: Raccoglie informazioni sull'utente senza consenso.
+Keylogger: Registra le digitazioni della tastiera.
+Scareware/Rogueware: Simula problemi di sicurezza per spingere l'utente ad acquistare software inutile.
+Botnet: Rete di computer infetti controllati da un attaccante.
+II. Password Management
+1. Prevenzione dalle Intrusioni:
+Pilastri:
+Autenticazione: Verifica dell'identità dell'utente (es. password).
+Autorizzazione: Concessione dei permessi per accedere a risorse specifiche.
+Crittografia: Protezione dei dati tramite algoritmi matematici.
+Controllo degli Accessi: Regole e meccanismi che determinano chi può accedere a cosa.
+2. Tecniche di Intrusione Comuni:
+Default Password: Utilizzo di password predefinite su router, modem, dispositivi IoT.
+Social Engineering: Manipolazione psicologica delle persone per ottenere informazioni o compiere azioni.
+Password Profiling: Creazione di profili per indovinare password.
+Name-dropping: Usare nomi noti per guadagnare fiducia.
+Pretexting: Creare un pretesto credibile per ottenere informazioni.
+Tailgating: Seguire una persona autorizzata per ottenere accesso fisico.
+Something for Something (Quid pro quo): Offrire qualcosa in cambio di informazioni.
+Attacchi a Dizionario: Tentativo di indovinare password usando liste di parole comuni.
+Attacchi a Forza Bruta: Tentativo sistematico di tutte le combinazioni possibili di caratteri per trovare una password.
+Phishing: Tentativo di ottenere informazioni sensibili (es. credenziali) tramite e-mail o siti web falsi che imitano entità legittime.
+Caratteristiche: Errori grammaticali, URL sospette, richieste urgenti, mittenti sconosciuti.
+Prevenzione: Verificare l'URL, contattare direttamente l'organizzazione, segnalare i messaggi sospetti.
+Whaling: Attacco di phishing mirato a figure di alto profilo.
+3. Creazione di Password Robuste:
+Entropia della Password: Misura dell'imprevedibilità di una password. Più è alta l'entropia, più la password è forte.
+Lunghezza: Più lunga è la password, maggiore è l'entropia.
+Complessità: Combinazione di caratteri minuscoli, maiuscoli, numeri e simboli.
+Casualità: Evitare sequenze prevedibili o informazioni personali.
+Frasi di Passaggio (Passphrases): Combinazione di parole casuali per creare password lunghe e facili da ricordare (es. "corro-nel-prato-verde").
+Sali (Salts): Stringhe casuali aggiunte a una password prima dell'hashing per prevenire attacchi a dizionario e rainbow table.
+Hashing delle Password: Le password non vengono memorizzate in chiaro ma come hash, una rappresentazione irreversibile.
+Password Manager: Software che memorizza e gestisce password complesse in modo sicuro.
+Built-in: Integrati nel browser o nel sistema operativo.
+Installazione Separata: Applicazioni dedicate (es. LastPass, 1Password).
+Livelli di sicurezza: Low, Mid, High level.
+Importante: Non violare il password manager stesso.
+Autenticazione Multi-Fattore (MFA): Richiede due o più fattori di verifica per l'accesso.
+Qualcosa che conosco: Password, PIN.
+Qualcosa che possiedo: Smartphone (OTP - One-Time Password), token fisico.
+Qualcosa che sono: Biometria (impronta digitale, riconoscimento facciale).
+Tecniche di bypass di 2FA: SIM swap, clickjacking, response manipulation, JS file analysis, missing code integrity validation, refer check bypass, CSRF PoC, backup code abuse.
+III. Introduzione alla Crittografia
+1. Concetti Fondamentali:
+Crittografia: La scienza della scrittura segreta. Tecnica per rendere il messaggio incomprensibile a chi non è autorizzato.
+Cifrario: L'algoritmo matematico utilizzato per cifrare e decifrare.
+Chiave: Un valore segreto utilizzato dal cifrario.
+Testo in Chiaro (Plaintext): Il messaggio originale.
+Testo Cifrato (Ciphertext): Il messaggio codificato.
+Crittanalisi: La scienza dello studio degli algoritmi crittografici al fine di "romperli", cioè di decifrare messaggi senza la conoscenza della chiave.
+2. Proprietà di una Buona Chiave Crittografica:
+Casuale: Deve essere generata in modo imprevedibile.
+Protetta: Deve essere mantenuta segreta e al sicuro.
+Condivisa: Deve essere scambiata in modo sicuro tra le parti comunicanti.
+Metodi di condivisione (storici/limiti): A mano, tramite una terza parte, tramite un canale sicuro (presuppone già uno scambio di chiave). Questi metodi sono spesso impraticabili in epoca informatica.
+3. Evoluzione Storica della Crittografia:
+Antichità:
+Cifrario di Cesare: Sostituzione di ogni lettera con una lettera distante un certo numero di posizioni nell'alfabeto.
+Cifrario di Atbash: Sostituzione di ogni lettera con la sua "inversa" nell'alfabeto (A con Z, B con Y, ecc.).
+Cifrario di Polibio (Quadrato di Polibio): Sostituzione di lettere con coppie di numeri che indicano la loro posizione in una griglia.
+Cifrario di Alberti: Primo cifrario polialfabetico con dischi cifranti, che cambiava l'alfabeto di sostituzione durante la cifratura.
+Cifrario di Vigenère: Cifrario polialfabetico che utilizza una parola chiave per determinare gli spostamenti nell'alfabeto. Più robusto dei cifrari monoalfabetici.
+Novecento:
+Macchine Cifranti: Discret, TypeX, SIGABA, Enigma.
+Macchina Enigma: Utilizzata dai tedeschi durante la Seconda Guerra Mondiale. Complessa macchina elettro-meccanica che implementava un cifrario polialfabetico avanzato. Le chiavi erano segrete e cambiavano quotidianamente.
+Colossus: Primo computer elettronico programmabile, utilizzato a Bletchley Park per decifrare i messaggi di Lorenz, una macchina di cifratura tedesca più complessa di Enigma.
+Teoria dell'Informazione di Shannon:
+Comunicazione Teoria della Segretezza dei Sistemi (Communication Theory of Secrecy Systems, 1949): Articolo fondamentale di Claude Shannon che pose le basi matematiche della crittografia moderna.
+Principi di Shannon:
+Diffusione: Dispersione delle proprietà statistiche del testo in chiaro sul testo cifrato.
+Confusione: Rendere la relazione tra la chiave e il testo cifrato il più complessa possibile.
+IV. Crittografia DES e AES
+1. Crittografia a Chiave Simmetrica:
+Concetto: Stessa chiave utilizzata per cifrare e decifrare.
+Vantaggi: Veloce, adatta per grandi quantità di dati.
+Svantaggi: Problema della distribuzione sicura della chiave.
+2. DES (Data Encryption Standard):
+Storia: Sviluppato da IBM negli anni '70, adottato come standard federale USA.
+Tipo: Cifrario a blocchi (Block Cipher).
+Dimensioni:
+Dimensione del blocco: 64 bit.
+Dimensione della chiave: 56 bit (chiave effettiva, con 8 bit di parità).
+Struttura:
+Rete di Feistel: Struttura che consente di usare la stessa logica per cifratura e decifratura. Il blocco viene diviso a metà, e una parte viene manipolata con una funzione dipendente dalla chiave e poi combinata con l'altra metà.
+Numero di Round: 16 round.
+Sicurezza:
+La chiave di 56 bit è considerata troppo corta per gli standard attuali, vulnerabile ad attacchi a forza bruta.
+Triple DES (3DES): Esecuzione di DES tre volte (Encrypt-Decrypt-Encrypt) con due o tre chiavi diverse per aumentare la sicurezza. Utilizzato ancora oggi per legacy systems.
+3. AES (Advanced Encryption Standard):
+Storia: Sviluppato da Joan Daemen e Vincent Rijmen (algoritmo Rijndael), selezionato come standard nel 2000 per sostituire DES.
+Tipo: Cifrario a blocchi. Non basato su rete di Feistel.
+Dimensioni del Blocco: 128 bit.
+Dimensioni della Chiave: 128, 192 o 256 bit.
+Struttura (Round Functions):
+SubBytes: Sostituzione di ogni byte della matrice di stato usando una S-box predefinita.
+ShiftRows: Spostamento ciclico dei byte in ogni riga della matrice di stato.
+MixColumns: Operazione lineare che combina i byte all'interno di ogni colonna.
+AddRoundKey: XOR della matrice di stato con una sub-chiave derivata dalla chiave principale.
+Numero di Round: Dipende dalla dimensione della chiave:
+128 bit: 10 round.
+192 bit: 12 round.
+256 bit: 14 round.
+Key Schedule (Espansione della Chiave): Processo per generare le sub-chiavi per ogni round dalla chiave principale. Coinvolge:
+Rotazione di 8 bit a sinistra.
+Applicazione della S-box di Rijndael.
+XOR con Rcon(i) (costante di round).
+Sicurezza: Considerato molto sicuro. Attacchi riusciti finora sono stati solo su versioni con meno round dell'originale.
+Prestazioni: Efficiente su un'ampia gamma di dispositivi, dalle smart card ai supercomputer, anche grazie alle istruzioni AES-NI sui processori moderni.
+V. Diffie-Hellman-Merkle Key Exchange
+1. Il Problema della Condivisione della Chiave:
+Nelle comunicazioni sicure, la chiave simmetrica deve essere condivisa tra le parti in modo sicuro. I metodi tradizionali (a mano, terza parte, canale sicuro pre-esistente) sono inadeguati per le comunicazioni digitali su larga scala.
+2. Il Metodo dei Lucchetti (Analogia):
+Un'analogia per spiegare la crittografia a chiave pubblica:
+Alice mette un messaggio in una scatola e la chiude con il suo lucchetto (chiave pubblica di Alice).
+Bob riceve la scatola chiusa con il lucchetto di Alice e aggiunge il suo lucchetto (chiave pubblica di Bob).
+Alice riceve la scatola con i due lucchetti e rimuove il suo.
+Bob riceve la scatola con il solo lucchetto di Bob e lo rimuove, aprendo la scatola.
+Questo illustra l'idea di creare una chiave condivisa in modo sicuro su un canale non sicuro.
+3. Diffie-Hellman Key Exchange (DHKE):
+Scopo: Permettere a due parti di stabilire una chiave segreta condivisa su un canale di comunicazione non sicuro senza averla mai scambiata direttamente.
+Principio Matematico: Basato sul problema del logaritmo discreto, computazionalmente difficile da risolvere per grandi numeri.
+Passaggi:
+Accordo sui parametri pubblici: Alice e Bob si accordano su un numero primo grande p e un generatore g (un intero che, elevato a potenze successive mod p, genera tutti i numeri da 1 a p-1). Questi parametri sono pubblici.
+Generazione delle chiavi private:
+Alice sceglie un numero intero casuale segreto a (chiave privata di Alice).
+Bob sceglie un numero intero casuale segreto b (chiave privata di Bob).
+Calcolo delle chiavi pubbliche:
+Alice calcola A = g^a mod p e invia A a Bob.
+Bob calcola B = g^b mod p e invia B ad Alice.
+Calcolo della chiave segreta condivisa:
+Alice calcola S = B^a mod p.
+Bob calcola S = A^b mod p.
+Risulta che g^(ab) mod p = (g^b)^a mod p = (g^a)^b mod p, quindi Alice e Bob arrivano allo stesso valore S, che diventa la loro chiave segreta condivisa.
+Sicurezza: Un attaccante che intercetta A e B dovrebbe risolvere il problema del logaritmo discreto per trovare a o b e quindi S, il che è computazionalmente impraticabile per numeri grandi.
+Vulnerabilità: DHKE non fornisce autenticazione, quindi è vulnerabile ad attacchi Man-in-the-Middle se le parti non si autenticano a vicenda.
+4. Applicazioni:
+Instant Messaging (End-to-End Encryption): Diffie-Hellman è spesso usato in combinazione con algoritmi di crittografia simmetrica (come AES) per stabilire chiavi di sessione.
+Scambio chiavi Diffie-Hellman.
+Crittografia AES con la chiave di sessione appena stabilita.
+VI. Crittografia a Chiave Pubblica e RSA
+1. Crittografia a Chiave Pubblica (Asimmetrica):
+Concetto: Utilizza una coppia di chiavi:
+Chiave Pubblica: Conosciuta da tutti, usata per cifrare i messaggi o verificare le firme.
+Chiave Privata: Conosciuta solo dal proprietario, usata per decifrare i messaggi o creare le firme.
+Vantaggi:
+Risolve il problema della distribuzione della chiave (non è necessario scambiare la chiave segreta in anticipo).
+Consente la firma digitale (autenticazione dell'origine e integrità).
+Svantaggi: Più lenta rispetto alla crittografia simmetrica, quindi spesso usata per scambiare chiavi simmetriche o per la firma digitale.
+2. RSA (Rivest-Shamir-Adleman):
+Storia: Sviluppato nel 1977 da Rivest, Shamir e Adleman. È il primo algoritmo a chiave pubblica ampiamente utilizzato.
+Principio Matematico: Basato sulla difficoltà computazionale della fattorizzazione di numeri grandi. È facile moltiplicare due numeri primi grandi, ma è estremamente difficile fattorizzare il loro prodotto.
+Generazione delle Chiavi:
+Scegliere due numeri primi grandi, p e q. Devono essere tenuti segreti.
+Calcolare n = p * q. n è il modulo, parte della chiave pubblica.
+Calcolare la funzione toziente di Eulero, φ(n) = (p-1) * (q-1). Questo valore deve essere tenuto segreto.
+Scegliere un intero e (esponente pubblico) tale che 1 < e < φ(n) e e sia coprimo con φ(n). e è parte della chiave pubblica.
+Calcolare d (esponente privato), l'inverso moltiplicativo di e modulo φ(n). Cioè, e * d ≡ 1 (mod φ(n)). d è la chiave privata.
+Eliminare p e q.
+Chiave Pubblica: (e, n).
+Chiave Privata: (d, n).
+Crittografia con RSA:
+Per cifrare un messaggio M (convertito in numero): C = M^e mod n.
+Chiunque abbia la chiave pubblica (e, n) può cifrare.
+Decrittografia con RSA:
+Per decifrare un testo cifrato C: M = C^d mod n.
+Solo chi possiede la chiave privata d può decifrare.
+Sicurezza di RSA:
+La sicurezza di RSA dipende dall'impossibilità computazionale di fattorizzare n in p e q. Se un attaccante riuscisse a fattorizzare n, potrebbe calcolare φ(n) e quindi d, compromettendo la chiave privata.
+Le chiavi RSA comunemente usate oggi sono di 2048 bit. La fattorizzazione di numeri così grandi è estremamente difficile con le attuali capacità computazionali. L'RSA-250 (829 bit) è stato fattorizzato nel 2020.
+VII. Certificati Digitali e Hashing
+1. Risolvere il Man-in-the-Middle (MITM):
+Problema: Come verificare che nessuno si sia inserito nella comunicazione tra due parti.
+Soluzioni:
+Verifica manuale: Spesso impraticabile.
+Certificazione: Utilizzo di certificati digitali.
+2. La Firma Digitale:
+Scopo: Garantire l'autenticità e l'integrità di un documento digitale.
+Funzionamento:
+Hashing del testo in chiaro: Il messaggio originale (PLAIN TEXT) viene dato in input a un algoritmo di hashing (Hashing algorithm).
+Generazione dell'hash (Message Digest): L'algoritmo di hashing produce una stringa di lunghezza fissa chiamata hash o message digest.
+Crittografia dell'hash con chiave privata: L'hash viene cifrato utilizzando la chiave privata del firmatario. Questo risultato è la firma digitale.
+Invio: Il messaggio originale e la firma digitale vengono inviati al destinatario.
+Verifica della Firma Digitale:
+Hashing del messaggio ricevuto: Il destinatario calcola l'hash del messaggio ricevuto utilizzando lo stesso algoritmo di hashing.
+Decrittografia della firma digitale: La firma digitale viene decifrata utilizzando la chiave pubblica del firmatario.
+Confronto degli hash: Se l'hash calcolato dal destinatario corrisponde all'hash decifrato dalla firma, la firma è valida. Ciò garantisce:
+Integrità: Il messaggio non è stato alterato (se anche un solo bit cambia, l'hash sarà diverso).
+Autenticazione: Il messaggio proviene effettivamente dal firmatario (solo il firmatario possiede la chiave privata per creare quella firma).
+Non ripudio: Il firmatario non può negare di aver firmato il documento.
+3. Hashing:
+Funzione di Hash (Hash Function): Algoritmo matematico che prende un input di dimensioni arbitrarie e produce un output di dimensione fissa (hash o message digest).
+Proprietà delle Funzioni di Hash Criptografiche:
+Resistenza alle collisioni (Collision Resistance): È computazionalmente impraticabile trovare due input diversi che producano lo stesso output di hash.
+Resistenza alla preimmagine (Preimage Resistance): Dato un hash, è computazionalmente impraticabile trovare l'input originale che ha generato quell'hash.
+Resistenza alla seconda preimmagine (Second Preimage Resistance): Dato un input e il suo hash, è computazionalmente impraticabile trovare un altro input diverso che produca lo stesso hash.
+Effetto valanga (Avalanche Effect): Anche un piccolo cambiamento nell'input produce un hash completamente diverso.
+Algoritmi di Hashing Comuni:
+MD5 (Message Digest Algorithm 5): Algoritmo più vecchio, non più raccomandato per la sicurezza a causa di vulnerabilità alle collisioni. Produce un hash di 128 bit.
+SHA (Secure Hash Algorithm): Famiglia di algoritmi.
+SHA-1: Produce un hash di 160 bit. Non più raccomandato.
+SHA-2 (SHA-256, SHA-512): Attualmente considerati sicuri. SHA-256 produce un hash di 256 bit, SHA-512 di 512 bit.
+SHA-3: Ultima versione degli algoritmi SHA, derivata dall'algoritmo Keccak.
+4. Certificati Digitali:
+Scopo: Associare una chiave pubblica a un'identità (persona, server, organizzazione) in modo verificabile.
+Componenti di un Certificato Digitale:
+Chiave pubblica e informazioni: Contiene la chiave pubblica del proprietario e dettagli sulla sua identità (nome, organizzazione, ecc.).
+Firma digitale: Il certificato è firmato digitalmente da un'Autorità di Certificazione (CA).
+Autorità di Certificazione (CA - Certificate Authority): Un'entità fidata che emette e gestisce certificati digitali. Agisce come garante dell'identità.
+Gerarchia delle CA: Esistono CA radice (Root CA) auto-firmate e CA intermedie, che formano una catena di fiducia.
+Processo di Certificazione:
+Un'entità (es. un server web) genera una coppia di chiavi (pubblica/privata) e una Certificate Signing Request (CSR).
+La CSR viene inviata a una CA.
+La CA verifica l'identità dell'entità e, se la verifica ha successo, firma digitalmente il certificato contenente la chiave pubblica dell'entità.
+Il certificato firmato viene inviato all'entità.
+Verifica di un Certificato Digitale:
+Quando un client riceve un certificato (es. da un server web), verifica la firma digitale del certificato utilizzando la chiave pubblica della CA che lo ha emesso.
+Il client deve avere una copia della chiave pubblica della CA (o del certificato della CA) nel suo "trust store" (un elenco di CA fidate preinstallato nel sistema operativo o nel browser).
+Se la firma è valida e la CA è fidata, il client si fida dell'identità del server e della sua chiave pubblica.
+5. Transport Layer Security (TLS/SSL):
+Scopo: Fornire sicurezza nelle comunicazioni su reti di computer, in particolare su Internet.
+Livello di Operazione: Opera a livello di trasporto (tra TCP e HTTP/FTP/SMTP).
+Servizi offerti:
+Privacy: Algoritmi crittografici per nascondere il traffico dati (cifratura).
+Integrità: I dati non vengono alterati durante il transito (hashing e firme digitali).
+Identificazione (Autenticazione): Il certificato digitale permette di identificare l'altra parte coinvolta.
+Fasi del Handshake SSL/TLS:
+Negoziazione degli algoritmi: Client e server si accordano su quali algoritmi crittografici utilizzare (es. Diffie-Hellman per lo scambio chiavi, RSA per l'autenticazione, AES per la cifratura simmetrica, HMAC-SHA per l'integrità dei messaggi).
+Scambio delle chiavi e autenticazione:
+Il server invia il suo certificato digitale al client.
+Il client verifica il certificato del server (firma, validità, catena di fiducia).
+Viene stabilita una chiave di sessione simmetrica utilizzando un algoritmo di key exchange (es. Diffie-Hellman o scambio cifrato con RSA).
+Cifratura simmetrica e autenticazione dei messaggi: Una volta stabilita la chiave di sessione, tutta la comunicazione successiva tra client e server è cifrata simmetricamente con algoritmi veloci (es. AES-256) e l'integrità dei messaggi è garantita da HMAC-SHA.
+6. HTTPS:
+Definizione: Combinazione di HTTP (Hypertext Transfer Protocol) e SSL/TLS.
+Funzione: Implementa una connessione sicura tra browser (client) e web server.
+Vantaggi:
+Autenticazione del sito: Il client è sicuro di comunicare con il server legittimo.
+Integrità dei dati: I dati scambiati non sono stati manomessi.
+Protezione della privacy: Il traffico è cifrato e non può essere intercettato e letto da terzi.
+Porta: Utilizza la porta 443 (invece della porta 80 per HTTP non sicuro).
+VIII. Cifrari Storici e Crittanalisi
+1. Cifrari Antichi:
+Cifrario di Cesare:
+Metodo: Sostituzione monoalfabetica. Ogni lettera del testo in chiaro viene sostituita con la lettera che si trova un numero fisso di posizioni più avanti nell'alfabeto.
+Chiave: Il numero di posizioni di spostamento (es. 3 per Cesare).
+Debolezze:
+Analisi delle frequenze: Le frequenze delle lettere nel testo cifrato rimangono le stesse del testo in chiaro. Ad esempio, la lettera più frequente in italiano è la "E", quindi se nel testo cifrato la lettera più frequente è "X", si può dedurre che "X" corrisponde a "E".
+Forza Bruta: Ci sono solo 25 possibili chiavi per l'alfabeto latino, facilmente testabili.
+Cifrario di Atbash:
+Metodo: Sostituzione monoalfabetica specifica. La prima lettera dell'alfabeto viene sostituita con l'ultima, la seconda con la penultima, e così via (A con Z, B con Y, ecc.).
+Chiave: Non ha una chiave variabile, è un cifrario fisso.
+Debolezze: Molto facile da decifrare, equivalente a un cifrario di Cesare con una chiave specifica.
+Cifrario di Polibio (Quadrato di Polibio):
+Metodo: Sostituisce ogni lettera con le coordinate della sua posizione in una griglia (es. 5x5). Utile per trasmettere messaggi con segnali (es. colpi in prigione).
+Debolezze: Anch'esso vulnerabile all'analisi delle frequenze.
+Cifrario di Alberti:
+Innovazione: Primo cifrario polialfabetico. Utilizza due dischi cifranti concentrici, uno fisso e uno mobile. La chiave può essere cambiata dopo ogni gruppo di lettere, rendendo l'analisi delle frequenze più difficile.
+Significato: Un passo avanti significativo perché rompe la corrispondenza 1:1 tra lettere del testo in chiaro e testo cifrato.
+Cifrario di Vigenère:
+Metodo: Cifrario polialfabetico che usa una parola chiave (più lunga della singola lettera del cifrario di Cesare) per determinare gli spostamenti nell'alfabeto. Ogni lettera del testo in chiaro viene cifrata con una diversa lettera dell'alfabeto (determinata dalla parola chiave).
+Vantaggi: Resiste meglio all'analisi delle frequenze semplici perché la stessa lettera del testo in chiaro può essere cifrata in lettere diverse nel testo cifrato.
+Debolezze: Ancora vulnerabile ad attacchi come il test di Kasiski e l'analisi dell'indice di coincidenza, che possono determinare la lunghezza della chiave.
+2. Cifrari Meccanici (XX Secolo):
+Macchine Cifranti:
+Discret (1899): Una delle prime macchine cifranti meccaniche.
+TypeX, SIGABA: Macchine cifranti usate dagli Alleati durante la Seconda Guerra Mondiale. Erano più complesse e sicure di Enigma.
+Enigma (Germania, WWI e WWII):
+Descrizione: Macchina elettro-meccanica che implementava un cifrario polialfabetico molto avanzato. Composta da una tastiera, un pannello luminoso, e un set di rotori.
+Funzionamento: Ogni pressione di un tasto azionava i rotori, cambiando dinamicamente l'alfabeto di cifratura. Questo rendeva il cifrario estremamente complesso da un punto di vista manuale.
+Chiavi Crittografiche di Enigma: Non era una singola chiave, ma una combinazione di impostazioni quotidiane:
+Scelta e ordine dei rotori.
+Posizione iniziale dei rotori.
+Connessioni del "plugboard" (Steckerbrett).
+Debolezze e Decifrazione: Nonostante la complessità, Enigma aveva delle vulnerabilità:
+Una lettera non poteva mai essere cifrata in se stessa.
+Procedure operative che permettevano agli Alleati di raccogliere indizi (es. doppi cifratura dei messaggi).
+Il lavoro di matematici e criptoanalisti a Bletchley Park, in particolare Alan Turing e il suo team, permise di costruire la "Bombe" (macchina elettro-meccanica) e successivamente il "Colossus" (primo computer elettronico programmabile) per decifrare i messaggi di Enigma e Lorenz.
+3. Contributo di Claude Shannon:
+"Communication Theory of Secrecy Systems" (1949): Articolo fondamentale che applica i principi della teoria dell'informazione alla crittografia, stabilendo le basi matematiche per la crittografia moderna.
+Concetti Chiave di Shannon:
+Diffusione (Diffusion): L'idea che ogni bit del testo in chiaro dovrebbe influenzare molti bit del testo cifrato. L'effetto è quello di disperdere le proprietà statistiche del testo in chiaro sul testo cifrato, rendendo l'analisi basata sulle frequenze impraticabile.
+Confusione (Confusion): L'idea di rendere la relazione tra la chiave e il testo cifrato il più complessa e incomprensibile possibile. Questo impedisce di risalire alla chiave partendo dal testo cifrato.
+
+IX. Attaccanti e Minacce Avanzate
+1. Profili degli Attaccanti:
+Hacker: Termine generico, originariamente indicava esperti informatici che esploravano i sistemi. Oggi spesso usato impropriamente per chiunque violi la sicurezza.
+Cracker: Chi viola sistemi di sicurezza per scopi malevoli, spesso con fini di lucro o per danneggiare.
+Black Hat Hacker: Agiscono con intenti malevoli, violando sistemi per guadagno personale, danneggiamento o scopi illeciti.
+White Hat Hacker (Ethical Hacker): Utilizzano le loro competenze per testare e migliorare la sicurezza dei sistemi, agendo legalmente e con permesso (es. penetration testing).
+Gray Hat Hacker: Si situano in una zona grigia, potendo agire al di fuori della legalità (es. sfruttare vulnerabilità senza permesso) ma senza intenti prettamente malevoli, a volte per esporre le vulnerabilità al pubblico.
+Script Kiddie: Individui con scarse conoscenze tecniche che utilizzano tool e script preesistenti sviluppati da altri per lanciare attacchi.
+Stato Nazione: Gruppi di hacker sponsorizzati da governi per spionaggio, sabotaggio infrastrutturale o operazioni militari cibernetiche.
+Hacktivist: Hacker che utilizzano le loro abilità per promuovere un'agenda politica o sociale, spesso attraverso attacchi come il defacement di siti web o il denial of service.
+2. Vulnerabilità Specifiche:
+Buffer Overflow: Si verifica quando un programma tenta di scrivere dati al di fuori dei limiti allocati per un buffer. Questo può sovrascrivere altre parti della memoria, portando a crash del programma o, peggio, all'esecuzione di codice arbitrario da parte di un attaccante.
+Injection (es. SQL Injection, Command Injection): L'inserimento di codice malevolo in un input che viene poi elaborato dal sistema.
+SQL Injection: L'attaccante inserisce query SQL malevole nei campi di input di un'applicazione web, manipolando il database sottostante per accedere, modificare o eliminare dati.
+Command Injection: L'attaccante inietta comandi di sistema operativi, che vengono eseguiti dal server.
+Broken Authentication: Debolezze nei meccanismi di autenticazione e gestione delle sessioni che permettono agli attaccanti di impersonare gli utenti.
+Esempi: Credenziali deboli o di default, gestione delle sessioni inadeguata, recupero password non sicuro.
+Broken Access Control: Fallimenti nella restrizione di ciò che gli utenti autenticati possono fare. Gli attaccanti possono sfruttare queste debolezze per accedere a funzionalità o dati non autorizzati.
+Security Misconfiguration: Configurazioni di sicurezza errate o non implementate correttamente, che lasciano aperte delle "porte" nel sistema.
+Esempi: Servizi non necessari attivi, account predefiniti con password deboli, impostazioni di sicurezza predefinite non modificate, errori nel gestire le eccezioni o i log.
+Zero Day: Una vulnerabilità del software o hardware che è sconosciuta al venditore o al pubblico, e per la quale non è ancora disponibile una patch. Questo la rende estremamente pericolosa in quanto gli attaccanti possono sfruttarla senza che ci siano difese immediate.
+Exploit: Un pezzo di software, un frammento di dati o una sequenza di comandi che sfrutta un bug o una vulnerabilità per causare un comportamento imprevisto o indesiderato in un software, hardware o dispositivo elettronico. Spesso usato per ottenere il controllo di un sistema.
+Backdoor: Un metodo segreto e non documentato per aggirare l'autenticazione normale o l'autorizzazione in un sistema informatico, consentendo l'accesso non autorizzato. Può essere intenzionalmente creata dagli sviluppatori o inserita da attaccanti.
+Rootkit: Un tipo di software malevolo progettato per nascondere la sua presenza e quella di altri software dannosi in un sistema. Spesso modifica componenti del sistema operativo per mantenere l'accesso e la segretezza dell'attaccante.
+3. Tipologie di Malware:
+Virus: Programma malevolo che si auto-replica allegandosi ad altri programmi eseguibili o documenti. Necessita dell'intervento dell'utente (es. apertura di un file infetto) per diffondersi.
+Trojan (Trojan Horse): Software che si presenta come innocuo o utile, ma che nasconde funzionalità malevole. A differenza dei virus, non si auto-replica. Spesso usato per creare backdoor.
+Worm: Programma malevolo che si auto-replica e si diffonde autonomamente attraverso le reti, sfruttando le vulnerabilità del sistema operativo o delle applicazioni, senza bisogno dell'intervento dell'utente.
+Ransomware: Malware che crittografa i file o blocca l'accesso al sistema della vittima, chiedendo un riscatto (spesso in criptovaluta) per ripristinare l'accesso.
+Spyware: Software che raccoglie informazioni sull'attività dell'utente o sui dati personali senza il suo consenso, inviandole a terzi.
+Keylogger: Tipo specifico di spyware che registra tutte le digitazioni della tastiera, spesso utilizzato per rubare credenziali di accesso.
+Scareware / Rogueware: Software che simula la presenza di virus o problemi di sicurezza sul computer per spingere l'utente ad acquistare una versione a pagamento del software "antivirus" fasullo o a scaricare altro malware.
+Botnet: Rete di computer "zombie" infetti da malware e controllati da un attaccante (botmaster). Le botnet sono usate per compiere attacchi distribuiti come DDoS (Distributed Denial of Service), invio di spam o mining di criptovalute.
+X. Valutazione del Rischio e Gestione
+1. Concetti Fondamentali del Rischio:
+Rischio: La probabilità che accada un certo evento capace di causare un danno.
+Componenti del Rischio:
+Minaccia (Threat): Una potenziale causa di un incidente, che potrebbe portare a un danno per il sistema o l'organizzazione. (es. un hacker, un malware, un disastro naturale).
+Vulnerabilità (Vulnerability): Una debolezza in un sistema, processo o controllo di sicurezza che può essere sfruttata da una minaccia. (es. un software non aggiornato, una password debole, una procedura di sicurezza inadeguata).
+Impatto (Impact): L'entità del danno o della perdita che si verificherebbe se una minaccia dovesse sfruttare una vulnerabilità. (es. perdita di dati, interruzione del servizio, danno reputazionale).
+Formula del Rischio (Concettuale): Rischio = Minaccia * Vulnerabilità * Impatto.
+2. Gestione del Rischio:
+Fasi:
+Identificazione del Rischio: Individuare le potenziali minacce e vulnerabilità.
+Analisi del Rischio: Valutare la probabilità di accadimento e il potenziale impatto.
+Trattamento del Rischio: Decidere come gestire i rischi identificati.
+Strategie di Trattamento del Rischio:
+Accettazione del Rischio: Decidere di accettare il rischio e le sue potenziali conseguenze, spesso perché il costo per mitigarli è troppo elevato o il rischio è basso.
+Riduzione del Rischio (Mitigazione): Implementare controlli e misure di sicurezza per diminuire la probabilità di un evento o il suo impatto. (es. installare un firewall, aggiornare il software, implementare policy di password forti).
+Trasferimento del Rischio: Spostare il rischio a una terza parte. (es. stipulare un'assicurazione contro gli attacchi cyber).
+Evitare il Rischio: Eliminare l'attività che genera il rischio. (es. non utilizzare un servizio specifico se troppo rischioso).
+3. Vulnerabilità :
+Definizione: Un punto debole del sistema in cui le misure di sicurezza sono assenti, ridotte o compromesse.
+Ciclo di Vita di una Vulnerabilità:
+Esistenza: La vulnerabilità è presente nel software/hardware.
+Scoperta da attaccante (Zero Day): L'attaccante scopre la vulnerabilità per primo e la sfrutta. C'è un "rischio potenziale".
+Scoperta da azienda: Il vendor scopre la vulnerabilità.
+Nota al pubblico: La vulnerabilità viene divulgata pubblicamente. Il "rischio diventa elevato".
+Aggiornamento (Patch): Il vendor rilascia una patch per correggere la vulnerabilità.
+Rischio estremo: Il periodo tra la divulgazione e l'applicazione della patch è il momento di massimo rischio, poiché la vulnerabilità è nota e gli exploit possono essere sviluppati e diffusi rapidamente.
+Categorie di Vulnerabilità:
+Software: Buffer overflow, injection (SQL, Command), broken authentication, broken access control, security misconfiguration.
+Hardware: Spectre & Meltdown (vulnerabilità a livello di CPU che permettono a programmi malevoli di leggere dati dalla memoria di altri programmi), Rowhammer (un attacco che sfrutta la vicinanza delle celle di memoria DRAM per causare bit flip in celle vicine), Secure Enclave (vulnerabilità o limiti nelle implementazioni di aree sicure all'interno dei processori).
+Protocolli/Procedure: Procedure di sicurezza inadeguate, controllo degli accessi insufficiente, utilizzo di componenti obsoleti o non patchati, mancanza di sicurezza fisica per i server o le infrastrutture.
+XI. Misure di Prevenzione e Difesa
+1. Pilastri della Prevenzione dalle Intrusioni:
+Autenticazione: Verifica dell'identità di un utente o di un'entità.
+Cosa so: Password, PIN, frase di accesso.
+Cosa ho: Token fisico, smartphone (per OTP).
+Chi sono: Biometria (impronta digitale, riconoscimento facciale).
+Autorizzazione: Processo che determina i permessi e i privilegi di un utente autenticato su specifiche risorse o funzionalità.
+Crittografia: Protezione dei dati e delle comunicazioni attraverso l'uso di algoritmi matematici per renderli incomprensibili a chi non possiede la chiave corretta.
+Controllo degli Accessi: Meccanismi che regolano chi (utente o processo) può accedere a quali risorse (file, programmi, dispositivi) e in che modo (lettura, scrittura, esecuzione).
+2. Gestione delle Password:
+Entropia della Password: Misura della casualità e imprevedibilità di una password. Una maggiore entropia significa una password più difficile da indovinare o forzare.
+Fattori chiave: Lunghezza, complessità (varietà di caratteri), casualità.
+Passphrases: Frasi di passaggio lunghe e complesse ma più facili da ricordare rispetto a password casuali di pari entropia.
+Hashing delle Password: Memorizzazione delle password in forma di hash irreversibile invece che in chiaro. Questo protegge le password anche in caso di data breach del database.
+Salts (Sali): Stringhe casuali e uniche aggiunte a ciascuna password prima dell'hashing. Impediscono attacchi a dizionario e rainbow table, rendendo l'hash unico per ogni password, anche se due utenti usano la stessa password.
+Password Manager: Strumenti software che generano, memorizzano e gestiscono password complesse in modo sicuro, criptandole all'interno di un database protetto da una master password.
+Vantaggi: Promuovono l'uso di password uniche e complesse per ogni servizio.
+Tipi: Built-in (es. nei browser), installazione separata (app dedicate).
+Avvertenza: È fondamentale proteggere la master password del manager stesso.
+Autenticazione Multi-Fattore (MFA / 2FA): Richiede due o più tipi diversi di credenziali per verificare l'identità dell'utente.
+Fattori: Conoscenza (password), Possesso (token, OTP), Inerenza (biometria).
+Vantaggi: Aumenta significativamente la sicurezza riducendo il rischio di compromissione del solo fattore password.
+Tecniche di bypass di 2FA (conosciute): SIM swap (dirottamento del numero di telefono), clickjacking (ingannare l'utente a cliccare su elementi nascosti), response manipulation, JS file analysis, missing code integrity validation, refer check bypass, CSRF PoC, backup code abuse. Queste tecniche evidenziano che anche il 2FA può avere punti deboli se non implementato correttamente.
+3. Sicurezza Web (TLS/SSL e HTTPS):
+Web Security Stack:
+Network Layer: IP/IPsec (sicurezza a livello di rete).
+Transport Layer: TCP, TLS/SSL (sicurezza a livello di trasporto).
+Application Layer: HTTP, FTP, SMTP (protocolli applicativi). La sicurezza a questo livello è spesso integrata con TLS (es. HTTPS).
+Transport Layer Security (TLS/SSL): Protocollo crittografico che fornisce sicurezza nelle comunicazioni su reti di computer.
+Servizi offerti:
+Privacy: Cifratura del traffico dati (es. AES-256).
+Integrità: Garanzia che i dati non siano alterati durante il transito (es. HMAC-SHA).
+Identificazione (Autenticazione): I certificati digitali permettono di identificare l'altra parte coinvolta nella comunicazione.
+Fasi dell'Handshake TLS:
+Negoziazione degli algoritmi: Client e server si accordano su quale suite di cifratura utilizzare (algoritmi di cifratura, hashing, key exchange).
+Scambio delle chiavi e autenticazione: Il server invia il suo certificato digitale al client. Il client verifica il certificato. Viene generata una chiave di sessione simmetrica (usando Diffie-Hellman o scambio RSA) e cifrata con la chiave pubblica del server, poi inviata e decifrata dal server con la sua chiave privata.
+Cifratura simmetrica e autenticazione dei messaggi: Tutta la comunicazione successiva tra client e server avviene utilizzando la chiave di sessione simmetrica, garantendo efficienza e sicurezza.
+HTTPS (HTTP Secure): La combinazione di HTTP con SSL/TLS. È il protocollo standard per la navigazione web sicura.
+Vantaggi:
+Autenticazione del sito: Il browser verifica l'identità del server web tramite il suo certificato digitale.
+Integrità dei dati: I dati scambiati non possono essere manomessi o alterati da terzi.
+Protezione della privacy: Il traffico è cifrato, impedendo l'intercettazione e la lettura delle informazioni sensibili.
+Porta standard: 443 (mentre HTTP usa la 80).

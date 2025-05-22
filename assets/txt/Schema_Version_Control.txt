@@ -1,0 +1,144 @@
+Schema Version Control
+
+I. Introduzione a Git e al Controllo Versione Distribuito
+Cos'è Git?
+Git è un sistema di controllo versione distribuito (DVCS) ampiamente utilizzato nel mondo dello sviluppo software.
+A differenza dei sistemi di controllo versione centralizzati (CVCS) come SVN, dove esiste un singolo repository centrale, Git permette a ogni sviluppatore di avere una copia completa della cronologia del progetto sul proprio computer locale.
+Perché Usare Git?
+Collaborazione: Facilita la collaborazione tra più sviluppatori che lavorano sullo stesso progetto, consentendo loro di integrare le proprie modifiche in modo efficiente.
+Tracciamento delle Modifiche: Permette di tenere traccia di ogni modifica apportata al codice, chi l'ha fatta, quando e perché.
+Ripristino delle Versioni: Consente di ripristinare facilmente versioni precedenti del codice in caso di errori o problemi.
+Branching e Merging: Offre potenti funzionalità per creare "rami" separati di sviluppo (branch) per nuove funzionalità o correzioni di bug, e poi integrarli (merge) nel codice principale.
+Lavoro Offline: Essendo distribuito, puoi continuare a lavorare sul tuo repository locale anche senza una connessione internet.
+II. Comandi Fondamentali di Git
+Questa sezione riassume i comandi essenziali di Git per iniziare a gestire i tuoi progetti tramite terminale.
+
+git init
+
+Descrizione: Inizializza un nuovo repository Git nella directory corrente.
+Uso: Digita git init per trasformare una directory esistente in un repository Git.
+Approfondimento: Questo comando crea una sottocartella .git nascosta all'interno della tua directory, che contiene tutti i metadati e la cronologia del tuo repository.
+git clone [url]
+
+Descrizione: Clona un repository Git esistente da un URL remoto.
+Uso: git clone https://example.com/repo.git clonerà il repository specificato nella tua directory locale.
+Approfondimento: Oltre a scaricare tutti i file del progetto, git clone scarica anche l'intera cronologia del repository, impostando automaticamente un "remoto" chiamato origin che punta all'URL da cui hai clonato.
+git add [file]
+
+Descrizione: Aggiunge i file specificati all'area di staging (o "indice"), in attesa del commit.
+Uso: git add myfile.txt aggiungerà myfile.txt all'area di staging.
+Approfondimento: Puoi anche usare git add . per aggiungere tutte le modifiche nella directory di lavoro all'area di staging. L'area di staging è un'area intermedia che ti permette di preparare un set specifico di modifiche da includere nel tuo prossimo commit.
+git commit -m "[messaggio]"
+
+Descrizione: Registra le modifiche presenti nell'area di staging con un messaggio di commit descrittivo.
+Uso: git commit -m "Aggiunto myfile.txt" eseguirà il commit delle modifiche con un messaggio descrittivo.
+Approfondimento: Il messaggio di commit è cruciale. Dovrebbe descrivere in modo conciso e chiaro quali modifiche sono state apportate e perché. Un buon messaggio di commit rende la cronologia del progetto facile da comprendere per te e per gli altri.
+git status
+
+Descrizione: Mostra lo stato corrente del repository, inclusi i file modificati, i file nell'area di staging e i file non tracciati.
+Uso: git status ti dà una panoramica dello stato del tuo repository.
+Approfondimento: Questo comando è fondamentale per capire cosa sta succedendo nel tuo repository prima di aggiungere o committare. Ti indica quali file sono stati modificati, quali sono stati aggiunti allo staging e quali non sono ancora sotto il controllo di Git.
+git push e git pull
+
+Descrizione git push: Invia i commit locali al repository remoto.
+Uso git push: git push origin master invia i commit al branch master remoto.
+Descrizione git pull: Recupera e integra le modifiche da un repository remoto.
+Uso git pull: git pull origin master recupera le modifiche dal branch master remoto.
+Approfondimento: git push è utilizzato per condividere le tue modifiche con gli altri, mentre git pull è utilizzato per sincronizzare il tuo repository locale con le modifiche apportate da altri. git pull è essenzialmente una combinazione di git fetch (scarica le modifiche) e git merge (integra le modifiche).
+III. Comandi Avanzati di Git
+Questa sezione esplora comandi Git più avanzati per una gestione del progetto più sofisticata.
+
+git branch [nome-branch]
+
+Descrizione: Crea un nuovo branch (ramo di sviluppo).
+Uso: git branch feature-x crea un nuovo branch chiamato feature-x.
+Approfondimento: I branch sono fondamentali per lo sviluppo parallelo. Permettono agli sviluppatori di lavorare su nuove funzionalità o correzioni di bug isolatamente dal codice principale, senza influenzare la stabilità del progetto.
+git checkout [nome-branch]
+
+Descrizione: Cambia il branch corrente al branch specificato.
+Uso: git checkout feature-x ti sposta sul branch feature-x.
+Approfondimento: Questo comando ti permette di passare tra i diversi rami di sviluppo, rendendo facile lavorare su più task contemporaneamente.
+git merge [nome-branch]
+
+Descrizione: Fonde il branch specificato con il branch corrente.
+Uso: git merge feature-x fonde i cambiamenti dal branch feature-x al branch corrente.
+Approfondimento: Dopo aver completato il lavoro su un branch (es. una nuova funzionalità), git merge viene utilizzato per integrare quelle modifiche nel branch principale (es. master o main). Git gestirà automaticamente la maggior parte delle fusioni, ma in alcuni casi potrebbero verificarsi "conflitti di merge" che richiedono una risoluzione manuale.
+git rebase [base]
+
+Descrizione: Applica i commit di un branch su un altro branch, riscrivendo la cronologia.
+Uso: git rebase master applica i commit del branch corrente sul branch master.
+Approfondimento: rebase è un'alternativa a merge per integrare le modifiche. A differenza di merge che crea un nuovo commit di fusione, rebase riscrive la cronologia del branch corrente riposizionando i suoi commit dopo i commit del branch base. Questo può portare a una cronologia più lineare e pulita, ma è più complesso e dovrebbe essere usato con cautela, specialmente su branch che sono già stati condivisi.
+git stash e git stash pop
+
+Descrizione git stash: Mette da parte le modifiche correnti non committate in un'area temporanea (stash), pulendo la directory di lavoro.
+Descrizione git stash pop: Ripristina le modifiche messe da parte dallo stash, rimuovendole dallo stash stesso.
+Uso: git stash mette in stash le modifiche. git stash pop le ripristina.
+Approfondimento: Utile quando devi passare rapidamente a un altro branch o lavorare su un hotfix senza dover committare le modifiche parziali.
+git log
+
+Descrizione: Visualizza la cronologia dei commit.
+Uso: git log mostra la lista dei commit fatti nel repository, con dettagli come l'autore, la data e il messaggio di commit.
+Approfondimento: git log è essenziale per comprendere l'evoluzione del progetto. Puoi usare varie opzioni come git log --oneline per una visualizzazione più concisa, o git log --graph per vedere la struttura dei branch.
+IV. Git e GitHub: Collaborazione e Repository Remoti
+Cos'è GitHub?
+GitHub è una piattaforma di hosting di repository Git basata su cloud. È la piattaforma più popolare per ospitare progetti software e per la collaborazione di sviluppo.
+Fornisce un'interfaccia grafica per gestire i repository, tracciare le problematiche (issues), gestire le richieste di pull (pull requests) e molto altro.
+Non è Git stesso, ma un servizio che utilizza Git come sistema di controllo versione sottostante.
+Come Interagire con GitHub (e altri servizi remoti)
+Repository Remoto: Quando crei un repository su GitHub (o GitLab, Bitbucket, ecc.), questo diventa il tuo "repository remoto". Il tuo repository locale è una copia di questo.
+git remote add origin [url]: Dopo aver inizializzato un repository locale, questo comando viene utilizzato per collegarlo a un repository remoto esistente. origin è il nome convenzionale per il repository remoto principale.
+git push -u origin [nome-branch]: La prima volta che esegui il push di un nuovo branch, -u (o --set-upstream) imposta il branch locale per tracciare il branch remoto specificato. Successivamente, puoi usare solo git push.
+git pull origin [nome-branch]: Come già menzionato, per scaricare e integrare le modifiche dal repository remoto.
+Pull Requests (GitHub): Un meccanismo fondamentale per la collaborazione. Quando uno sviluppatore finisce il lavoro su un branch di funzionalità, crea una Pull Request per chiedere che le sue modifiche vengano riviste e fuse nel branch principale. Permette discussioni, revisioni del codice e integrazione controllata.
+V. Committing e Identificazione in Git
+Il Processo di Commit:
+
+Modifica i file: Apporta le modifiche al codice nella tua directory di lavoro.
+Staging delle modifiche: Usa git add [file] o git add . per preparare le modifiche per il commit. Solo le modifiche nell'area di staging saranno incluse nel prossimo commit.
+Commit delle modifiche: Usa git commit -m "[messaggio]" per registrare le modifiche stagiate nella cronologia del repository locale.
+Push delle modifiche (opzionale): Se stai lavorando su un repository condiviso, usa git push per inviare i tuoi commit al repository remoto.
+L'Identificazione del Committer:
+
+Ogni commit in Git è associato a un autore (autore del commit) e a un committer (colui che ha effettivamente eseguito il commit). Nella maggior parte dei casi, sono la stessa persona.
+Informazioni Richieste: Git richiede un nome utente e un indirizzo email per identificare l'autore di ogni commit.
+Configurazione Globale: È fondamentale configurare queste informazioni una volta sul tuo sistema:
+git config --global user.name "Il Tuo Nome"
+git config --global user.email "la.tua.email@example.com"
+Perché è Importante?
+Tracciabilità: Permette di sapere chi ha apportato una determinata modifica, essenziale per la revisione del codice, il debug e la collaborazione.
+Attribuzione: Assicura che il contributo di ogni sviluppatore sia correttamente attribuito.
+Comunicazione: Altri sviluppatori possono facilmente contattare l'autore di un commit se hanno domande o riscontrano problemi.
+Quale Identificazione Usare?
+Di solito si usa il proprio nome completo e un indirizzo email che sia riconoscibile e preferibilmente associato al tuo account GitHub/GitLab/Bitbucket o alla tua identità professionale.
+Per progetti open source, molti preferiscono usare un indirizzo email associato al loro account GitHub per facilitare la corrispondenza tramite la piattaforma.
+VI. Comandi BASH per Interagire con il Sistema (Approfondimento)
+Questi comandi sono utili per la navigazione e la manipolazione dei file nel terminale, spesso in congiunzione con Git.
+
+ls
+
+Descrizione: Visualizza il contenuto della cartella attuale.
+Approfondimento: Equivalente a "dir" su Windows. Puoi usare ls -l per una visualizzazione dettagliata (permessi, proprietario, dimensione, data) o ls -a per visualizzare anche i file e le cartelle nascoste (come .git).
+pwd
+
+Descrizione: Mostra il percorso attuale (Path Working Directory) in cui il terminale sta lavorando.
+Approfondimento: È utile per sapere sempre esattamente dove ti trovi nel file system.
+cd [percorso]
+
+Descrizione: Cambia cartella spostandosi in quella indicata nel percorso.
+Approfondimento:
+cd ..: Sposta alla directory padre.
+cd ~: Sposta alla tua directory home.
+cd /: Sposta alla directory root del file system.
+Puoi usare percorsi assoluti (cd /home/utente/progetto) o percorsi relativi (cd mio_progetto).
+rm -rf .git
+
+Descrizione: Eseguito nella root di un repository Git, elimina la cartella nascosta protetta .git al fine di eliminare la storia e le tracce versionate con Git, lasciando solo la versione attuale del codice.
+ATTENZIONE: Questo comando è estremamente potente e irreversibile. Usalo con estrema cautela. rm sta per "remove", -r per "recursive" (rimuove directory e i loro contenuti) e -f per "force" (non chiede conferma). Se usato in modo improprio, può cancellare file o directory importanti senza possibilità di recupero.
+mkdir [nome]
+
+Descrizione: Crea una nuova cartella (directory) chiamata [nome].
+Approfondimento: mkdir è un comando fondamentale per organizzare i tuoi file e progetti.
+echo [testo] > [nomefile]
+
+Descrizione: Crea un nuovo file chiamato [nomefile] con all'interno scritto [testo].
+Approfondimento: Il simbolo > reindirizza l'output del comando echo (che stampa il testo) nel file specificato. Se il file esiste, verrà sovrascritto. Per aggiungere testo a un file esistente senza sovrascriverlo, si usa echo [testo] >> [nomefile].

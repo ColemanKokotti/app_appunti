@@ -24,7 +24,9 @@ Caratteri: Char.
 Stringhe: String.
 Dichiarazione di Variabili:
 
-val (immutable): Valore assegnato una sola volta (equivalente a final in Java).
+val (immutable):
+Valore assegnato una sola volta
+(equivalente a final in Java).
 
 
 val nome: String = "Alice"
@@ -151,7 +153,8 @@ class Uccello : Volante {
 }
 
 
-Data Class: Classi speciali per contenere dati. Vengono generate automaticamente equals(), hashCode(), toString(), copy().
+Data Class: Classi speciali per contenere dati.
+Vengono generate automaticamente equals(), hashCode(),toString(), copy().
 
 
 data class Utente(val id: Int, val username: String)

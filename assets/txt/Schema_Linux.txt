@@ -1,1 +1,203 @@
 Schema Linux
+
+I. Comandi Essenziali di Linux
+A. La Shell:
+La shell è un interprete di comandi che permette di interagire con il sistema operativo.
+Esistono vari tipi di shell, come sh, zsh, e bash.
+Per muoversi agevolmente nella shell:
+Il tasto Tab fornisce l'autocomplete dei comandi noti.
+La freccia in su scorre la history dei comandi, che può essere visualizzata anche con il comando history.
+CTRL + D effettua il logout.
+CTRL + C interrompe un comando in esecuzione.
+Il tasto q serve per uscire dalla modalità di lettura di alcuni programmi, come man.
+Il simbolo ~ (tilde) rappresenta la home directory dell'utente corrente.
+Il comando $ clear "pulisce" il terminale.
+B. Struttura dei Comandi:
+La struttura di un comando in Linux è: Comando + opzioni + parametri.
+Esempio: ls -lah /home.
+ls è il comando per "list" (elenco).
+-l è un'opzione per la "long listing form" (formato di elenco esteso).
+-a è un'opzione per "all" (mostra tutti i file, inclusi quelli nascosti).
+-h è un'opzione per "human readable" (formato leggibile dall'uomo per le dimensioni).
+/home è il parametro che indica la directory da elencare.
+Le opzioni possono essere brevi (es. -lah) o in forma estesa (es. --long --all --human-readable).
+C. Manuali ed Help:
+Per ottenere il manuale di un comando: $ man [comando] (es. $ man ls).
+Per ottenere un aiuto rapido sull'uso di un comando: $ [comando] --help (es. $ ls --help).
+D. Gestione di File e Directory:
+Creare file:
+$ touch MioFile: crea un file vuoto chiamato MioFile.
+$ echo "testo" > MioFile: reindirizza l'output di "testo" in MioFile, sovrascrivendolo se esiste.
+$ echo "testo" >> MioFile: reindirizza l'output di "testo" in MioFile, aggiungendolo alla fine se esiste.
+$ ls > output_ls: reindirizza l'output del comando ls nel file output_ls.
+Leggere un file:
+$ cat MioFile: visualizza il contenuto del file MioFile.
+Scrivere/Modificare un file:
+$ nano MioFile: apre il file MioFile con l'editor di testo nano.
+$ vi MioFile: apre il file MioFile con l'editor vi (o vim).
+Modalità di vi:
+:i per entrare in modalità scrittura (insert).
+:w per salvare.
+:q per uscire.
+:wq per scrivere e salvare (write and quit).
+:q! per forzare l'uscita senza salvare.
+Creare directory:
+$ mkdir miaDir: crea una nuova directory chiamata miaDir.
+Copiare file/directory:
+$ cp source destination: copia il file source in destination.
+$ cp -R source destination: copia una directory (source) ricorsivamente (-R) nella destinazione.
+Rinominare/Spostare file:
+$ mv oldName newName: rinomina oldName in newName o sposta oldName nella newName (se newName è un percorso).
+Cancellare file/directory:
+$ rm file: cancella il file.
+$ rm -r directory: rimuove una directory e il suo contenuto in modo ricorsivo (-r).
+L'opzione -f forza l'operazione, ma è consigliabile usarla con cautela.
+E. Navigazione nel File System:
+$ cd: cambia directory.
+$ pwd: mostra la directory corrente (Print Working Directory).
+Simboli speciali:
+.: rappresenta la directory corrente stessa.
+..: rappresenta la directory superiore (genitore).
+/: rappresenta la directory principale del sistema (la root).
+~: rappresenta la home directory dell'utente corrente.
+$ cd /: si sposta nella directory root del sistema.
+$ cd -: torna alla directory precedente.
+$ tree -L 1 /: visualizza l'alberatura del sistema limitata a un livello (-L 1) dalla directory root (/).
+F. FHS (Filesystem Hierarchy Standard)
+Il FHS definisce la struttura delle directory principali in un sistema Linux/Unix.
+Importante notare che in alcune distribuzioni moderne, alcune directory "puntano" ad altre (sono collegamenti simbolici).
+G. Link Simbolici:
+$ ln -s file nomeLink: crea un link simbolico (-s) chiamato nomeLink che punta al file originale.
+H. Comando tar (Tape Archive):
+Il comando tar viene usato per creare e estrarre archivi.
+Creazione di un archivio non compresso:
+$ tar cvf nomeMioArchivio.tar directory1 directory2 file1: crea (c) un archivio dettagliato (v - verbose) specificando il nome del file (f).
+Estrazione di un archivio non compresso:
+$ tar xvf nomeMioArchivio.tar: estrae (x) un archivio dettagliato (v) specificando il nome del file (f).
+Creazione di un archivio compresso con gzip (.tar.gz o .tgz):
+$ tar czvf nomeMioArchivio.tar.gz directory1 file1: usa l'opzione z per la compressione gzip.
+Estrazione di un archivio compresso con gzip:
+$ tar xzvf nomeMioArchivio.tar.gz: usa l'opzione z per la decompressione gzip.
+Creazione di un archivio compresso con bz2 (.tar.bz2 o .tbz2):
+$ tar cjvf nomeMioArchivio.tar.bz2 directory1 file1: usa l'opzione j per la compressione bz2.
+Estrazione di un archivio compresso con bz2:
+$ tar xjvf nomeMioArchivio.tar.bz2: usa l'opzione j per la decompressione bz2.
+II. Utenti e Permessi
+A. Gestione degli Utenti:
+Utente root:
+L'utente root (indicato con # nel prompt) è l'amministratore del sistema.
+Non deve essere confuso con la home directory di root (/root) o con la root directory del sistema (/).
+su (substitute user):
+Il comando su permette di diventare un altro utente (di default root se non specificato).
+sudo (substitute user do / super user do):
+Il comando sudo esegue un comando come un altro utente (di default root).
+Per permettere a un utente di usare sudo, è necessario aggiungerlo al file /etc/sudoers.d/.
+Un esempio di riga da aggiungere nel file di configurazione sudoers per un utente: user ALL=(ALL:ALL) ALL.
+Il primo ALL specifica gli utenti autorizzati a usare sudo.
+Il secondo ALL definisce gli host (server) su cui sudo può essere usato.
+Il terzo ALL specifica l'utente con cui il comando viene eseguito.
+L'ultimo ALL definisce i comandi consentiti.
+Aggiungere utenti:
+# useradd [nome_utente]: crea un nuovo utente.
+# useradd -d /var/marco marco: crea l'utente marco specificando /var/marco come sua home directory.
+Aggiungere gruppi:
+# groupadd [nome_gruppo]: crea un nuovo gruppo.
+B. File di Gestione Utenti:
+/etc/passwd: contiene le informazioni sugli utenti (nome utente, ID utente, ID gruppo, home directory, shell).
+/etc/group: contiene le informazioni sui gruppi.
+/etc/shadow: contiene le password criptate degli utenti e le informazioni sulla scadenza delle password (solo accessibile da root).
+C. Cambiare Password:
+$ passwd: cambia la password dell'utente corrente.
+# passwd marco: cambia la password dell'utente marco (eseguito da root).
+III. Installazione Pacchetti in Debian
+A. Repository:
+La directory di configurazione per i repository è /etc/apt.d.
+B. Comandi APT:
+# apt update: aggiorna l'elenco dei pacchetti disponibili dai repository configurati.
+# apt install [nome_pacchetto]: installa un pacchetto specifico.
+# apt upgrade: esegue l'upgrade dei pacchetti installati a versioni più recenti. Va usato con molta cautela.
+IV. SSH (Secure Shell)
+Definizione: SSH è un protocollo di rete crittografico per operare servizi di rete in modo sicuro su una rete non protetta.
+Usi Comuni:
+Accesso remoto sicuro a server Linux.
+Trasferimento sicuro di file (SCP, SFTP).
+Esecuzione remota di comandi.
+Comando Base:
+ssh [utente]@[indirizzo_IP_server]
+Autenticazione:
+Password: Richiede l'inserimento della password dell'utente sul server remoto.
+Chiavi SSH: Metodo più sicuro che utilizza una coppia di chiavi (pubblica/privata). La chiave pubblica viene copiata sul server, mentre quella privata rimane sul client.
+Generazione chiavi: ssh-keygen
+Copia chiave pubblica: ssh-copy-id [utente]@[indirizzo_IP_server]
+V. DNS e File Host
+A. DNS (Domain Name System):
+Funzione: Traduce nomi di dominio leggibili dall'uomo (es. google.com) in indirizzi IP numerici (es. 172.217.160.142) che i computer utilizzano per identificarsi in rete.
+Concetti Chiave:
+Record A: Mappa un nome di dominio a un indirizzo IPv4.
+Record CNAME: Crea un alias per un altro nome di dominio.
+Server DNS: Computer che gestiscono e rispondono alle query DNS.
+B. File /etc/hosts :
+Funzione: È un file locale che mappa nomi host a indirizzi IP. Prevale sulla risoluzione DNS per i nomi specificati al suo interno.
+Utilità:
+Bloccare siti web (reindirizzando il loro dominio a 127.0.0.1).
+Testare siti web prima che il DNS sia stato completamente propagato.
+Accedere a server locali senza la necessità di un DNS.
+Formato: [indirizzo_IP] [nome_host]
+VI. HTTP Server: Nginx e PHP, MySQL
+A. HTTP Server (Nginx):
+Nginx (engine-x):
+Server web ad alte prestazioni, reverse proxy, load balancer e proxy HTTP/HTTPS.
+È noto per la sua scalabilità, efficienza e capacità di gestire un gran numero di connessioni simultanee.
+Spesso utilizzato come server web per contenuti statici e come reverse proxy davanti a server di applicazioni (es. PHP-FPM).
+Configurazione Base (Nginx):
+Il file di configurazione principale è solitamente /etc/nginx/nginx.conf.
+Le configurazioni dei singoli siti sono spesso in /etc/nginx/sites-available/ e attivate tramite link simbolici in /etc/nginx/sites-enabled/.
+Un blocco server definisce un virtual host, specificando listen, server_name, root (directory dei file), e location per gestire le richieste.
+B. PHP (Hypertext Preprocessor):
+Definizione: Linguaggio di scripting lato server ampiamente usato per lo sviluppo web.
+Integrazione con Nginx: Nginx non esegue PHP direttamente. Si integra con PHP tramite PHP-FPM (FastCGI Process Manager).
+Nginx riceve la richiesta HTTP, se è per un file PHP, la passa a PHP-FPM tramite il protocollo FastCGI.
+PHP-FPM esegue lo script PHP e restituisce l'output a Nginx, che lo invia al client.
+Installazione su Debian:
+# apt install php-fpm php-mysql (e altri moduli PHP necessari).
+C. MySQL:
+Definizione: Sistema di gestione di database relazionali (RDBMS) open source molto popolare.
+Uso: Generalmente utilizzato per memorizzare dati per applicazioni web (come quelle scritte in PHP).
+Comandi Base:
+# apt install mysql-server: installa il server MySQL.
+mysql -u root -p: accede alla shell MySQL come utente root.
+CREATE DATABASE [nome_db];: crea un nuovo database.
+CREATE USER '[utente]'@'localhost' IDENTIFIED BY '[password]';: crea un nuovo utente database.
+GRANT ALL PRIVILEGES ON [nome_db].* TO '[utente]'@'localhost';: concede i privilegi all'utente sul database.
+VII. I Processi in Cron
+A. Cron:
+Definizione: È un demone di sistema che esegue comandi o script a intervalli regolari specificati dall'utente.
+Cron Job: Un singolo lavoro programmato per essere eseguito da Cron.
+crontab: È un file o un set di file che contengono le definizioni dei cron job. Ogni utente può avere il proprio crontab.
+Comandi crontab:
+crontab -e: apre il file crontab dell'utente corrente per la modifica.
+crontab -l: elenca i cron job dell'utente corrente.
+crontab -r: rimuove tutti i cron job dell'utente corrente (usare con cautela).
+B. Sintassi di Cron:
+La sintassi di un cron job è composta da 5 campi temporali seguiti dal comando da eseguire: minuto ora giorno_del_mese mese giorno_della_settimana comando
+minuto: 0-59
+ora: 0-23
+giorno_del_mese: 1-31
+mese: 1-12 (o nomi abbreviati come jan, feb)
+giorno_della_settimana: 0-7 (0 e 7 sono entrambi Domenica, 1 è Lunedì)
+Caratteri Speciali:
+*: Corrisponde a qualsiasi valore (esegui ogni minuto, ogni ora, ecc.).
+,: Specifica un elenco di valori (es. 1,15,30 per minuti 1, 15 e 30).
+-: Specifica un intervallo (es. 9-17 per le ore dalle 9 alle 17).
+/: Specifica un passo (es. */5 per ogni 5 minuti).
+Esempi:
+0 * * * * /path/to/script.sh: Esegue lo script ogni ora, al minuto 0.
+0 2 * * 1 /path/to/backup.sh: Esegue lo script di backup ogni Lunedì alle 2:00 del mattino.
+*/10 * * * * echo "Ogni 10 minuti": Esegue un comando ogni 10 minuti.
+C. Directory cron.d e cron.hourly, cron.daily, etc. :
+Oltre al crontab utente, esistono directory specifiche in /etc/ per i cron job a livello di sistema:
+/etc/cron.d/: Contiene file per cron job specifici, spesso installati dai pacchetti software. Questi file includono anche il campo username.
+/etc/cron.hourly/: Script eseguiti ogni ora.
+/etc/cron.daily/: Script eseguiti ogni giorno.
+/etc/cron.weekly/: Script eseguiti ogni settimana.
+/etc/cron.monthly/: Script eseguiti ogni mese.

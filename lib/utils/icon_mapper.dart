@@ -29,6 +29,8 @@ class IconMapper {
         return Image.asset('assets/icons/linux_icon.png', width: size, height: size);
       case 'cybersecurity':
         return Image.asset('assets/icons/cybersecurity_icon.png', width: size, height: size);
+      case 'git':
+        return Image.asset('assets/icons/git_icon.png', width: size, height: size);
       default:
         return Icon(Icons.note, size: size);
     }
