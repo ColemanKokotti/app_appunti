@@ -1,1 +1,1261 @@
 Schema Database
+
+I. Introduzione
+
+A. Gestione delle Informazioni:
+Le informazioni sono registrate e scambiate in forme diverse.
+Nei sistemi informatici, le informazioni sono rappresentate per mezzo di dati.
+I dati sono simboli grezzi che devono essere interpretati e correlati per fornire informazioni.
+I dati sono molto più stabili nel tempo dei processi che li gestiscono (es. dati bancari).
+I dati sono una risorsa importante dell'organizzazione che li gestisce.
+
+B. Basi di Dati (Database):
+Definizione Generale: Una base di dati è una collezione di dati che rappresenta le informazioni di interesse per un sistema informativo.
+Definizione "Tecnica": Una base di dati è una collezione di dati gestita da un DBMS (DataBase Management System).
+
+C.Tipi di Database:
+Esistono diverse tipologie di database, tra cui:
+-Relazionali (es. PostgreSQL, MySQL, Microsoft SQL Server, Oracle)
+-NoSQL (es. MongoDB, Cassandra, Elasticsearch, InfluxDB, Neo4j, Firebase)
+-Ad oggetti
+-In-memory
+-Data warehouse
+-Documentali
+-Serie temporali
+-Real-time
+-Grafo
+
+II. Modello Relazionale
+
+A. Introduzione al Modello Relazionale
+Proposto da E.F. Codd.
+Si basa sul concetto matematico di relazione (tabella).
+
+B. Definizioni Fondamentali
+
+Relazione: Una tabella composta da righe (tuple) e colonne (attributi).
+
+Tupla: Una riga della tabella, rappresenta un'occorrenza di un'entità.
+
+Attributo: Una colonna della tabella, rappresenta una proprietà.
+
+Dominio: L'insieme dei valori ammissibili per un attributo.
+
+Schema di Relazione: Il nome della relazione e l'insieme dei suoi attributi.
+
+Istanza di Relazione: L'insieme corrente delle tuple in una relazione.
+
+C. Riferimenti tra Relazioni
+Gestiti tramite chiavi esterne.
+
+D. Assenza di Valore (NULL)
+Indica che un valore è sconosciuto o non applicabile.
+
+E. Vincoli d'Integrità
+Chiave Primaria: Uno o più attributi che identificano univocamente ogni tupla in una relazione. Non può contenere valori NULL.
+Vincoli di Tupla e di Dominio: Regole che specificano i valori ammissibili per le tuple e gli attributi.
+Vincoli d'Integrità Referenziale: Assicurano che i riferimenti tra tabelle (tramite chiavi esterne) siano validi, ovvero che un valore di chiave esterna esista come chiave primaria nella tabella referenziata.
+
+III. Progettazione ER (Entity-Relationship)
+
+A. Progettazione di Basi di Dati
+
+Il database è un componente importante dell'intero sistema.
+Metodologia di progettazione guidata dai dati: la progettazione del database precede quella delle applicazioni che lo utilizzano.
+Maggiore attenzione alla fase di progettazione rispetto alle altre fasi.
+
+B. Metodologia di Progettazione
+
+Scomposizione: Scomposizione dell'attività di progetto in fasi successive e indipendenti.
+Strategie: Strategie da seguire nelle varie fasi e criteri di scelta.
+Modelli di Riferimento: Modelli per descrivere i dati di input e output delle varie fasi.
+
+C. Proprietà della Metodologia
+
+Generalità: Utilizzabile indipendentemente dal problema e dagli strumenti.
+Qualità del Risultato: Correttezza, completezza ed efficienza.
+Facilità di Utilizzo: Sia delle strategie che dei modelli.
+
+D. Progettazione Basata sui Dati
+
+Separazione delle decisioni:
+"Cosa rappresentare nel database" (progettazione concettuale).
+"Come rappresentarlo" (progettazione logica e fisica).
+
+E. Fasi della Progettazione di un Database
+
+Requisiti Applicativi: Specifiche informali della realtà di interesse (proprietà e funzionalità dell'applicazione).
+Progettazione Concettuale: Rappresentazione delle specifiche informali in uno schema concettuale (formale, completo, indipendente dagli aspetti implementativi). L'obiettivo è la rappresentazione del contenuto informativo.
+Progettazione Logica: Traduzione dello schema concettuale in uno schema logico, facendo riferimento al modello logico prescelto e usando criteri di ottimizzazione (normalizzazione).
+Progettazione Fisica: Specifica dei parametri fisici di memorizzazione (organizzazione file, indici), producendo un modello fisico dipendente dal DBMS.
+
+F. Il Modello E-R (Entity-Relationship)
+
+Il modello concettuale più diffuso.
+Fornisce costrutti per descrivere le specifiche sulla struttura dei dati in modo semplice, comprensibile, con formalismo grafico, e indipendente dal modello dei dati.
+Esistono numerose varianti.
+
+G. Costrutti Principali del Modello E-R
+
+-Entità
+-Relazioni
+-Attributi
+-Identificatori
+-Generalizzazioni e sottoinsiemi
+
+H. Entità
+
+Rappresenta classi di oggetti del mondo reale (persone, cose, eventi, ecc.) che hanno proprietà comuni ed esistenza autonoma.
+Esempi: dipendente, studente, articolo.
+Un'occorrenza di un'entità è un oggetto della classe che l'entità rappresenta.
+
+IV. Progettazione ER: Gestione del Tempo
+A. Necessità di Tracciare
+Eventi.
+Evoluzione temporale di valori e/o relazioni.
+B. Tipologie di Modellazione
+Attributi temporali.
+Relazione binaria.
+Relazione ternaria.
+Entità storicizzata.
+V. Progettazione ER: Ristrutturazione
+A. Progettazione Logica
+Richiede di scegliere il modello dei dati (modello relazionale).
+Obiettivo: Definizione di uno schema logico relazionale corrispondente allo schema ER di partenza.
+Aspetti Importanti: Semplificazione dello schema per renderlo rappresentabile mediante il modello relazionale e ottimizzazione per aumentare l'efficienza delle interrogazioni.
+B. Fasi della Progettazione Logica
+Schema ER.
+Ristrutturazione dello schema ER.
+Schema ER ristrutturato.
+Traduzione.
+Schema logico.
+C. Ristrutturazione dello Schema ER
+Lo schema ER ristrutturato tiene conto di aspetti realizzativi e non è più uno schema concettuale.
+Obiettivi:
+Eliminazione dei costrutti per cui non esiste una rappresentazione diretta nel modello relazionale.
+Trasformazioni volte ad aumentare l'efficienza delle operazioni di accesso ai dati.
+
+D. Argomenti della Ristrutturazione
+
+Analisi delle ridondanze.
+Rimozione delle generalizzazioni.
+Partizionamento di concetti.
+Eliminazione degli attributi multivalore.
+Eliminazione degli attributi composti.
+Scelta degli identificatori primari.
+
+VI. Progettazione Modello Logico
+A. Traduzione nel Modello Relazionale:
+Si esegue sullo schema ER ristrutturato, senza gerarchie, attributi multivalore e composti.
+Trasformazioni:
+Ad ogni entità corrisponde una tabella con gli stessi attributi.
+Per le relazioni occorre considerare la cardinalità massima.
+B. Esempio di Traduzione Entità-Relazione:
+Un'entità come "PERSONA" con attributi "Nome", "Cognome" e "Professione" (0,1) e identificatore "CF".
+Viene tradotta in una relazione (tabella) "Persona" con attributi "(CodiceFiscale, Nome, Cognome, Professione)" dove "CodiceFiscale" è la chiave primaria.
+VII. SQL Intro
+A. Linguaggio SQL (Structured Query Language):
+Linguaggio per gestire le basi di dati relazionali.
+Caratteristiche:
+Linguaggio a livello di set: gli operatori operano su relazioni e il risultato è sempre una relazione.
+Dichiarativo: descrive cosa fare e non come fare, ponendosi a un livello di astrazione superiore rispetto ai linguaggi di programmazione tradizionali.
+Utilizzabile in modalità interattiva o compilata (con linguaggio ospite).
+Istruzioni SQL per:
+Definire lo schema di una base di dati relazionale.
+Leggere e scrivere i dati.
+Definire lo schema di tabelle derivate.
+Definire i privilegi di accesso degli utenti.
+Gestire le transazioni.
+B. Suddivisione del Linguaggio SQL:
+DML (Data Manipulation Language): Linguaggio di manipolazione dei dati.
+SELECT: Interrogazione di una base dati per estrarre i dati di interesse.
+INSERT: Inserimento di nuove informazioni in una tabella.
+UPDATE: Aggiornamento di dati presenti nella base dati.
+DELETE: Cancellazione di dati obsoleti.
+DDL (Data Definition Language): Linguaggio di definizione della struttura della base di dati.
+CREATE, ALTER, DROP TABLE: Creazione, modifica e cancellazione di tabelle.
+CREATE, ALTER, DROP VIEW: Definizione di tabelle derivate (viste).
+CREATE, DROP INDEX: Definizione di strutture dati accessorie per recuperare efficientemente i dati.
+GRANT, REVOKE: Definizione dei privilegi di accesso degli utenti.
+COMMIT, ROLLBACK: Definizione di transazioni.
+C. Notazione e Sintassi:
+Parole chiave: Caratteri maiuscoli e colore blu scuro (nella documentazione originale).
+Termini variabili: Corsivo.
+Parentesi angolari < >: Isolano un termine della sintassi.
+Parentesi quadre [ ]: Indicano che il termine all'interno è opzionale.
+Parentesi graffe { }: Indicano che il termine racchiuso può non comparire o essere ripetuto un numero arbitrario di volte.
+Barra verticale |: Indica che deve essere scelto uno tra i termini separati dalle barre.
+D. Istruzione SELECT
+Sintassi Generale:
+
+
+SELECT [DISTINCT] ElencoAttributiDaVisualizzare
+FROM ElencoTabelleDaUtilizzare
+[WHERE CondizioniDiTupla ]
+[GROUP BY ElencoAttributiDiRaggruppamento ]
+[HAVING CondizioniSuAggregati ]
+[ORDER BY ElencoAttributiDiOrdinamento ]
+
+
+Esempio: Trovare codice e numero di soci dei fornitori di Milano.
+
+
+SELECT CodF, NSoci
+FROM F
+WHERE Sede='Milano';
+
+
+Eliminazione Duplicati: SELECT DISTINCT CodP FROM FP; per trovare il codice dei prodotti diversi forniti.
+Selezione di Tutte le Informazioni: SELECT * FROM P; o SELECT CodP, NomeP, Colore, Taglia, Magazzino FROM P;.
+Selezione con Espressione: Permette di calcolare un valore (es. taglia espressa in un'altra unità di misura).
+
+VIII. SQL Query Nidificata
+
+A. Introduzione
+Un'interrogazione nidificata è un'istruzione SELECT contenuta all'interno di un'altra interrogazione.
+La nidificazione permette di suddividere un problema complesso in sottoproblemi più semplici.
+È possibile introdurre istruzioni SELECT in:
+Un predicato nella clausola WHERE.
+Un predicato nella clausola HAVING.
+Nella clausola FROM.
+B. Esempio 1: Trovare il codice dei fornitori che hanno sede nella stessa città di F1
+Formulazione con Nidificazione:
+
+
+SELECT CodF
+FROM F
+WHERE Sede = (SELECT Sede
+              FROM F
+              WHERE CodF ='F1');
+
+È possibile usare = solo se il risultato della SELECT nidificata è sempre un solo valore.
+Sottoproblemi separati: sede del fornitore F1 e codici dei fornitori con la stessa sede.
+C. Formulazione Equivalente con JOIN
+Caratterizzata da:
+Clausola FROM contenente le tabelle referenziate nelle FROM di tutte le SELECT.
+Opportune condizioni di join nella clausola WHERE.
+Eventuali predicati di selezione aggiunti nella clausola WHERE.
+Esempio di Formulazione Equivalente:
+
+
+SELECT FX.CodF
+FROM F AS FX, F AS FY
+WHERE FX.Sede = FY.Sede AND FY.CodF = 'F1';
+IX. SQL Operatori Insiemistici
+A. UNION
+Operatore insiemistico di unione.
+Esegue l'unione delle due espressioni relazionali A e B.
+Le espressioni relazionali A e B possono essere generate da istruzioni SELECT.
+Richiede la compatibilità di schema tra A e B (stesso numero di colonne e tipi di dati compatibili).
+Rimozione dei Duplicati:
+UNION rimuove i duplicati.
+UNION ALL non rimuove i duplicati.
+B. Esempio di UNION
+Trovare il codice dei prodotti di colore rosso o forniti dal fornitore F2 (o entrambe le cose).
+Questo problema può essere risolto combinando i risultati di due SELECT: una per i prodotti rossi e una per i prodotti forniti da F2, utilizzando UNION.
+
+X. SQL Viste
+A. Concetto di Vista
+Una vista è una tabella "virtuale".
+Il contenuto (tuple) è definito mediante un'interrogazione SQL sulla base di dati.
+Il contenuto della vista dipende dal contenuto delle altre tabelle presenti nella base di dati.
+Il contenuto non è memorizzato fisicamente nella base di dati; è ricalcolato ogni volta che la vista viene utilizzata, eseguendo l'interrogazione che la definisce.
+La vista è un oggetto della base di dati ed è utilizzabile nelle interrogazioni come se fosse una tabella.
+Se un'interrogazione fa riferimento a una vista, il DBMS la riscrive automaticamente prima dell'esecuzione, sostituendo i riferimenti alla vista con la sua definizione.
+B. Esempio n.1: Definizione della Vista "Piccoli Fornitori"
+I fornitori che hanno meno di 3 soci sono considerati "piccoli fornitori".
+La vista contiene il codice, il nome, il numero di soci e la sede dei fornitori che hanno meno di 3 soci.
+Sintassi:
+
+CREATE VIEW PICCOLI_FORNITORI AS
+SELECT CodF, NomeF, NSoci, Sede
+FROM F
+WHERE Nsoci < 3;
+
+C. Esempio n.1: Interrogazione sulla Vista
+Visualizzare il codice, il nome, la sede e il numero di soci dei piccoli fornitori di Torino.
+Questa interrogazione può essere risolta utilizzando la vista PICCOLI_FORNITORI o direttamente sulla tabella F.
+Sintassi con vista:
+
+
+SELECT *
+FROM PICCOLI_FORNITORI
+WHERE Sede='Torino';
+Sintassi senza vista (equivalente):
+
+
+SELECT *
+FROM F
+WHERE NSoci < 3 AND Sede = 'Torino';
+
+XI. SQL Query Avanzate
+A. Tabelle Derivate
+Definizione: Una tabella temporanea definita all'interno di una clausola FROM di una SELECT.
+
+Struttura: Ha la struttura di una query SELECT.
+
+Utilizzo:
+
+Calcolare più livelli di aggregazione.
+
+Formulare interrogazioni che richiedono correlazione in modo equivalente.
+
+Esempi:
+
+Calcolo media massima (due livelli):
+
+Trovare la media per ogni studente.
+
+Trovare il valore massimo di queste medie.
+
+SELECT MAX(MediaStudenti) FROM (SELECT Matricola, AVG(Voto) AS MediaStudenti FROM ESAME-SUPERATO GROUP BY Matricola) AS MEDIE;
+
+Media massima per anno di iscrizione:
+
+Trovare la media per ogni studente.
+
+Raggruppare gli studenti per anno di iscrizione e calcolare la media massima.
+
+Correlazione con tabelle derivate: Utilizzate per selezionare fornitori che forniscono la quantità massima per ogni prodotto, combinando la tabella derivata con la tabella principale tramite condizioni di join.
+
+B. Common Table Expression (CTE)
+Definizione: Una tabella temporanea che può essere utilizzata per ulteriori operazioni di calcolo, definita con la clausola WITH.
+
+Vantaggi rispetto alle tabelle derivate:
+
+Riferimento multiplo a una tabella derivata in una singola query.
+
+Alternativa alla creazione di una vista.
+
+Esecuzione dello stesso calcolo più volte in diverse parti della query.
+
+Aumento della leggibilità di query complesse.
+
+Sintassi:
+
+WITH cte_1 [(campo_A, ...)] AS (CTE query 1)
+{, cte_X AS (CTE query X) }
+SELECT campo_A, campo_B, ...
+FROM cte_1;
+
+Utilizzo:
+
+Calcolo di aggregati a due livelli: Simile alle tabelle derivate, ma con sintassi più chiara.
+
+Calcolo di aggregati con granularità diversa: Trovare compagnie aeree con salario totale dei piloti superiore alla media dei salari totali del database. Richiede più CTE concatenate.
+
+CTE referenziate: CTE che fanno riferimento ad altre CTE precedentemente definite nella stessa clausola WITH.
+
+CTE ricorsive:
+
+Permettono di interrogare dati gerarchici o ad albero (es. gerarchia impiegati).
+
+Sintassi: WITH RECURSIVE cte_1 AS (CTE query iniziale UNION ALL CTE query ricorsiva).
+
+C. Query Spaziali (MySQL)
+Rappresentazione dati spaziali: Punti, Poligoni, Linee.
+
+Funzioni MySQL:
+
+Creazione geometrie: Point(x, y), LineString(pt [, pt] ...), Polygon(ls [, ls] ...).
+
+Proprietà delle geometrie: ST_Dimension(g), ST_Envelope(g), ST_GeometryType(g), ST_X(p), ST_Y(p), ST_Length(ls), ST_Area(poly), ST_Centroid(poly).
+
+Relazioni tra geometrie: ST_Difference(g1, g2), ST_Intersects(g1, g2), ST_Distance_Sphere(g1, g2 [, radius]).
+
+D. Query JSON (MySQL)
+Formato: JSON (JavaScript Object Notation) per lo scambio dati.
+
+Funzioni MySQL:
+
+Creazione JSON: JSON_ARRAY(...), JSON_OBJECT(...).
+
+Ricerca all'interno del JSON: JSON_CONTAINS(...), JSON_EXTRACT(...) (o operatore ->).
+
+Modifica JSON: JSON_ARRAY_APPEND(...), JSON_INSERT(...).
+
+XII. SQL Manipolazione Dati
+A. Istruzioni di Aggiornamento
+Tipi di operazioni:
+
+INSERT: Inserimento di nuove tuple.
+
+DELETE: Cancellazione di tuple.
+
+UPDATE: Modifica del contenuto di tuple.
+
+Vincoli di integrità: Tutte le operazioni devono rispettare i vincoli di integrità.
+
+Singola tabella: Ogni istruzione può aggiornare il contenuto di una sola tabella.
+
+B. INSERT
+Inserimento di una singola tupla:
+
+Sintassi: INSERT INTO NomeTabella [(Elenco Colonne)] VALUES (Elenco Costanti);
+
+Assegnazione di un valore costante ad ogni attributo.
+
+Se non specificata la lista dei campi, si assumono tutti i campi nell'ordine di creazione.
+
+Valori NULL per attributi non specificati, se il dominio lo consente.
+
+Inserimento di più tuple:
+
+Sintassi: INSERT INTO NomeTabella [(Elenco Colonne)] Interrogazione;
+
+Lette da altre tabelle tramite un'istruzione SELECT.
+
+La query SELECT non può contenere la clausola ORDER BY.
+
+Vincoli di integrità referenziale: Necessario che le chiavi esterne siano già presenti nelle tabelle referenziate, altrimenti l'inserimento non viene eseguito.
+
+C. DELETE
+Cancellazione di tuple:
+
+Sintassi: DELETE FROM NomeTabella [WHERE predicato];
+
+Cancellazione di tutte le tuple che soddisfano il predicato.
+
+Senza WHERE, elimina tutte le tuple (ma non la tabella).
+
+Vincoli di integrità referenziale:
+
+Necessario verificare che la cancellazione non violi i vincoli di integrità referenziale.
+
+Potrebbe essere necessario propagare la cancellazione su tabelle correlate per mantenere la coerenza (es. cancellare forniture prima di cancellare un fornitore).
+
+D. UPDATE
+Modifica di tuple:
+
+Sintassi: UPDATE NomeTabella SET colonna = espressione {, colonna=espressione} [WHERE predicato];
+
+Tutti i record che soddisfano il predicato vengono modificati.
+
+Tipi di aggiornamento:
+
+Singolo: Aggiornamento di una tupla specifica.
+
+Multiplo: Aggiornamento di più tuple che soddisfano una condizione.
+
+Con query: Utilizzo di una subquery nella clausola WHERE per identificare le tuple da aggiornare.
+
+Di più tabelle: Richiede attenzione ai vincoli di integrità referenziale; potrebbe essere necessario disabilitare temporaneamente i controlli o aggiornare le tabelle correlate.
+
+XIII. SQL Gestione Tabelle
+A. Creazione delle Tabelle (CREATE TABLE)
+Funzione: Permette di definire attributi (colonne) e vincoli di integrità.
+
+Sintassi:
+
+CREATE TABLE NomeTabella (
+    NomeAttributo Dominio [ValoreDiDefault] [Vincoli]
+    {, NomeAttributo Dominio [ValoreDiDefault ] [Vincoli ]}
+    AltriVincoli
+);
+
+Componenti:
+
+Dominio: Tipo di dato dell'attributo (es. CHAR, SMALLINT, INTEGER, DATE, JSON, GEOMETRY).
+
+Valore di Default (DEFAULT): Valore predefinito per l'attributo se non specificato.
+
+Vincoli: Specificano regole di integrità sull'attributo.
+
+Altri Vincoli: Vincoli di integrità generali sulla tabella.
+
+B. Modifica delle Tabelle (ALTER TABLE)
+Funzioni:
+
+Aggiunta di una nuova colonna (ADD COLUMN).
+
+Definizione o eliminazione di un valore di default (ALTER COLUMN ... SET DEFAULT | DROP DEFAULT).
+
+Eliminazione di una colonna (DROP COLUMN [CASCADE | RESTRICT]).
+
+Definizione o eliminazione di un vincolo di integrità (ADD CONSTRAINT | DROP CONSTRAINT [CASCADE | RESTRICT]).
+
+RESTRICT (default): L'operazione non viene eseguita se l'elemento è referenziato altrove.
+
+CASCADE: L'operazione propaga le modifiche o eliminazioni agli elementi dipendenti.
+
+C. Cancellazione delle Tabelle (DROP TABLE)
+Funzione: Elimina tutte le righe della tabella insieme alla tabella stessa.
+
+Sintassi: DROP TABLE NomeTabella [RESTRICT | CASCADE];
+
+RESTRICT (default): La tabella non viene rimossa se è referenziata da altre definizioni (tabelle, vincoli, viste).
+
+CASCADE: Rimuove anche tutti gli elementi dipendenti (es. viste che referenziano la tabella).
+
+D. Integrità dei Dati
+Vincoli di integrità: Regole di correttezza che i dati devono soddisfare.
+
+Metodi di verifica:
+
+Procedure applicative: Verifiche implementate nel codice dell'applicazione (meno robusto).
+
+Vincoli di integrità sulle tabelle: Definiti nel CREATE TABLE o ALTER TABLE, verificati automaticamente dal DBMS.
+
+Vantaggi: Dichiarativi, centralizzati, impossibilità di aggirare.
+
+Svantaggi: Possono rallentare, non per vincoli complessi (es. aggregati).
+
+Trigger: Procedure eseguite automaticamente al verificarsi di modifiche dati (CREATE TRIGGER).
+
+Vantaggi: Vincoli complessi, centralizzati, impossibilità di aggirare.
+
+Svantaggi: Complessi da implementare, possono rallentare.
+
+Riparazione delle violazioni: Il sistema può impedire l'operazione o eseguire un'azione compensativa (es. ON DELETE CASCADE).
+
+E. Vincoli di Integrità in SQL
+Vincoli di tabella:
+
+Chiave Primaria (PRIMARY KEY): Identifica univocamente le righe. Può essere su un singolo attributo o su più attributi.
+
+Ammissibilità del valore nullo (NOT NULL): Impedisce valori NULL per un attributo.
+
+Unicità (UNIQUE): Assicura che un attributo o un insieme di attributi non abbia valori duplicati (ammette NULL ripetuti).
+
+Chiave Candidata: Attributo/i univoco/i che potrebbe essere chiave primaria (spesso UNIQUE NOT NULL).
+
+Vincoli generali di tupla (CHECK): Condizioni generiche su ogni tupla (es. Taglia > 0).
+
+Vincoli d'integrità referenziale (FOREIGN KEY): Gestiscono i riferimenti tra tabelle.
+
+Sintassi: FOREIGN KEY (ElencoAttributiReferenzianti) REFERENCES NomeTabella [(ElencoAttributiReferenziati)].
+
+Politiche di gestione (ON UPDATE, ON DELETE):
+
+CASCADE: Propaga l'operazione.
+
+SET DEFAULT: Imposta il valore di default.
+
+SET NULL: Imposta a NULL.
+
+NO ACTION: Non esegue l'azione invalidante (errore).
+
+XIV. SQL Costrutti Avanzati
+A. Transazioni
+Definizione: Un'unità logica di lavoro indivisibile, una sequenza di operazioni SQL che porta la base di dati da uno stato consistente a un altro.
+
+Scopo: Gestire l'accesso concorrente ai dati e il recovery da malfunzionamenti.
+
+Inizio (START TRANSACTION): Spesso implicito con la prima istruzione SQL.
+
+Fine:
+
+Successo (COMMIT [WORK]): Le modifiche diventano permanenti e visibili.
+
+Insuccesso (ROLLBACK [WORK]): Tutte le operazioni vengono annullate, la base di dati torna allo stato precedente.
+
+Proprietà ACID:
+
+Atomicity (Atomicità): Tutte le operazioni o nessuna.
+
+Consistency (Consistenza): Da uno stato consistente a un altro stato consistente.
+
+Isolation (Isolamento): Le transazioni sono indipendenti; gli effetti non visibili fino al commit.
+
+Durability (Persistenza): Gli effetti di una transazione committata sono permanenti.
+
+B. Controllo dell'Accesso
+Sicurezza dei dati: Protezione da letture, alterazioni o distruzioni non autorizzate.
+
+Risorse: Qualsiasi componente dello schema (tabelle, viste, attributi, domini, procedure).
+
+Privilegi di accesso: Diritti sulle risorse.
+
+Tipi: INSERT, UPDATE, DELETE, SELECT, REFERENCES, USAGE.
+
+Creatore della risorsa: Ha tutti i privilegi sulla risorsa creata, inclusi DROP e ALTER (non trasferibili).
+
+Amministratore del sistema: Possiede tutti i privilegi su tutte le risorse.
+
+Gestione dei privilegi in SQL:
+
+GRANT: Concede privilegi.
+
+Sintassi: GRANT ElencoPrivilegi ON NomeRisorsa TO ElencoUtenti [WITH GRANT OPTION]
+
+WITH GRANT OPTION: Permette all'utente di trasferire il privilegio ad altri.
+
+REVOKE: Revoca privilegi.
+
+Sintassi: REVOKE ElencoPrivilegi ON NomeRisorsa FROM ElencoUtenti [RESTRICT|CASCADE]
+
+RESTRICT (default): Non revoca se comporta altre revoche.
+
+CASCADE: Revoca anche i privilegi propagati e gli elementi dipendenti.
+
+Concetto di ruolo: Un profilo di accesso definito da un insieme di privilegi. Offre flessibilità e semplifica l'amministrazione.
+
+CREATE ROLE NomeRuolo: Crea un ruolo.
+
+SET ROLE NomeRuolo: Assegna un ruolo a un utente.
+
+C. Gestione degli Indici
+Scopo: Migliorare l'efficienza delle operazioni di accesso ai dati.
+
+Strutture fisiche: Alberi (es. B-tree), hash table.
+
+Istruzioni SQL:
+
+CREATE INDEX: Crea un indice su una o più colonne. L'ordine degli attributi è importante per l'ordinamento delle chiavi.
+
+Sintassi: CREATE INDEX NomeIndice ON NomeTabella (ElencoAttributi)
+
+DROP INDEX: Elimina un indice. Utilizzato quando l'indice non è più utile o rallenta gli aggiornamenti.
+
+Sintassi: DROP INDEX NomeIndice
+
+D. Progettazione Fisica
+Obiettivo: Ottimizzare le prestazioni del database.
+
+Dati di ingresso:
+
+Schema logico.
+
+Caratteristiche del DBMS (opzioni fisiche, strutture di memorizzazione).
+
+Volume dei dati (cardinalità tabelle, distribuzione valori).
+
+Stima del carico applicativo (frequenza e tipo di query/aggiornamenti, requisiti di tempo di risposta).
+
+Risultato: Schema fisico del database (organizzazione tabelle, indici, parametri di memorizzazione).
+
+Procedimento: Empirico, per tentativi.
+
+Caratterizzazione del carico applicativo: definire relazioni, attributi, selettività condizioni per query e aggiornamenti.
+
+Scelte da operare: strutturazione fisica dei file (ordinati/non), scelta degli attributi da indicizzare (tipo di indice), variazioni dello schema (partizionamenti, denormalizzazione).
+
+Tuning: Aggiungere e togliere indici per migliorare le prestazioni, verificando il piano di esecuzione del DBMS.
+
+XV. NoSQL Intro
+A. Dai RDBMS ai NoSQL
+RDBMS (Sistemi di Gestione di Database Relazionali):
+
+Dati modellati come relazioni (tabelle).
+
+Schema rigido, normalizzazione.
+
+Query uniscono dati da tabelle diverse (join).
+
+Operazioni di scrittura semplici, ricerca più lenta.
+
+Forti garanzie transazionali (ACID: Atomicità, Consistenza, Isolamento, Durabilità).
+
+Inefficienti per dati di grandi dimensioni e in ambienti distribuiti.
+
+Nascita dei NoSQL:
+
+Termine coniato nel 1998 da Carlo Strozzi, poi ripreso nel 2009 per database non relazionali.
+
+"Not Only SQL".
+
+Risposta a problemi pratici reali delle grandi aziende, spesso sviluppati da grandi produttori.
+
+B. Caratteristiche Principali di NoSQL
+Scalabilità Orizzontale (Scale Out): Aumento delle prestazioni aggiungendo più server, anziché aumentare la potenza di un singolo server (scalabilità verticale).
+
+No Join: Le relazioni tra dati sono gestite in modo diverso, spesso tramite denormalizzazione o riferimenti, evitando costosi join.
+
+Schema-less / Schema-free:
+
+Le collezioni non richiedono che i documenti abbiano lo stesso schema.
+
+L'insieme dei campi e il tipo di dati per lo stesso campo possono cambiare.
+
+Adatto a dati semi-strutturati o non strutturati.
+
+Schema-on-read: lo schema è applicato al momento della lettura.
+
+Lettura Efficiente: Progettati per letture veloci, spesso a scapito di scritture più complesse.
+
+Elevata Concorrenza: Gestione di alti volumi di letture e scritture casuali.
+
+Elevata Disponibilità: Spesso tramite replicazione.
+
+Costo Contenuto: Progettati per funzionare su hardware di base, tipicamente open-source.
+
+C. Contro di NoSQL
+Consistenza Transazionale: Non supportano una rigorosa coerenza transazionale ACID (spesso usano modelli di consistenza più deboli come BASE: Basically Available, Soft state, Eventually consistent).
+
+Denormalizzazione dei dati: I dati sono spesso duplicati, il che richiede aggiornamenti di massa più complessi.
+
+Mancanza di integrità dei dati integrata: Le verifiche di integrità devono essere gestite a livello di applicazione.
+
+Nessuna imposizione delle relazioni.
+
+SQL Debole / Linguaggi di Query Personalizzati: Non esiste uno standard come SQL, ogni database NoSQL ha il suo linguaggio.
+
+Utilizzo di più spazio su disco.
+
+Difficoltà nel tracciare le modifiche dello schema nel tempo.
+
+D. Tipi di Database NoSQL
+Key-Value:
+
+Più semplici, mappano chiavi a valori.
+
+Nessuna struttura interna al valore.
+
+Grandi prestazioni, facilmente scalabili, molto veloci.
+
+Esempi: Redis, Riak, Memcached.
+
+Column-Family (Orientati alle Colonne):
+
+Memorizzano dati in formato a colonne.
+
+Le righe possono essere costruite dai valori delle colonne.
+
+Esempi: Cassandra, HBase, Hypertable.
+
+Graph (A Grafo):
+
+Basati sulla teoria dei grafi (Vertici e Archi).
+
+Utilizzati per memorizzare informazioni sulle reti e relazioni complesse.
+
+Esempi: Neo4J, OrientDB.
+
+Document (Documentali):
+
+Memorizzano e recuperano documenti (simili a JSON/XML).
+
+I documenti sono autodescrittivi e possono avere strutture annidate.
+
+Natura eterogenea dei documenti.
+
+Fortemente orientati agli aggregati.
+
+Esempi: MongoDB, CouchDB, RavenDB.
+
+E. Nozioni di Base sui Documenti
+Concetto di base: Documento.
+
+Struttura: Coppie campo-valore, simili a oggetti JSON, possono essere annidati.
+
+Flessibilità: Schema-less, i documenti di una collezione possono avere campi diversi.
+
+Indici: Possibilità di creare indici di ricerca su varie chiavi/campi.
+
+XVI. MongoDB Query
+A. Introduzione a MongoDB
+Leader dei database NoSQL basati sui documenti.
+
+Caratteristiche: Ricco di funzionalità, alte prestazioni, alta disponibilità, scalabilità nativa, flessibilità, open source.
+
+Terminologia (Mappatura approssimativa con RDBMS):
+
+Tabella → Collezione
+
+Record → Documento
+
+Colonna → Campo
+
+B. Database e Collezioni
+Gerarchia: Istanza MongoDB → Database → Collezioni → Documenti.
+
+Comandi di gestione:
+
+show databases;: Mostra l'elenco dei database.
+
+use <database name>;: Seleziona un database (lo crea implicitamente se non esiste).
+
+db.dropDatabase();: Elimina il database corrente.
+
+db.createCollection(<collection_name>, <options>);: Crea una collezione.
+
+show collections;: Visualizza le collezioni nel database corrente.
+
+db.<collection name>.drop();: Cancella una collezione.
+
+C. Operazioni CRUD (Create, Read, Update, Delete)
+Linguaggio di interrogazione: Non SQL, ma API disponibili per molti linguaggi di programmazione.
+
+D. Read Operations (find(), findOne())
+find(): Seleziona documenti.
+
+Sintassi: db.<collection name>.find( {<conditions>}, {<fields of interest>} );
+
+<conditions>: Opzionali, specificano i criteri di filtro (es. {field: value}, operatori di confronto).
+
+<fields of interest>: Opzionali, specificano i campi da includere (1/true) o escludere (0/false). _id è incluso di default.
+
+Operatori di confronto: $eq (o :), $gt, $gte, $in, $lt, $lte, $neq, $nin.
+
+Operatori condizionali: , (AND), $or.
+
+Documenti annidati: Accesso ai campi annidati con la notazione a punto (es. "address.city": "Rome").
+
+findOne(): Seleziona un singolo documento che soddisfa i criteri. Restituisce il primo in ordine naturale se ce ne sono più.
+
+Cursore: db.collection.find() restituisce un cursore, che può essere usato per iterare o per ulteriori operazioni (es. sort(), count(), forEach(), limit(), pretty()).
+
+E. Insert Operations (insertOne(), insertMany())
+insertOne(): Inserisce un singolo documento.
+
+Sintassi: db.<collection name>.insertOne( {<set of the field:value pairs of the new document>} );
+
+_id è aggiunto automaticamente se non specificato.
+
+Supporta l'inserimento di array e documenti annidati.
+
+insertMany(): Inserisce più documenti con un singolo comando.
+
+F. Update Operations (updateOne(), updateMany(), replaceOne())
+updateOne() / updateMany(): Aggiorna documenti.
+
+Sintassi: db.collection.updateOne(<filter>, <update>, <options>)
+
+<filter>: Condizione per selezionare i documenti da aggiornare.
+
+<update>: Specifica i campi da aggiornare e i nuovi valori (spesso con operatori come $set, $inc, $currentDate).
+
+replaceOne(): Sostituisce l'intero contenuto di un documento (eccetto _id).
+
+G. Delete Operations (deleteOne(), deleteMany())
+deleteOne() / deleteMany(): Elimina documenti.
+
+Sintassi: db.collection.deleteOne(<filter>)
+
+<filter>: Condizione per selezionare i documenti da eliminare.
+
+db.collection.deleteMany({}): Elimina tutti i documenti dalla collezione.
+
+XVII. MongoDB Tools
+A. MongoDB Atlas
+Servizio cloud completamente gestito di MongoDB: Disponibile su AWS, Google Cloud, Azure.
+
+Caratteristiche: Alta disponibilità, scalabilità, sicurezza, interfaccia web intuitiva.
+
+Piano gratuito: Replica set con 512 MB di storage, ideale per test e pratica.
+
+Funzionalità: Gestione utenti e privilegi, accesso alla rete, caricamento database di esempio, visualizzazione metriche (rete, connessioni, dimensione logica, opcounters).
+
+B. MongoDB Compass
+Strumento GUI per MongoDB: Disponibile su Linux, Mac, Windows.
+
+Funzionalità principali:
+
+Esplorazione visiva dei dati: Analizza documenti e visualizza strutture di collezioni.
+
+Connessione: A istanze locali o remote di MongoDB.
+
+Panoramica dati: Visualizzazione in formato elenco o tabella.
+
+Analisi documenti e campi: Supporto nativo per coordinate geospaziali.
+
+Costruzione visuale delle query: Permette di costruire query passo dopo passo.
+
+Analisi delle prestazioni delle query (Explain Plan): Ottiene suggerimenti per accelerare le query.
+
+Validazione dei dati: Specifica vincoli per convalidare i dati e trovare documenti incoerenti.
+
+Aggregazione: Costruire pipeline di aggregazione a più fasi.
+
+XVIII. MongoDB Aggregation Pipeline
+A. Concetti Generali
+Definizione: Le operazioni di aggregazione elaborano i record di dati e restituiscono risultati calcolati.
+
+Pipeline a più stadi: I documenti entrano in una pipeline che li trasforma in un risultato aggregato.
+
+Stadi: Possono comparire più volte (eccetto $out, $merge, $geoNear).
+
+Espressioni: Operano solo sul documento corrente, stateless (eccetto accumulazione in $group).
+
+Alternativa a Map-Reduce: Soluzione preferita per aggregazioni complesse.
+
+B. Confronto con SQL
+
+WHERE → $match
+
+GROUP BY → $group
+
+HAVING → $match (dopo $group)
+
+SELECT → $project
+
+ORDER BY → $sort
+
+LIMIT → $limit
+
+SUM → $sum
+
+COUNT → $sum (o $count)
+
+C. Sintassi della Pipeline
+db.collection.aggregate([ <list of stages>])
+
+Accesso ai campi con $ (es. "$price").
+
+D. Stadi Comuni della Pipeline
+$match: Filtra i documenti (simile a WHERE).
+
+$group: Raggruppa i documenti e applica espressioni di accumulo (simile a GROUP BY).
+
+_id: null: Raggruppa tutti i documenti in un unico gruppo.
+
+_id: "$campo": Raggruppa per valori distinti di un campo.
+
+$project: Rimodella i documenti, aggiungendo o rimuovendo campi (simile a SELECT).
+
+$sort: Riordina il flusso di documenti (simile a ORDER BY).
+
+$limit: Limita il numero di documenti passati alla fase successiva.
+
+$addFields / $set: Aggiunge nuovi campi ai documenti.
+
+$bucket / $bucketAuto: Categorizza i documenti in "bucket" basati su espressioni o limiti automatici.
+
+$count: Passa un documento con il conteggio dei documenti in ingresso.
+
+$facet: Elabora più pipeline di aggregazione in un'unica fase.
+
+$geoNear: Restituisce documenti ordinati per vicinanza a un punto geospaziale (deve essere il primo stadio).
+
+$graphLookup: Esegue una ricerca ricorsiva su una collezione (per gerarchie).
+
+$lookup: Esegue un join con un'altra collezione (per filtrare e unire documenti).
+
+$merge / $out: Scrivono i risultati della pipeline in una collezione (devono essere gli ultimi stadi).
+
+$sample: Seleziona casualmente un numero specificato di documenti.
+
+$skip: Salta i primi N documenti.
+
+$sortByCount: Raggruppa e conta i documenti per un'espressione specificata.
+
+$unset: Rimuove/esclude campi dai documenti.
+
+$unwind: Destruttura un campo array per produrre un documento per ogni elemento dell'array.
+
+E. Operatori della Pipeline
+Aritmetici: Operazioni matematiche ($sum, $avg, ecc.).
+
+Array: Operazioni di filtro e modifica su array.
+
+Booleani: Valutano espressioni come booleani.
+
+Confronto: Confrontano valori e tipi.
+
+Condizionali: Valutano condizioni e restituiscono valori.
+
+Data: Restituiscono oggetti data o componenti.
+
+Letterali: Restituiscono valori senza analizzarli.
+
+Oggetto: Uniscono o convertono documenti.
+
+Insieme: Operazioni insiemistiche su array.
+
+Stringa: Operazioni su stringhe.
+
+Testo: Accesso ai metadati della ricerca testuale.
+
+Trigonometria: Operazioni trigonometriche.
+
+XIX. MongoDB Indici
+A. Introduzione agli Indici
+Scopo: Esecuzione efficiente delle query. Senza indici, MongoDB deve eseguire una scansione completa delle collezioni.
+
+Funzionamento: Strutture dati speciali che memorizzano una piccola porzione di dati della collezione in una forma ordinata e facile da attraversare.
+
+Vantaggi: Limitano il numero di documenti da ispezionare, supportano confronti di uguaglianza e query basate sull'intervallo.
+
+B. Tipi di Indici
+Indice a campo singolo:
+
+Crea un indice su un singolo campo (es. score: 1 per ascendente).
+
+Supporta anche campi annidati (embedded fields) o documenti annidati interi.
+
+Indice composto:
+
+Contiene riferimenti a più campi (es. {username: 1, date: -1}).
+
+L'ordinamento può essere ascendente (1) o discendente (-1).
+
+Supporta query che includono il prefisso dell'indice.
+
+Può supportare l'intersezione di indici.
+
+Indice multichiave:
+
+Crea un indice se un campo indicizzato è un array.
+
+Limitazioni: solo un campo deve essere un array, nuovi inserimenti non devono violare vincoli precedenti, nessun indice hashed.
+
+Indice testuale:
+
+Supporta la ricerca di testo in varie lingue.
+
+Una collezione può avere al massimo un indice di testo.
+
+Il "weight" di un campo indicizzato denota l'importanza del campo nel punteggio di ricerca.
+
+Può utilizzare il carattere wildcard ($**).
+
+Indice wildcard:
+
+Supporta query su campi sconosciuti o arbitrari.
+
+Non supporta indici composti, TTL, unique, testuali, 2d, 2dsphere, hashed.
+
+Può essere su un singolo campo ("fieldA.$**": 1), su tutti i campi ("$**": 1), o con proiezione per includere/escludere campi.
+
+Indice hashed:
+
+Utilizza una funzione di hashing per calcolare l'hash del valore del campo indice.
+
+Limiti: non supporta indici a più chiavi (array), tronca numeri in virgola mobile.
+
+Indice geospaziale (2d, 2dsphere):
+
+Supporta query che calcolano geometrie su una sfera (2dsphere) o su un piano (2d).
+
+Operatori di query geospaziali: $geoIntersects, $geoWithin, $near, $nearSphere.
+
+C. Gestione degli Indici
+db.collection.getIndexes(): Elenca tutti gli indici di una collezione.
+
+db.collection.dropIndex({<field>: 1}): Rimuove un indice specifico.
+
+db.collection.dropIndexes(): Rimuove tutti gli indici.
+
+Modifica di un indice: Eliminare e ricreare l'indice.
+
+D. Misurare l'Uso dell'Indice
+db.collection.explain(): Analizza il piano di esecuzione di una query per capire come vengono utilizzati gli indici.
+
+XX. MongoDB Modellazione
+A. Schema Flessibile e Responsabilità
+Schema-less: Le collezioni non richiedono che i documenti abbiano lo stesso schema.
+
+Importanza del design: La progettazione dello schema è cruciale per le prestazioni e la scalabilità.
+
+Validazione dello schema: MongoDB può eseguire la convalida dello schema durante aggiornamenti e inserimenti (validator, validationLevel, validationAction).
+
+Supporta la convalida di JSON Schema ($jsonSchema).
+
+Supporta validazione con altri operatori di query (eccetto $near, $nearSphere, $text, $where).
+
+B. Fattori di Progettazione
+Atomicità: Un'operazione di scrittura è atomica a livello di singolo documento. Per transazioni multi-documento, MongoDB supporta transazioni su replica set (v4.0) e cluster sharded (v4.2).
+
+Sharding: La scelta della chiave di sharding influisce significativamente sulle prestazioni e la scalabilità.
+
+Indici: Ogni indice consuma spazio su disco e memoria, e ha un impatto negativo sulle prestazioni di scrittura. Utili per collezioni con elevato rapporto lettura/scrittura.
+
+Data Lifecycle Management: La funzione Time to Live (TTL) fa scadere i documenti automaticamente.
+
+C. Modelli di Progettazione (Building with Patterns)
+Polimorfico:
+
+Quando usarlo: Documenti di una collezione con struttura simile ma non identica, quando si vuole interrogare informazioni da un'unica collezione.
+
+Pro: Facile da implementare, query su singola collezione.
+
+Contro: Necessari diversi percorsi di codice nell'applicazione.
+
+Esempi: Applicazioni "Single View", ampi cataloghi di prodotti.
+
+Attributi:
+
+Quando usarlo: Sottoinsieme di campi con caratteristiche comuni, quando i campi da ordinare si trovano in un piccolo sottoinsieme di documenti.
+
+Pro: Meno indici necessari, query più semplici e veloci.
+
+Esempi: Catalogo prodotti (es. date di uscita film per paese).
+
+Extended Reference:
+
+Quando usarlo: L'applicazione esegue molti join per riunire dati frequentemente acceduti.
+
+Pro: Migliora le prestazioni, letture più rapide, riduzione complessità.
+
+Contro: Duplicazione dei dati (funziona meglio se i dati cambiano raramente).
+
+Esempi: Applicazioni e-commerce (copiare dati cliente nell'ordine).
+
+Albero:
+
+Quando usarlo: Interrogazione frequente di strutture dati gerarchiche.
+
+Pro: Aumento prestazioni evitando join multipli.
+
+Contro: Gli aggiornamenti del grafo devono essere gestiti nell'applicazione.
+
+Esempi: Catene di reporting, cataloghi prodotti con categorie annidate.
+
+Bucket:
+
+Quando usarlo: Gestione di dati in streaming (serie temporali, IoT, analisi in tempo reale).
+
+Pro: Riduce il numero di documenti, migliora le prestazioni dell'indice, semplifica l'accesso ai dati con pre-aggregazione.
+
+Contro: Richiede una comprensione dei requisiti di accesso ai dati.
+
+Esempi: Dati di sensori, serie temporali.
+
+Sottoinsieme:
+
+Quando usarlo: Il set di lavoro di dati e indici supera la RAM a causa di documenti grandi con molti dati non usati frequentemente.
+
+Pro: Riduzione dimensione del set di lavoro, tempo di accesso al disco più breve per dati frequenti.
+
+Contro: Gestione del sottoinsieme, inserimenti aggiuntivi richiedono più accessi.
+
+Esempi: Recensioni di un prodotto (solo le più recenti nel documento principale).
+
+Outliers:
+
+Quando usarlo: Poche query o documenti non si adattano ai modelli tipici di dati.
+
+Pro: Evita che pochi documenti/query influenzino negativamente la soluzione generale.
+
+Contro: Spesso adattato a query specifiche, gran parte dell'implementazione è nel codice.
+
+Esempi: Libri top-seller con milioni di acquirenti (spostare la lista acquirenti in un documento separato).
+
+Calcolato:
+
+Quando usarlo: Modelli di accesso ai dati ad alta intensità di lettura, dati che devono essere calcolati ripetutamente.
+
+Pro: Riduzione del carico di lavoro della CPU per calcoli frequenti.
+
+Contro: Difficile identificare la necessità, calcolo in concomitanza con aggiornamenti o a intervalli definiti.
+
+Esempi: Fatturato totale, numero di spettatori, dati di serie temporali.
+
+Approssimazione:
+
+Quando usarlo: Si eseguono spesso calcoli onerosi e la precisione esatta non è la massima priorità.
+
+Pro: Meno scritture sul database, non è necessario modificare lo schema.
+
+Contro: Non rappresenta numeri esatti, implementazione nell'applicazione.
+
+Esempi: Contatore della popolazione, contatore delle visite dei siti web.
+
+Document Versioning:
+
+Quando usarlo: Necessità di interrogare stati precedenti dei dati o funzionalità di controllo versioni.
+
+Pro: Facile da implementare, nessun impatto sulle prestazioni delle query sull'ultima revisione.
+
+Contro: Raddoppia il numero di scritture, le query devono puntare alla collezione corretta.
+
+Esempi: Settori finanziari, aziende sanitarie (storico delle polizze).
+
+Schema Versioning:
+
+Quando usarlo: Modifiche frequenti allo schema dei dati, necessità di coesistenza di vecchie e nuove versioni.
+
+Pro: Nessun tempo di inattività, controllo della migrazione dello schema.
+
+Contro: Potrebbero essere necessari due indici per lo stesso campo durante la migrazione.
+
+Esempi: Profilo del cliente.
+
+Preallocazione:
+
+Quando usarlo: La struttura del documento e l'applicazione devono semplicemente inserire i dati in slot predefiniti.
+
+Pro: Semplificazione della progettazione quando la struttura è nota in anticipo.
+
+Contro: Semplicità rispetto alle prestazioni (dimensioni su disco).
+
+Esempi: Strutture bidimensionali (es. posti a sedere in un teatro), sistemi di prenotazione.
+
+XXI. ELK Intro
+A. Introduzione a ELK (Elastic Stack)
+Definizione: Acronimo per Elasticsearch, Logstash e Kibana. Una suite di strumenti open source per la ricerca, l'analisi e la visualizzazione di dati in tempo reale.
+
+Scopo: Centralizzare, analizzare e visualizzare grandi volumi di dati provenienti da diverse fonti.
+
+Componenti:
+
+Elasticsearch: Motore di ricerca e analisi distribuito.
+
+Logstash: Pipeline di elaborazione dati (ingestione, trasformazione).
+
+Kibana: Strumento di visualizzazione e dashboard.
+
+Utilizzo: Monitoraggio di applicazioni, analisi di log, sicurezza, analisi di business intelligence, ricerca full-text.
+
+B. Vantaggi
+Scalabilità: Progettato per scalare orizzontalmente per gestire grandi volumi di dati.
+
+Velocità: Ricerca e analisi in tempo reale.
+
+Flessibilità: Gestisce dati strutturati e non strutturati.
+
+Open Source: Ampia comunità e risorse disponibili.
+
+Ecosistema ricco: Include altri strumenti come Beats (agenti leggeri per l'invio di dati).
+
+C. Flusso di Lavoro Tipico
+Raccolta dati: Beats (es. Filebeat, Metricbeat) o Logstash raccolgono dati da varie fonti.
+
+Elaborazione dati: Logstash trasforma e arricchisce i dati.
+
+Indicizzazione: I dati vengono inviati a Elasticsearch per l'indicizzazione.
+
+Ricerca e Analisi: Elasticsearch indicizza e rende i dati ricercabili.
+
+Visualizzazione: Kibana crea dashboard interattive e visualizzazioni basate sui dati in Elasticsearch.
+
+XXII. Elasticsearch
+A. Introduzione a Elasticsearch
+Definizione: Un motore di ricerca e analisi distribuito, open source, basato su Apache Lucene.
+
+Natura: Database NoSQL orientato ai documenti, ma ottimizzato per la ricerca full-text e l'analisi.
+
+Architettura: Distribuito per alta disponibilità e scalabilità orizzontale.
+
+B. Concetti Chiave
+Documento: L'unità base di informazione in Elasticsearch, un record in formato JSON.
+
+Indice (Index): Una collezione di documenti con proprietà simili. Simile a un "database" in un contesto relazionale.
+
+Tipo (Type): (Deprecato nelle versioni recenti, ma presente in documentazione più vecchia). Rappresentava un raggruppamento logico di documenti all'interno di un indice.
+
+Shards: Un indice è diviso in più shards, che sono unità indipendenti di dati. Ogni shard è un'istanza di Lucene.
+
+Primary Shard: Lo shard originale.
+
+Replica Shard: Copie dei primary shards per alta disponibilità e bilanciamento del carico di lettura.
+
+Node: Un singolo server che fa parte di un cluster Elasticsearch.
+
+Cluster: Un insieme di uno o più nodi che lavorano insieme per indicizzare e cercare i dati.
+
+Mapping: Definisce come un documento e i suoi campi sono memorizzati e indicizzati.
+
+C. Funzionalità Principali
+Ricerca Full-Text: Capacità di eseguire ricerche complesse e veloci su grandi volumi di testo.
+
+Analisi in Tempo Reale: I dati sono disponibili per la ricerca e l'analisi quasi istantaneamente dopo l'indicizzazione.
+
+Scalabilità Orizzontale: Aggiunta di nodi al cluster per aumentare capacità e prestazioni.
+
+Alta Disponibilità: Replicazione degli shards per tolleranza ai guasti.
+
+Aggregazioni: Potenti funzionalità per calcolare metriche e statistiche sui dati (es. conteggi, somme, medie, percentili).
+
+Supporto JSON: Utilizza JSON per i documenti e le API.
+
+D. Casi d'Uso
+Ricerca di log: Analisi di log di applicazioni e server.
+
+Ricerca di siti web: Motori di ricerca interni per e-commerce, portali.
+
+Business Intelligence: Analisi di dati per insight di business.
+
+Monitoraggio: Monitoraggio di infrastrutture e applicazioni.
+
+Sicurezza: Analisi di eventi di sicurezza (SIEM).

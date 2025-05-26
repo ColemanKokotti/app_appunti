@@ -5,7 +5,17 @@ abstract class BaseFormatter {
         line.startsWith('V.') || line.startsWith('VI.') ||
         line.startsWith('VII.') || line.startsWith('VIII.') ||
         line.startsWith('IX.') || line.startsWith('X.') ||
-        line.startsWith('XI.') || line.startsWith('XII.');
+        line.startsWith('XI.') || line.startsWith('XII.')||
+        line.startsWith('XIII.') || line.startsWith('XIV.')||
+        line.startsWith('XV.') || line.startsWith('XVI.')||
+        line.startsWith('XVII.') || line.startsWith('XVIII.')||
+        line.startsWith('XIX.') || line.startsWith('XX.')||
+        line.startsWith('XXI.') || line.startsWith('XXII.')||
+        line.startsWith('XXIII.') || line.startsWith('XXIV.')||
+        line.startsWith('XXV.') || line.startsWith('XXVI.')||
+        line.startsWith('XXVII.') || line.startsWith('XXVIII.')||
+        line.startsWith('XXIX.') || line.startsWith('XXX.')
+    ;
   }
 
   static bool isCodeBlockStart(String trimmedLine) {
