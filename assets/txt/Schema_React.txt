@@ -1,1 +1,348 @@
 Schema React
+
+I. React Native
+A. Concetti Introduttivi
+Cos'è React Native?
+
+Framework JavaScript open-source per la costruzione di applicazioni mobili native per iOS e Android da un'unica codebase.
+Sviluppato da Facebook (ora Meta).
+Utilizza React per costruire le interfacce utente, ma renderizza componenti nativi anziché elementi web.
+Differenze tra ReactJS e React Native:
+
+Target: ReactJS per il web (browser), React Native per applicazioni mobili native.
+Componenti: ReactJS usa elementi HTML (div, span, p); React Native usa componenti nativi (View, Text, Image, ScrollView, Button, TextInput).
+Styling: ReactJS usa CSS; React Native usa JavaScript per lo styling (simile a CSS-in-JS), spesso con StyleSheet.create().
+DOM: ReactJS interagisce con il Virtual DOM e il DOM del browser; React Native interagisce con le API native della piattaforma mobile.
+Performance: Entrambi offrono ottime performance, ma React Native è nativo, mentre ReactJS è basato su browser.
+Vantaggi di React Native:
+
+Single Codebase: Possibilità di condividere gran parte del codice tra iOS e Android.
+Native Performance: Le app sono compilate in codice nativo, offrendo prestazioni e user experience simili a quelle delle app native pure.
+Hot Reloading / Fast Refresh: Sviluppo rapido con aggiornamenti in tempo reale dell'interfaccia utente durante lo sviluppo.
+Vasta Comunità: Grande comunità e ecosistema di librerie.
+Riutilizzo di Conoscenze: Gli sviluppatori React possono transizionare facilmente a React Native.
+B. Componenti Fondamentali di React Native
+-View:
+
+Il blocco di costruzione più fondamentale per l'UI.
+Equivalente a un div HTML.
+Supporta layout con Flexbox, styling, e gestione del tocco.
+
+-Text:
+
+Utilizzato per visualizzare testo.
+L'unico modo per visualizzare testo in React Native. Il testo non può essere all'interno di un View direttamente.
+Image:
+
+Componente per visualizzare immagini (locali o remote).
+Richiede dimensioni esplicite (width, height) o flex per il layout.
+
+-TextInput:
+
+Componente per l'input di testo dall'utente.
+Supporta tastiere personalizzate, placeholder, gestione degli eventi.
+-ScrollView:
+
+Container che permette lo scorrimento del contenuto.
+Utile per contenuti che superano le dimensioni dello schermo.
+-FlatList:
+
+Componente ottimizzato per il rendering di liste di dati grandi e scrollabili in modo efficiente.
+Renderizza solo gli elementi visibili per ottimizzare le performance.
+Richiede le props data (l'array di dati) e renderItem (una funzione per renderizzare ogni elemento).
+-Button:
+
+Componente base per un pulsante nativo. Limitato nello styling.
+-TouchableOpacity / Pressable:
+
+Wrapper generici che rendono qualsiasi componente sensibile al tocco.
+TouchableOpacity diminuisce l'opacità al tocco.
+Pressable offre un controllo più granulare sugli stati di pressione.
+C. Styling in React Native
+StyleSheet.create():
+
+Metodo consigliato per definire gli stili in React Native.
+Simile ai CSS Objects.
+StyleSheet.create() ottimizza gli stili rendendoli immutabili e performanti.
+Gli stili vengono applicati tramite la prop style.
+Proprietà di Stile:
+
+La maggior parte delle proprietà CSS sono supportate, ma in camelCase (es. backgroundColor, fontSize).
+Dimensioni: Si usano "unità logiche" che scalano con la densità dei pixel (simili a dp in Android o pt in iOS).
+-Flexbox: React Native utilizza Flexbox per il layout (di default flexDirection: 'column').
+Proprietà specifiche di React Native: elevation (ombre su Android), shadow properties (ombre su iOS).
+-Styling Inline:
+
+Possibile applicare stili direttamente con un oggetto JavaScript alla prop style.
+Meno performante per stili complessi o ripetuti.
+D. Navigazione
+-React Navigation:
+La libreria standard per la navigazione nelle app React Native.
+Fornisce navigazioni native per diverse tipologie (stack, tab, drawer).
+Componenti chiave: NavigationContainer, createStackNavigator, createBottomTabNavigator, createDrawerNavigator.
+E. Accesso alle API Native
+Modulo Nativo:
+
+Permette di accedere a funzionalità native specifiche della piattaforma (es. sensori, fotocamera, Bluetooth) che non sono esposte direttamente da React Native.
+Richiede la scrittura di codice Java/Kotlin per Android e Objective-C/Swift per iOS.
+React Native offre un "bridge" per comunicare tra JavaScript e il codice nativo.
+Librerie di Terze Parti:
+
+Esistono molte librerie che incapsulano l'accesso a funzionalità native complesse, rendendo la vita più facile agli sviluppatori (es. react-native-camera, @react-native-community/geolocation).
+III. TypeScript
+A. Concetti Fondamentali
+Cos'è TypeScript?
+
+Superset di JavaScript che aggiunge la tipizzazione statica.
+Compila in JavaScript puro (ogni codice JavaScript valido è anche codice TypeScript valido).
+Sviluppato e mantenuto da Microsoft.
+Vantaggi di TypeScript:
+
+Rilevamento Errori in Fase di Sviluppo: Cattura errori comuni (es. typos, tipi sbagliati) prima che il codice venga eseguito.
+Migliore Manutenzione: Il codice è più leggibile e facile da capire, specialmente in team grandi o progetti complessi.
+Autocompletamento e Refactoring: Migliora l'esperienza di sviluppo con IDE e editor di codice (VS Code ha un supporto eccellente).
+Documentazione Implicita: I tipi fungono da documentazione per le funzioni e le interfacce.
+Scalabilità: Aiuta a gestire la complessità in progetti di grandi dimensioni.
+Compilazione (Transpilation):
+
+Il codice TypeScript (.ts o .tsx) viene "traspilato" in JavaScript (.js) da un compilatore (generalmente tsc o tramite Webpack/Babel con plugin).
+Questo processo rimuove tutte le informazioni sui tipi.
+B. Tipi Fondamentali
+Tipi Primitivi:
+
+-number:
+
+let age: number = 30;
+
+-string:
+
+let name: string = "Alice";
+
+-boolean:
+
+let isActive: boolean = true;
+
+-null:
+
+let n: null = null;
+
+-undefined:
+
+ let u: undefined = undefined;
+
+-symbol: Per creare simboli unici.
+-bigint: Per numeri interi molto grandi.
+
+Tipi di Collezione:
+
+Array:
+
+let numbers: number[] = [1, 2, 3];
+
+o
+
+let names: Array<string> = ["A", "B"];
+
+Tuple: Array con un numero fisso di elementi e tipi specifici per ogni elemento.
+
+let person: [string, number] = ["Bob", 25];
+
+any:
+
+Tipo che disabilita il controllo dei tipi per una variabile.
+Da usare con cautela, si perde il vantaggio della tipizzazione.
+
+let data: any = "hello"; data = 123;
+
+unknown:
+
+Un tipo più sicuro di any. Una variabile di tipo unknown deve essere "ristretta" (es. con un controllo typeof) prima di poter essere utilizzata.
+let value: unknown = "test"; if (typeof value === "string") { console.log(value.length); }
+void:
+
+Usato per funzioni che non ritornano alcun valore.
+function log(): void { console.log("Hello"); }
+never:
+
+Usato per funzioni che non ritornano mai (es. lanciano un errore o entrano in un loop infinito).
+function error(message: string): never { throw new Error(message); }
+C. Interfacce e Tipi Complessi
+Interface:
+
+Definisce la "forma" di un oggetto.
+Utile per validare che un oggetto abbia determinate proprietà e metodi.
+Possono essere estese (ereditate) da altre interfacce.
+Possono dichiarare proprietà opzionali (?) e proprietà di sola lettura (readonly).
+Esempio:
+
+
+interface User {
+  id: number;
+  name: string;
+  email?: string; // Opzionale
+  readonly age: number;
+}
+let user: User = { id: 1, name: "John", age: 30 };
+
+
+Type Aliases (Aliasi di Tipo):
+
+Crea un nuovo nome per un tipo esistente o una combinazione di tipi.
+Possono essere usati per tipi primitivi, unioni, tuple, funzioni e oggetti.
+Utili per rendere il codice più leggibile e per definire tipi complessi riutilizzabili.
+Non possono essere estesi o implementati come le interfacce, ma possono usare intersezioni.
+Esempio:
+
+type ID = string | number; // Tipo unione
+type Point = { x: number; y: number }; // Tipo oggetto
+type Callback = (data: string) => void;
+
+
+Union Types (Tipi Unione):
+
+Una variabile può avere uno tra diversi tipi.
+Indicato con il simbolo |.
+Esempio: let id: number | string = 10; id = "abc";
+Intersection Types (Tipi Intersezione):
+
+Una variabile deve avere tutti i tipi specificati.
+Indicato con il simbolo &.
+Esempio:
+
+
+interface HasName { name: string; }
+interface HasAge { age: number; }
+type Person = HasName & HasAge;
+let p: Person = { name: "Mike", age: 40 };
+
+
+D. Funzioni in TypeScript
+Tipizzazione dei Parametri e del Valore di Ritorno:
+
+Si specificano i tipi per gli argomenti e per il valore che la funzione ritorna.
+
+function add(a: number, b: number): number { return a + b; }
+
+Parametri Opzionali e Default:
+
+Parametri opzionali:
+
+function greet(name: string, greeting?: string): void { ... }
+
+Parametri con valori di default:
+
+function multiply(a: number, b: number = 2): number { return a * b; }
+
+Rest Parameters:
+
+function sumAll(...numbers: number[]): number { return numbers.reduce((acc, num) => acc + num, 0); }
+
+Overloads di Funzione:
+
+Definire multiple firme per una funzione, permettendo tipi di input/output diversi.
+
+E. Classi in TypeScript
+Sintassi Classica:
+
+Supporta le classi ES6 (class, constructor, extends, super).
+Aggiunge modificatori di accesso (public, private, protected).
+public: accessibile ovunque.
+private: accessibile solo all'interno della classe.
+protected: accessibile all'interno della classe e delle classi derivate.
+Implementazione di Interfacce:
+
+Le classi possono implementare interfacce, garantendo che aderiscano a una certa struttura.
+class MyClass implements MyInterface { ... }
+
+F. Generics
+Cos'è un Generic?
+
+Permettono di scrivere componenti riutilizzabili che possono lavorare con diversi tipi, mantenendo la sicurezza dei tipi.
+Si usano tipi parametrizzati, solitamente rappresentati da <T> (Type), <K> (Key), <V> (Value), ecc.
+Esempi:
+
+Funzioni Generiche:
+
+function identity<T>(arg: T): T { return arg; }
+
+let output = identity<string>("hello");
+
+Interfacce Generiche:
+
+interface Box<T> { value: T; }
+
+let numberBox: Box<number> = { value: 123 };
+
+
+Classi Generiche:
+
+
+class GenericList<T> { private items: T[] = []; add(item: T) { this.items.push(item); } }
+
+
+G. Configurazione del Compilatore (tsconfig.json)
+compilerOptions:
+-target: Versione di JavaScript in cui il codice verrà compilato (es. es5, es2016, esnext).
+-module: Sistema di moduli (es. commonjs, es2015, esnext).
+-jsx: Come il JSX deve essere gestito (es. react, react-native, preserve).
+-strict: Abilita tutti i controlli di tipo stretti (raccomandato).
+-esModuleInterop: Abilita l'interoperabilità tra moduli CommonJS e ES Modules.
+-skipLibCheck: Salta il controllo dei tipi nei file di dichiarazione delle librerie.
+-outDir: Directory di output per i file JavaScript compilati.
+-rootDir: Directory radice dei file TypeScript.
+-lib: Librerie built-in che TypeScript deve includere per i controlli di tipo (es. dom, es2015).
+
+H. TypeScript con React e React Native
+
+Estensioni dei File:
+
+Componenti React/React Native: .tsx (per file che contengono JSX).
+Altri file TypeScript: .ts.
+Tipizzazione di Props e State:
+
+Le interfacce o i tipi alias sono usati per definire la forma delle props e dello stato.
+Per Componenti a Funzione:
+
+
+interface MyComponentProps {
+  name: string;
+  age: number;
+  onClick: (id: string) => void;
+}
+const MyComponent: React.FC<MyComponentProps> = ({ name, age, onClick }) => {
+  const [count, setCount] = useState<number>(0);
+  return (
+    <View>
+      <Text>Name: {name}, Age: {age}</Text>
+      <Button title="Click Me" onPress={() => onClick("someId")} />
+    </View>
+  );
+};
+
+
+Per Componenti a Classe:
+
+interface MyClassComponentProps {
+  title: string;
+}
+interface MyClassComponentState {
+  isEnabled: boolean;
+}
+class MyClassComponent extends React.Component<MyClassComponentProps, MyClassComponentState> {
+  state: MyClassComponentState = {
+    isEnabled: false,
+  };
+  render() {
+    return <Text>{this.props.title} - {this.state.isEnabled ? "Enabled" : "Disabled"}</Text>;
+  }
+}
+
+
+Eventi Tipizzati:
+
+React e React Native forniscono tipi per gli eventi (es. React.MouseEvent, React.ChangeEvent, NativeSyntheticEvent).
+onPress in React Native: (event: GestureResponderEvent) => void;
+Librerie di Terze Parti con Tipi:
+
+Molte librerie popolari forniscono i propri file di dichiarazione dei tipi (.d.ts).
+Se una libreria non ha i tipi incorporati, è possibile installarli da @types/nome-libreria (dal repository DefinitelyTyped).

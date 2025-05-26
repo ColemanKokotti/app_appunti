@@ -14,7 +14,7 @@ class LanguageMapper {
       case 'Flutter':
         return 'Dart';
       case 'Web':
-        return 'HTML/CSS/JavaScript';
+        return 'web';
     case 'XML':
     return 'XML';
     case 'Compose':

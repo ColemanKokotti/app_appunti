@@ -29,7 +29,7 @@ class DartHighlighter {
         caseSensitive: true);
 
     final RegExp typePattern = RegExp(
-        r'\b(bool|double|int|num|String|List|Map|Set|Future|Stream)\b',
+        r'\b(bool|double|int|num|String|List|Map|Set|Future|Stream|MaterialApp|Navigator|@override|StreamBuilder)\b',
         caseSensitive: true);
 
     final RegExp stringPattern = RegExp(r'"[^"]*"|\''[^\']*\'');

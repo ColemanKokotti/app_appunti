@@ -25,7 +25,7 @@ class SyntaxHighlighter {
         return BashHighlighter.highlightBash(code);
       case 'dart':
         return DartHighlighter.highlightDart(code);
-      case 'html/css/javascript':
+      case 'web':
         return WebHighlighter.highlightWeb(code);
       default:
         return GenericHighlighter.highlightGeneric(code);
@@ -47,7 +47,7 @@ class SyntaxHighlighter {
     } else if (filename.contains('Schema_Flutter')) {
       return 'dart';
     } else if (filename.contains('Schema_Web')) {
-      return 'html/css/javascript';
+      return 'web';
     } else {
       return 'generic';
     }

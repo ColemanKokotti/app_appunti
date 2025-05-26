@@ -1,1 +1,1049 @@
 Schema Flutter
+I. Basi di Dart
+La funzione main: Ogni applicazione Dart ha una funzione di punto di ingresso chiamata main() che viene invocata all'avvio del progetto.
+Esempio di base:
+
+
+void main() {
+  print('Hello, World!');
+}
+
+
+Variabili:
+Possono essere dichiarate usando la parola chiave var o specificando il tipo della variabile.
+
+
+var name = "Pippo"; è equivalente a String name = "Pippo";
+
+
+Possono essere dichiarate e assegnate in istruzioni diverse.
+Esempio:
+
+
+var name;
+name = "Pippo";
+
+
+Tipi di Base: Dart include diversi tipi predefiniti, tra cui:
+
+-int: accetta solo valori interi.
+-double: accetta solo valori in virgola mobile.
+-num: accetta sia valori interi che in virgola mobile.
+-String: per testo.
+-bool: per valori booleani.
+-dynamic: accetta qualsiasi tipo di oggetto.
+
+Collezioni:
+
+-List<T>: Una lista ordinata di elementi. Esempio: List<int> list = [1, 2, 3];.
+-Set<T>: Una collezione non ordinata di elementi unici. Esempio: Set<String> ingredients = {"flour", "eggs", "milk"};.
+-Map<K, V>: Una collezione di coppie chiave-valore. Esempio: Map<String, int> movieYears = {"Matrix": 1999, "The Lion King": 1994};.
+-Variabili final: Una variabile che non cambia mai dopo la sua inizializzazione dovrebbe essere dichiarata usando la parola chiave final.
+
+Esempio:
+
+final count = 0; //Se si tenta di riassegnare
+count = 1;, //si otterrà un errore di compilazione.
+
+
+Variabili const: Un valore costante, definito in fase di compilazione, dovrebbe essere dichiarato usando la parola chiave const.
+
+Esempio:
+
+const speedOfLight = 299792458; //Se si tenta di riassegnare
+speedOfLight = 1;  //si otterrà un errore di compilazione.
+
+
+Funzioni:
+In Dart, le funzioni sono oggetti di tipo Function. Questo significa che possono essere assegnate a variabili o passate come argomenti ad altre funzioni.
+
+Esempio:
+
+
+int add(int a, int b) {
+  return a + b;
+}
+add(2, 3); // Chiamata della funzione [cite: 245]
+
+Le funzioni che contengono una sola espressione possono essere scritte con la sintassi =>.
+
+Esempio:
+
+
+int add(int a, int b) => a + b;.
+
+
+Parametri Nominativi:
+I parametri racchiusi tra parentesi graffe {} diventano parametri nominativi. Quando la funzione viene chiamata, i nomi dei parametri devono essere specificati.
+
+Esempio: void login({String? username, String? password}) { /*do stuff*/ }.
+Chiamata: login(username: "Pippo", password: "123").
+Una funzione può avere un numero qualsiasi di parametri posizionali obbligatori, seguiti da un numero qualsiasi di parametri nominativi.
+Esempio: void signUp(String username, String password, {int? age}) { /*do stuff*/ }.
+Chiamata: signUp("Pippo", "123", age: 20).
+I parametri nominativi devono essere nullable (con ?) o required. Un parametro non nullo e non required non è accettato dal compilatore.
+
+Valido: void signUp({String? username, String? password}).
+Valido: void signUp({required String username, required String password}).
+Non valido: void signUp({String username, String password}).
+Tipi Nullable e Non-nullable:
+Per permettere a una variabile di tipo String di accettare qualsiasi stringa o il valore null, si aggiunge un punto interrogativo ? dopo il nome del tipo.
+Esempio: String? password può contenere una stringa o essere null.
+Esempio di utilizzo:
+
+void connectToWiFi(String networkName, String? password) {
+  // networkName deve essere una String
+  // password può essere una String o null
+}
+connectToWiFi("MyWifi", "12345678");
+connectToWiFi("MyWifi", null);
+
+
+Accesso Condizionale alle Proprietà (?.): Se non si è sicuri che un'espressione con un tipo nullable sia null o meno, si può usare l'operatore di accesso condizionale ai membri (?.) per eseguire condizionalmente il resto dell'espressione.
+Esempio:
+
+
+int ? stringLength(String? myString) {
+  return myString?.length; // Restituisce un valore int se myString non è null, altrimenti null [cite: 259]
+}
+
+
+Operatore di Null-Coalescing (??): Se si desidera fornire un valore alternativo quando l'espressione restituisce null, è possibile specificare un'altra espressione da valutare e restituire con l'operatore ??.
+
+Esempio:
+
+
+int stringLength(String? myString) {
+  return myString?.length ?? -1; // Restituisce un valore int se myString non è null, altrimenti -1 [cite: 261]
+}
+
+Operatore di Asserzione Null (!): Se si è sicuri che un'espressione con un tipo nullable non sia null, è possibile usare l'operatore di asserzione null (!) per far sì che Dart la tratti come non-nullable. Aggiungendo ! subito dopo l'espressione, si indica a Dart che il valore non sarà null ed è sicuro assegnarlo a una variabile non-nullable.
+
+Attenzione: Se si indica al compilatore che la variabile non è null ma per qualche motivo lo è, l'app andrà in crash.
+Esempio:
+
+
+int stringLength(String? myString) {
+  if (myString == null) return -1;
+  return myString!.length;
+}
+
+Operatori Aritmetici:
++: Addizione
+-: Sottrazione
+*: Moltiplicazione
+/: Divisione
+%: Resto della divisione intera (modulo)
+Operatori di Incremento e Decremento (Prefissi e Postfissi):
+++var: var = var + 1 (il valore dell'espressione è var + 1).
+Esempio: int a = 0; int b; b = ++a; Risultato: a è 1, b è 1.
+var++: var = var + 1 (il valore dell'espressione è var).
+Esempio: int a = 0; int b; b = a++; Risultato: a è 1, b è 0.
+--var: var = var - 1 (il valore dell'espressione è var - 1).
+var--: var = var - 1 (il valore dell'espressione è var).
+Operatori di Uguaglianza e Relazionali:
+==: Uguale
+!=: Diverso
+>: Maggiore di
+<: Minore di
+>=: Maggiore o uguale a
+<=: Minore o uguale a
+Espressioni Condizionali (condition ? expr1 : expr2):
+Se condition è vera, valuta expr1 (e restituisce il suo valore); altrimenti, valuta e restituisce il valore di expr2.
+Esempio:
+
+var visibility = isPublic ? 'public' : 'private';.
+
+
+-if e else: Dart supporta le istruzioni if con clausole else opzionali.
+Esempio:
+
+
+if (isRaining()) {
+  you.bringRainCoat();
+} else if (isSnowing()) {
+  you.wearJacket();
+} else {
+  car.putTopDown();
+}
+
+-switch: Le istruzioni switch in Dart confrontano costanti intere, stringhe o costanti in fase di compilazione usando ==.
+Ogni clausola case non vuota termina con un'istruzione break, continue, throw o return.
+È possibile usare una clausola default per eseguire codice quando nessuna clausola case corrisponde.
+Esempio:
+
+
+switch (weather()) {
+  case 'RAIN':
+    you.bringRainCoat();
+    break;
+  case 'SNOW':
+    you.wearJacket();
+    break;
+  default:
+    car.putTopDown();
+}
+
+
+Cicli for:
+Ciclo for standard:
+
+
+var message = StringBuffer('Dart is fun');
+for (var i = 0; i < 5; i++) {
+  message.write('!');
+}
+
+
+Ciclo for-in (per Iterable): Se l'oggetto su cui si sta iterando è un Iterable (come List o Set) e non è necessario conoscere il contatore dell'iterazione corrente, si può usare la forma for-in.
+
+
+for (final candidate in candidates) {
+  candidate.interview();
+}
+
+
+while e do-while:
+Un ciclo while valuta la condizione prima del ciclo.
+
+
+while (!isDone()) {
+  doSomething();
+}
+
+
+Un ciclo do-while valuta la condizione dopo il ciclo.
+
+
+do {
+  printLine();
+} while (!atEndOfPage());
+
+
+break: Usato per interrompere un ciclo.
+Esempio:
+
+
+while (true) {
+  if (shutDownRequested()) break;
+  processIncomingRequests();
+}
+
+
+-continue: Usato per saltare all'iterazione successiva del ciclo.
+Esempio:
+
+
+for (int i = 0; i < candidates.length; i++) {
+  var candidate = candidates[i];
+  if (candidate.yearsExperience < 5) {
+    continue;
+  }
+  candidate.interview();
+}
+
+
+II. Programmazione Asincrona
+Cosa significa programmazione asincrona: È una tecnica che permette a un programma di eseguire più operazioni contemporaneamente senza attendere che un'attività termini prima di passare alla successiva.
+Istruzioni Sincrone: Vengono eseguite una alla volta, in un ordine specifico e in modo bloccante. Mentre un'operazione è in esecuzione, quelle successive sono bloccate.
+Operazioni Lunghe: Alcune operazioni possono richiedere tempo per essere completate, come il recupero di dati dalla rete, che può bloccare l'app per secondi. Altri esempi includono la scrittura su un database o la lettura da un file.
+
+Future:
+La classe Dart Future<T> rappresenta il risultato di un'operazione asincrona. Rappresenta una "promessa" di un valore futuro.
+
+Il tipo del valore è specificato usando < > (e.g., Future<bool> isValid;).
+Uno Future può avere due stati: non completato (uncompleted) e completato (completed).
+Non completato: Quando si chiama una funzione asincrona, restituisce un Future non completato, in attesa che l'operazione asincrona termini o generi un errore.
+Completato: Se l'operazione asincrona ha successo, il Future si completa con un valore. Altrimenti, si completa con un errore.
+Funzioni Asincrone: Di solito un'operazione a lunga esecuzione è rappresentata da una funzione che restituisce un Future.
+Esempio:
+
+
+Future<List<News>> fetchLatestNews() {
+  // Questa funzione impiega del tempo per essere completata.
+  // Se non si verificano errori, restituisce una lista di notizie
+  // Altrimenti, restituisce un'Eccezione
+}
+
+
+Creazione di un Future: Nella maggior parte dei casi non si crea direttamente un Future, ma si utilizzano funzioni che lo restituiscono. Tuttavia, ci sono modi per crearne uno manualmente.
+Future.value("MyValue"): crea un Future<String> che si completa immediatamente con il valore specificato.
+Future<String>.error(Exception());: crea un Future<String> che si completa con un errore.
+Future.delayed(Duration(seconds: 2), () => "MyValue");: crea un Future<String> che si completa dopo un certo ritardo.
+Future.wait([futureA, futureB]);: attende il completamento di una lista di Future e restituisce una lista dei loro valori.
+Esecuzione di una funzione Future:
+Si può usare la funzione then(). Accetta un callback onValue obbligatorio e un callback onError opzionale.
+
+
+getFutureValue().then((value) => print(value),
+                      onError: (error) => print(error));
+
+
+Importante: Chiamare then() su un Future non blocca l'esecuzione del programma. Le istruzioni scritte subito dopo vengono eseguite immediatamente, senza attendere il completamento del Future.
+Parola chiave await: Permette di attendere il completamento di un Future prima di procedere con le righe di codice successive.
+Può essere usata solo nelle funzioni asincrone.
+Esempio:
+
+
+void main() async {
+  var ids = await fetchLatestNewsIds(); // Qui ids sono disponibili [cite: 319, 323]
+}
+Future<List<int>> fetchLatestNewsIds() {
+  return Future.value([1, 2, 3]); // Questo valore è automaticamente wrappato in un Future [cite: 320]
+}
+
+
+Parola chiave async: Per rendere una funzione asincrona, si deve aggiungere la parola chiave async prima del corpo della funzione. async avvolge automaticamente il risultato in un Future, quindi non è necessario restituire manualmente un Future.
+
+Esempio:
+
+
+Future<List<int>> fetchLatestNewsIds() async {
+  return [1, 2, 3]; // Questo valore è automaticamente avvolto in un Future [cite: 326]
+}
+
+
+Gestione degli errori: Dato che un Future può completarsi con un valore o con un errore, è necessario gestire i possibili errori quando si attende un Future.
+Si usa un blocco try-catch.
+Esempio:
+
+
+void main() async {
+  try {
+    var ids = await fetchLatestNewsIds(); // Qui ids sono disponibili [cite: 329]
+  } catch (err) {
+    print('Qualcosa è andato storto: $err');
+  }
+}
+
+
+Rispondere a eventi asincroni nell'UI (FutureBuilder): Flutter ha un widget chiamato FutureBuilder<T> che prende un Future, un valore iniziale (opzionale) e un costruttore (builder) che viene chiamato ogni volta che lo stato del Future cambia (snapshots). Il builder può reagire ai diversi stati e deve restituire un Widget.
+
+Esempio:
+
+
+FutureBuilder <String>(
+  future: someFutureFunction(),
+  initialData: "",
+  builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+    // Controlla lo stato di AsyncSnapshot per mostrare il widget giusto [cite: 332]
+  }
+)
+
+III. Dipendenze e Librerie
+Un package Dart è, al minimo, una directory contenente un file pubspec.
+Un package può anche contenere dipendenze (elencate nel pubspec), librerie Dart, app, risorse, test, immagini ed esempi.
+I package sono usati per creare moduli che possono essere facilmente condivisi tra applicazioni e possono essere pubblicati e condivisi con altri sviluppatori.
+Un plugin è un tipo particolare di package che aggiunge funzionalità specifiche della piattaforma a un'app Flutter.
+I package plugin possono essere scritti per Android (usando Kotlin o Java), iOS (usando Swift o Objective-C), web, macOS, Windows, Linux, o qualsiasi combinazione di essi.
+Ad esempio, un plugin potrebbe fornire alle app Flutter la capacità di usare la fotocamera di un dispositivo.
+Dove trovare un package:
+I package Dart e Flutter sono pubblicati su pub.dev.
+Su questo sito è possibile cercare package, filtrando i risultati per le piattaforme supportate.
+Ogni package ha un punteggio (score) e un numero di "mi piace" (likes count) per avere una panoramica di quanto quel package sia utilizzato dalla comunità.
+Ogni package ha (o dovrebbe avere) le informazioni di installazione e del codice di esempio che spiega come usarlo.
+Come usare un package:
+Per usare un package, è necessario aggiungerlo come dipendenza nel file pubspec.yaml nella sezione dependencies.
+Esempio:
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^0.13.5
+
+
+Una volta aggiunta la dipendenza nel pubspec, è necessario eseguire il comando flutter pub get per far sì che Flutter installi il package.
+Quando pub get è terminato, è possibile importare e usare le classi esposte dal package nel proprio codice.
+IV. Utilizzo di JSON in Dart
+Serializzazione/Deserializzazione:
+La serializzazione (o encoding) significa convertire una struttura dati in una stringa.
+La deserializzazione (o decoding) significa il processo opposto.
+Esempio di classe Dart e sua rappresentazione JSON:
+
+
+class User {
+  final String name;
+  final String email;
+
+  User(this.name, this.email); // Deserializzazione
+
+  // Serializzazione (come JSON)
+  // {
+  //   "name": "John Smith",
+  //   "email": "john@example.com"
+  // }
+}
+
+
+Deserializzazione:
+Può essere fatta in diversi modi.
+Un modo è usare dart:convert per trasformare una stringa JSON in una Map<String, dynamic> e poi trasformare la mappa in una classe Dart.
+Di solito, la conversione dalla mappa alla classe Dart viene fatta nella classe del modello usando un costruttore nominativo.
+Passaggio 1 (da JSON a Map):
+Importare dart:convert.
+Usare jsonDecode(): Map<String, dynamic> userMap = jsonDecode(jsonString);.
+Passaggio 2 (da Map a Classe Dart):
+Definire un costruttore di fabbrica (factory constructor) nella classe Dart che prenda una Map<String, dynamic>.
+Esempio di classe User con costruttore fromJson:
+
+
+
+class User {
+  String? name;
+  String? email;
+
+  User({this.name, this.email});
+
+  User.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    email = json['email'];
+  }
+}
+
+
+Riepilogo Deserializzazione:
+
+
+import 'dart:convert';
+// ...
+Map<String, dynamic> userMap = jsonDecode(jsonString);
+User user = User.fromJson(userMap);
+
+
+Serializzazione:
+Può essere fatta con lo stesso approccio della deserializzazione, invertendo l'ordine delle operazioni.
+Prima si trasforma la classe Dart in una Map<String, dynamic> e poi si può usare dart:convert per trasformare la mappa in una stringa JSON.
+Di solito, la conversione dalla classe Dart alla mappa viene fatta nella classe del modello.
+Passaggio 1 (da Classe Dart a Map):
+Definire un metodo toJson() nella classe Dart che restituisca una Map<String, dynamic>.
+Esempio di classe User con metodo toJson:
+
+
+class User {
+  String? name;
+  String? email;
+
+  User({this.name, this.email});
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['name'] = name;
+    data['email'] = email;
+    return data;
+  }
+}
+
+
+Passaggio 2 (da Map a Stringa JSON):
+Importare dart:convert.
+Usare jsonEncode(): String json = jsonEncode(userMap);.
+Riepilogo Serializzazione:
+
+
+import 'dart:convert';
+// ...
+User user = User(name: "Mario", email: "mario@gmail.com");
+Map<String, dynamic> userMap = user.toJson();
+String json = jsonEncode(userMap);
+
+
+V. Navigazione
+Navigare verso una rotta:
+In Flutter, le schermate e le pagine sono chiamate "rotte". In Android, una rotta è equivalente a un'Activity; in iOS, a un ViewController. In Flutter, una rotta è semplicemente un widget.
+
+
+È possibile creare la propria rotta o usare un MaterialPageRoute, utile perché transita alla nuova rotta usando un'animazione specifica della piattaforma.
+Una volta creata una rotta, la si può passare alla classe Navigator per avviare la navigazione.
+-Navigator.push():
+Per aggiungere una rotta in cima allo stack di rotte, si usa il metodo Navigator.push().
+Esempio:
+
+Navigator.push(context, MaterialPageRoute(builder: (context) => const SecondRoute()));.
+
+-Navigator.pop():
+Per rimuovere la rotta in cima allo stack di rotte, si usa il metodo Navigator.pop().
+In questo modo si torna alla rotta precedente.
+Esempio:
+
+ Navigator.pop(context);.
+
+-Navigator.pushAndRemoveUntil():
+Per mettere una rotta in cima allo stack e rimuovere tutte le rotte precedenti (o fino a quando una rotta non corrisponde a una condizione), si può usare Navigator.pushAndRemoveUntil().
+
+Questo può essere utile quando non si vuole che l'utente torni a quella schermata (ad es. dopo un Login).
+Esempio:
+
+Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const SecondRoute()), (route) => false);. Il parametro (route) => false significa rimuovere tutte le rotte precedenti.
+
+
+-Navigator.popUntil():
+Per rimuovere N rotte in cima allo stack, si può usare Navigator.popUntil().
+
+Rimuove tutte le rotte finché non trova una rotta che corrisponde alla condizione specificata.
+
+Esempio:
+
+
+Navigator.popUntil(context, (route) => route.isFirst);
+
+
+Questo rimuove le rotte fino alla prima rotta nello stack.
+
+Restituire dati con la navigazione:
+
+Se si apre una schermata e si vuole conoscere il risultato di quel flusso, è possibile aggiungere un risultato nel metodo Navigator.pop().
+Esempio:
+
+
+Navigator.pop(context, "Success");.
+
+
+Ascoltare il risultato della navigazione:
+Se si invia un risultato alla schermata precedente, è possibile ascoltarlo trattando Navigator.push() come una normale funzione asincrona.
+Esempio:
+
+
+final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));.
+
+
+Rotte Nominate (Named routes):
+Se è necessario navigare alla stessa schermata in molte parti dell'app, invece di creare una nuova rotta ogni volta, si definisce una rotta nominata e la si usa per la navigazione.
+Il costruttore MaterialApp ha una proprietà routes che consente di definire tutte le rotte dell'app.
+Esempio di definizione delle rotte:
+
+
+MaterialApp(routes: {'/': (context) => const FirstScreen(),
+    '/second': (context) => const SecondScreen(),
+  },
+)
+
+
+-Navigator.pushNamed():
+Per navigare verso una rotta nominata, si può usare il metodo Navigator.pushNamed().
+Esempio:
+
+
+Navigator.pushNamed(context, '/second');.
+
+
+Passare argomenti a una rotta nominata:
+Per passare argomenti durante la navigazione:
+
+
+Navigator.pushNamed(context, "/second", arguments: "Hello!");.
+
+
+Per leggere l'argomento nella schermata di destinazione: final title = ModalRoute.of(context)!.settings.arguments as String;.
+Pulsante Indietro (back button):
+Se si vuole che l'utente possa tornare alla schermata precedente, è necessario fornire un pulsante "indietro".
+Se si usa un AppBar nella schermata, si occuperà automaticamente del pulsante "indietro".
+Altrimenti, è necessario gestirlo manualmente.
+
+VI. Stream
+Concetto di Stream: Uno stream è una sequenza di eventi asincroni. È come una lista di eventi in cui, invece di chiedere il prossimo evento, lo stream ti dice quando un evento è pronto.
+
+A differenza di un Future che rappresenta un singolo evento asincrono, uno Stream è una sequenza di eventi asincroni.
+Classe Stream<T>: Dart ha una classe chiamata Stream<T> che rappresenta la sequenza di eventi. Il tipo del valore è specificato usando < >.
+
+Tipi di Stream: Esistono due tipi principali di Stream: single subscription (a singola sottoscrizione) o broadcast (a trasmissione).
+Stream a Singola Sottoscrizione (Single Subscription Stream):
+Utilizzato quando gli eventi devono essere consegnati nell'ordine corretto e senza perderne alcuno.
+Questo è il tipo di stream che si ottiene quando si legge un file o si riceve una richiesta web.
+Questo tipo di stream può essere ascoltato solo una volta.
+Inizia a emettere eventi solo quando qualcuno si sottoscrive ad esso.
+Stream a Trasmissione (Broadcast Stream):
+È possibile iniziare ad ascoltare tale stream in qualsiasi momento e si ricevono gli eventi che vengono emessi mentre si è in ascolto.
+Più di un listener può ascoltare contemporaneamente, ed è possibile ascoltare di nuovo in seguito dopo aver cancellato una precedente sottoscrizione.
+Inizia a emettere eventi anche se non ci sono sottoscrittori.
+È utile per eventi che possono essere gestiti uno alla volta (ad es. input dell'utente, stati della vista...).
+Creare uno Stream a singola sottoscrizione:
+Nella maggior parte dei casi non si crea direttamente questo tipo di Stream, ma si usano funzioni che lo restituiscono. Tuttavia, ci sono alcuni casi in cui si vuole creare uno Stream nel proprio codice.
+
+-Stream<String>.fromIterable(["A", "B", "C"]) //Crea uno Stream di Stringhe.
+-Stream<String>.error(Exception()) //Crea uno Stream&lt;String> che emette un errore.
+-Stream<int>.periodic(const Duration(seconds: 1), (count) => count);//Crea uno Stream di int che emette un numero ogni secondo.
+
+
+Creare uno Stream con un Controller (StreamController):
+Se si desidera avere maggiore controllo sullo stream, lo si può creare usando uno StreamController.
+-StreamController è una classe che permette di aggiungere eventi allo stream da qualsiasi punto e di chiuderlo.
+Esempio:
+
+
+var controller = StreamController<int>();
+controller.add(1);
+controller.close();
+
+
+Creare uno Stream a trasmissione (Broadcast Stream):
+Se si vuole ascoltare uno stream da più sottoscrittori, lo si può rendere uno stream a trasmissione.
+Esempio:
+
+
+var controller = StreamController<int>.broadcast();
+controller.add(1);
+controller.close();
+
+Ascoltare uno Stream:
+Per ascoltare uno Stream si può usare la funzione listen().
+Accetta un callback onData obbligatorio, un callback onError opzionale, un callback onDone opzionale e un booleano opzionale cancelOnError.
+Esempio:
+
+
+myStream.listen((event) => print(event),
+                onError: (error) => print(error));
+
+
+Importante: Chiamare listen() su uno stream non blocca l'esecuzione del programma. Le istruzioni scritte subito dopo questa riga di codice vengono eseguite immediatamente, senza attendere che lo Stream si completi.
+Operatori di Stream: La classe Stream consente di manipolare gli eventi provenienti da essa usando diversi operatori come:
+-Stream<S> map<S>(S Function(T event) convert);: converte gli eventi in qualcos'altro.
+-Stream<T> skip(int count);: salta i primi N eventi.
+-Stream<T> skipWhile(bool Function(T element) test);: salta gli eventi finché la condizione è vera.
+-Stream<T> take(int count);: prende solo i primi N eventi.
+-Stream<T> takeWhile(bool Function(T element) test);: prende gli eventi finché la condizione è vera.
+-Stream<T> where(bool Function(T event) test);: filtra gli eventi che corrispondono alla condizione.
+
+Rispondere a eventi asincroni nell'UI (StreamBuilder):
+Flutter ha un Widget chiamato StreamBuilder<T> che prende uno stream, un valore iniziale (opzionale) e un builder che viene chiamato ogni volta che lo stato dello Stream cambia (snapshots).
+Il builder può reagire ai diversi stati e deve restituire un Widget.
+Esempio:
+
+
+StreamBuilder<String>(
+  stream: myStream,
+  initialData: "",
+  builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+    // controlla lo stato di AsyncSnapshot per mostrare il widget giusto [cite: 112]
+  }
+)
+
+VII. Animazioni
+Animazioni Implicite:
+Flutter ha alcune versioni animate predefinite di widget comuni.
+Questo tipo di widget può essere usato per ottenere animazioni semplici.
+Questi widget animano automaticamente le modifiche alle loro proprietà. Quando un nuovo stato viene fornito al widget, esso anima la transizione tra uno stato e l'altro (interpolazione).
+Siamo in grado di specificare la durata dell'animazione e la curva di interpolazione utilizzata per l'animazione.
+Esempi di ImplicitlyAnimatedWidget:
+AnimatedAlign: una versione implicitamente animata di Align.
+AnimatedContainer: una versione implicitamente animata di Container.
+AnimatedScale: una versione implicitamente animata di Transform.scale.
+AnimatedRotation: una versione implicitamente animata di Transform.rotate.
+AnimatedSlide: anima implicitamente la posizione di un widget rispetto alla sua posizione normale.
+AnimatedOpacity: una versione implicitamente animata di Opacity.
+AnimatedPadding: una versione implicitamente animata di Padding.
+AnimatedPositioned: una versione implicitamente animata di Positioned.
+AnimatedCrossFade: dissolve a croce tra due figli dati e si anima tra le loro dimensioni.
+AnimatedSwitcher: dissolve da un widget all'altro.
+Esempio di AnimatedOpacity:
+Con un widget animato si può avvolgere qualsiasi widget e specificare una durata dell'animazione.
+Se si usa una variabile (ad es. isTransparent) per passare da un valore all'altro, quando la si cambia usando setState, il widget gestisce automaticamente la transizione.
+Esempio:
+
+
+AnimatedOpacity(
+  opacity: _isTransparent ? 0 : 1,
+  duration: const Duration(seconds: 1),
+  child: const Icon(Icons.star, size: 50)
+)
+
+// Funzione per attivare/disattivare la trasparenza
+_toggleTransparency() {
+  setState(() {
+    _isTransparent = !_isTransparent;
+  });
+}
+
+
+Animazioni Esplicite:
+Quando un widget animato predefinito non è sufficiente, si possono usare le animazioni esplicite.
+Con le animazioni esplicite si ha più controllo sulle proprietà che si vogliono modificare per creare effetti di animazione.
+Usando le animazioni esplicite si possono eseguire più effetti contemporaneamente (ad es. opacità e scala), si può eseguire l'animazione in avanti o indietro e si ha più controllo sui tempi dell'animazione.
+AnimationController:
+Per creare un'animazione esplicita, è necessario usare un AnimationController.
+L'AnimationController è un oggetto che genera un nuovo valore ogni volta che l'hardware è pronto per un nuovo frame.
+L'AnimationController è "giocabile": fornisce controlli per attivare i cambiamenti alla sua proprietà value (tra il suo lowerBound e upperBound) per un periodo di tempo specificato (il parametro duration).
+Una volta attivato, l'AnimationController cambia il valore della sua proprietà nel tempo ad altri valori nell'intervallo tra upperBound e lowerBound. Questo cambiamento di valore nel tempo è ciò che crea l'effetto di animazione.
+
+L'AnimationController può essere utilizzato solo in un widget con stato (StatefulWidget) per diverse ragioni.
+Deve aggiornare lo stato del widget ad ogni frame per ricostruire il widget.
+È necessario disporre il controller quando non è più necessario per evitare memory leaks.
+Uno dei parametri obbligatori per inizializzare un AnimationController è il parametro vsync.
+Il vsync è un TickerProvider, una classe usata per notificare il controller quando un nuovo frame è stato renderizzato.
+Per avere un TickerProvider nel proprio widget, è necessario implementare un mixin disponibile solo nella classe State.
+Dart - mixin:
+I mixin sono un modo per aggiungere funzionalità a una classe. Con un mixin si possono aggiungere metodi e proprietà a classi senza subclassare.
+
+Esempio di mixin:
+
+
+mixin Walk {
+  void walk() => print('Walking');
+}
+mixin Bark {
+  void bark() => print('Barking');
+}
+mixin Fly {
+  void fly() => print('Flying');
+}
+
+
+Per implementare un mixin si usa la parola chiave with. Per implementare più mixin, è necessario separarli con una virgola.
+
+Esempio:
+
+
+class Dog with Walk, Bark {
+  // può usare i metodi walk() e bark()
+}
+class Pigeon with Walk, Fly {
+  // può usare i metodi walk() e fly()
+}
+
+
+A volte si vuole rendere un mixin disponibile solo su certi tipi di classi. In questo caso il mixin Walk può essere implementato solo da una classe che estende Animal.
+
+Esempio:
+
+
+class Animal {
+  void breathe() => print('Breathing');
+}
+mixin Walk on Animal {
+  void walk() => print('Walking');
+}
+
+
+AnimationController - Implementazione:
+Per usare un AnimationController è necessario che il proprio State implementi un mixin TickerProvider.
+Se si ha un singolo AnimationController, si dovrebbe usare SingleTickerProviderStateMixin.
+Se si hanno due o più AnimationController in un singolo State, si dovrebbe usare TickerProviderStateMixin.
+Esempio:
+
+
+class _MyPageState extends State<MyPage> with SingleTickerProviderStateMixin {
+}
+
+
+Inizializzazione di AnimationController:
+Il modo migliore per inizializzare l'AnimationController è nel metodo initState().
+Per farlo, si dovrebbe dichiarare la variabile come late. Una variabile late è una variabile che si è certi verrà inizializzata prima di essere utilizzata.
+
+Esempio:
+
+
+late AnimationController controller;
+
+@override
+void initState() {
+  super.initState();
+  controller = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 2),
+  );
+}
+
+
+Disposizione di AnimationController:
+Importante: disporre sempre l'AnimationController all'interno del metodo del ciclo di vita dispose().
+Esempio:
+
+
+@override
+void dispose() {
+  controller.dispose();
+  super.dispose();
+}
+
+
+Creazione delle animazioni:
+Una volta che si ha un controller, si possono creare le animazioni che dovrebbe eseguire.
+Un'animazione è una transizione tra due valori, da cui il nome Tween.
+Per collegare un'animazione a un controller, è necessario chiamare il metodo animate passando il controller.
+Esempio:
+
+
+late Animation colorAnim;
+late Animation sizeAnim;
+
+@override
+void initState() {
+  super.initState();
+  // ... (inizializzazione controller)
+  final curvedAnimation = CurvedAnimation(
+    parent: controller,
+    curve: Curves.bounceOut // Esempio di curva di interpolazione [cite: 175]
+  );
+  colorAnim = ColorTween(begin: Colors.blue, end: Colors.yellow).animate(curvedAnimation); [cite: 167]
+  sizeAnim = Tween<double>(begin: 100, end: 300).animate(curvedAnimation); [cite: 167]
+}
+
+
+Aggiornamento dell'UI durante l'animazione:
+Nessuna animazione può essere mostrata senza chiamare il metodo setState().
+Per farlo in accordo con l'animazione, è necessario chiamarlo in un listener sul controller.
+Esempio:
+
+
+@override
+void initState() {
+  super.initState();
+  // ... (inizializzazione controller e animazioni)
+  controller.addListener(() {
+    setState(() {});
+  });
+}
+
+
+Applicare i valori animati ai widget:
+Per animare un widget, si possono passare i valori animati alle sue proprietà.
+Esempio:
+
+
+Icon(
+  Icons.star,
+  color: colorAnim.value, // Valore animato per il colore [cite: 172]
+  size: sizeAnim.value    // Valore animato per la dimensione [cite: 172]
+)
+
+
+Controllare l'animazione:
+Per avviare l'animazione, l'AnimationController ha diversi metodi:
+forward(): avvia l'animazione in avanti.
+reverse(): avvia l'animazione all'indietro.
+repeat(): ripete l'animazione.
+stop(): ferma l'animazione.
+reset(): resetta l'animazione al suo stato iniziale.
+Applicare una Curva di Interpolazione:
+Per applicare una curva di interpolazione a un'animazione, è necessario creare una CurvedAnimation, impostare il controller come suo parent e passarla (invece del controller) alla funzione animate() dell'animazione.
+Esempio:
+
+
+final curvedAnimation = CurvedAnimation(
+  parent: controller,
+  curve: Curves.bounceOut // Esempio di curva [cite: 175]
+);
+colorAnim = ColorTween(begin: Colors.blue, end: Colors.yellow).animate(curvedAnimation); [cite: 175]
+
+
+VIII. Persistenza dei Dati
+Scopo della persistenza dei dati: Quando è necessario mantenere i dati tra i lanci dell'app, è fondamentale salvarli permanentemente sul disco.
+Modi per persistere i dati: Esistono diversi modi per persistere i dati all'interno di un'applicazione, a seconda del tipo di dati da salvare.
+Dati Strutturati (grandi set): Se si dispone di un grande insieme di dati strutturati, probabilmente è necessario utilizzare un database.
+Immagini, JSON o dati raw: Questi tipi di dati devono essere salvati come file.
+Dati chiave-valore: Il tipo di dati più comune che un'applicazione deve salvare è probabilmente il dato chiave-valore. Può essere utile per preferenze utente, stati di autenticazione, token e così via.
+
+Persistenza dei Dati - Database:
+Esistono diverse librerie di database che possono essere utilizzate in un'applicazione Flutter. La scelta dipende dal tipo di dati che l'app deve salvare.
+
+I database possono essere classificati in tre categorie: relazionali, non relazionali e basati su cloud.
+Database Relazionali: Se si ha un database relazionale strutturato, si dovrebbe scegliere un DB SQL come SOFlite.
+Database Non Relazionali: Se si hanno relazioni limitate o assenti tra gli oggetti, si può optare per un DB non relazionale, come ObjectBox, Hive o Isar.
+Database Basati su Cloud: Se è necessario sincronizzare i dati tra più dispositivi o si necessitano funzionalità avanzate come aggiornamenti in tempo reale, si possono scegliere database basati su cloud come Firebase Realtime Database o Firestore.
+Persistenza dei Dati - File:
+Quando è necessario salvare file in un'applicazione Flutter, si dovrebbe usare il package Path Provider.
+Questo package crea un'astrazione per usare API agnostiche dalla piattaforma per salvare e leggere file sulla memoria locale.
+A seconda del tipo di file da salvare, si può scegliere tra diverse posizioni: directory temporanee, private o pubbliche.
+Persistenza dei Dati - Coppie Chiave/Valore (Shared Preferences):
+Quando è necessario salvare coppie chiave/valore in un'applicazione Flutter, si dovrebbe usare il package Shared Preferences.
+Questo package crea un'astrazione sopra le Android Shared Preferences e gli iOS User Defaults.
+Permette di salvare dati primitivi: int, double, bool, String e List<String>.
+Ogni valore è identificato da una chiave String.
+Ogni operazione di lettura/scrittura/rimozione è asincrona.
+Scrivere dati:
+
+
+// Ottieni le preferenze condivise.
+final prefs = await SharedPreferences.getInstance();
+
+await prefs.setInt('counter', 10); [cite: 200]
+await prefs.setBool('repeat', true); [cite: 200]
+await prefs.setDouble('decimal', 1.5); [cite: 200]
+await prefs.setString('action', 'Start'); [cite: 200]
+await prefs.setStringList('items', <String>['Earth', 'Moon', 'Sun']); [cite: 200]
+
+
+Leggere dati:
+
+
+final int? counter = prefs.getInt('counter'); [cite: 201]
+final bool? repeat = prefs.getBool('repeat'); [cite: 201]
+final double? decimal = prefs.getDouble('decimal'); [cite: 202]
+final String? action = prefs.getString('action'); [cite: 202]
+final List<String>? items = prefs.getStringList('items'); [cite: 202]
+
+IX. Input di Testo
+Widget per l'input di testo: Quando è necessario consentire agli utenti di digitare testo nell'app, si può usare il widget TextField o il widget TextFormField.
+TextField:
+È un semplice campo di input in cui l'utente può digitare testi e si viene notificati delle modifiche del testo.
+Per creare un campo di input, si può semplicemente aggiungere un widget TextField. Accetta alcuni parametri per mostrare suggerimenti all'utente (hintText), il tipo di input (keyboardType), la lunghezza massima e così via.
+
+Esempio di utilizzo:
+
+
+TextField(
+  decoration: InputDecoration(
+    hintText: 'Email'
+  ),
+  keyboardType: TextInputType.emailAddress
+);
+
+
+Gestione del testo inserito (onChanged): Per gestire il testo inserito dall'utente, si può usare la funzione di callback onChanged.
+Esempio:
+
+
+TextField(
+  decoration: InputDecoration(
+    hintText: 'Name'
+  ),
+  keyboardType: TextInputType.emailAddress,
+  onChanged: (value) {
+    // qui si riceve il valore aggiornato
+  }
+);
+
+
+TextEditingController:
+Un altro modo per leggere e controllare il valore del testo è usare un TextEditingController.
+Questo è un modo più potente per gestire gli input di testo (spesso non è necessario).
+Con un TextEditingController si può leggere e scrivere il valore corrente, aggiungendo comportamenti complessi (come cambiare gli input dell'utente mentre digita).
+Importante: è necessario disporre il controller quando non è più necessario, quindi può essere usato solo in widget con stato (StatefulWidget).
+Esempio:
+
+
+final textController = TextEditingController();
+
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: Column(
+      children: [
+        TextField(
+          controller: textController // Collega il controller al TextField
+        ),
+      ]
+    )
+  );
+}
+@override
+void dispose() {
+  super.dispose();
+  textController.dispose(); // Dispone il controller
+}
+
+
+TextFormField:
+È simile a TextField ma può gestire la validazione del testo.
+Quando è necessario consentire all'utente di inserire più di un singolo campo dati (ad es. un modulo di registrazione), si può usare un TextFormField, un widget in cui è possibile specificare la logica di validazione dell'input e che mostra automaticamente i messaggi di errore.
+Esempio di validator:
+
+
+TextFormField(
+  validator: (value) {
+    if (value == null || value.isEmpty) {
+      return 'Questo campo non può essere vuoto';
+    }
+    return null; // Restituisce null se la validazione ha successo
+  }
+);
+
+
+TextFormField - Form:
+Per validare più campi insieme, quando l'utente invia il modulo, è necessario inserire i widget TextFormField all'interno di un widget Form.
+Per identificare un Form, è necessario usare una Key per riferirsi ad esso.
+Sulla chiave, è possibile chiamare il metodo validate quando si è pronti per la validazione.
+Esempio:
+
+
+final _formKey = GlobalKey<FormState>(); // Chiave per il modulo [cite: 224]
+
+@override
+Widget build(BuildContext context) {
+  return Form(
+    key: _formKey, // Assegna la chiave al Form [cite: 224]
+    child: Column(
+      children: [
+        TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Per favore inserisci del testo';
+            }
+            return null;
+          },
+        ),
+        ElevatedButton(
+          onPressed: () => _formKey.currentState!.validate(), // Chiama validate sulla chiave [cite: 223]
+          child: const Text('Invia'),
+        ),
+      ],
+    ),
+  );
+}
+
+
+X. Bloc and Cubit
+Introduzione al State Management in Flutter:
+Gestire lo stato dell'applicazione è cruciale per lo sviluppo.
+Lo stato si riferisce ai dati e all'UI di un'applicazione in un dato momento, che cambiano in risposta a interazioni utente, richieste di rete o altri eventi.
+Esistono vari approcci alla gestione dello stato in Flutter.
+BLoC (Business Logic Component):
+Definizione: BLoC è un design pattern (introdotto da Google) e anche una libreria di gestione dello stato per Flutter e Dart. Il suo scopo principale è separare la logica di business dalla UI, rendendo l'app più testabile, manutenibile e scalabile.
+Principio: "Input: Events, Output: States" (Blocco di Logica di Business). Un BLoC riceve eventi dalla UI, elabora la logica di business e produce nuovi stati che la UI poi ascolta e usa per aggiornarsi.
+Componenti Chiave:
+Events: Rappresentano le azioni dell'utente o i trigger esterni (es. click su un pulsante, dati ricevuti da un'API). Sono gli input per il BLoC.
+States: Rappresentano lo stato corrente dell'applicazione o della UI. Sono gli output del BLoC e guidano il rendering dell'interfaccia. Ogni stato deve essere immutabile.
+BLoC Class: La classe centrale che estende Bloc. Contiene la logica che mappa gli Events in States.
+Stream: I BLoC utilizzano gli Stream per emettere gli States ai widget che li ascoltano. La natura reattiva degli Stream è fondamentale per BLoC.
+Vantaggi:
+Separazione delle Responsabilità (Separation of Concerns): Netta distinzione tra UI e logica di business.
+Testabilità: La logica di business (BLoC) può essere testata isolatamente dalla UI.
+Riutilizzabilità: La logica di business può essere riutilizzata in diverse parti dell'applicazione.
+Scalabilità: Adatto per applicazioni complesse con logiche intricate e flussi di dati complessi.
+Tracciabilità: Permette di tracciare eventi e transizioni di stato (ad es. tramite BlocObserver).
+Quando usarlo: Per scenari più complessi dove è necessario gestire eventi, trasformare eventi (es. debounce per una ricerca), o avere un controllo più granulare sul flusso di stato.
+Cubit:
+Definizione: Cubit è una versione più leggera e semplificata del BLoC, una sottoclasse di BlocBase. È stato creato per ridurre il boilerplate code e rendere la gestione dello stato più diretta.
+Principio: "Input: Functions, Output: States". A differenza di BLoC, Cubit non usa eventi. Invece, espone metodi pubblici che possono essere invocati dalla UI per attivare un cambio di stato.
+Componenti Chiave:
+Cubit Class: La classe centrale che estende Cubit<State>. Contiene metodi che chiamano direttamente emit(newState) per produrre nuovi stati.
+State: Simile a BLoC, rappresenta lo stato corrente.
+emit() Method: Utilizzato per emettere direttamente un nuovo stato, aggiornando tutti i listener.
+Vantaggi:
+Semplicità: Meno boilerplate code rispetto a BLoC tradizionale.
+Facilità d'uso: Curva di apprendimento più dolce.
+Leggero: Ideale per scenari di gestione dello stato più semplici.
+Sincrono: Le emissioni di stato tramite emit() sono sincrone.
+Quando usarlo: Per scenari più semplici dove non è necessaria una logica di trasformazione degli eventi complessa. Spesso consigliato come punto di partenza per la gestione dello stato.
+Differenze Chiave tra Bloc e Cubit:
+Input:
+Bloc: Eventi (Input Event-Driven).
+Cubit: Funzioni/Metodi (Input Function-Driven).
+Boilerplate:
+Bloc: Maggiore boilerplate (richiede classi per Eventi e mappature Evento -> Stato).
+Cubit: Minore boilerplate (stato aggiornato direttamente tramite metodi).
+Tracciabilità degli Eventi:
+Bloc: Più facile tracciare gli eventi specifici che hanno causato un cambio di stato.
+Cubit: Non ha un concetto di eventi, la tracciabilità è a livello di chiamata di funzione.
+Trasformazione di Eventi:
+Bloc: Supporta EventTransformer per manipolare il flusso di eventi (es. debounce, throttle).
+Cubit: Non ha un concetto di trasformazione degli eventi incorporato.
+Componenti UI comuni per Bloc/Cubit (dal pacchetto flutter_bloc):
+BlocProvider<T>: Un widget di Dependency Injection. Fornisce un'istanza di un BLoC o Cubit ai suoi figli nel sotto-albero del widget.
+Si usa per rendere un BLoC/Cubit disponibile a tutti i widget sottostanti tramite BlocProvider.of<T>(context) o context.read<T>().
+BlocBuilder<Bloc, State>: Un widget che ricostruisce la sua parte di UI in risposta a nuovi stati emessi dal BLoC/Cubit.
+È simile a StreamBuilder ma con un'API semplificata.
+È importante avvolgere solo i widget che devono ricostruirsi per evitare re-rendering inutili.
+BlocListener<Bloc, State>: Un widget che ascolta i cambiamenti di stato ma non ricostruisce la UI. È usato per effetti collaterali come mostrare Snackbars, navigare, mostrare dialoghi, ecc.
+Viene chiamato una sola volta per ogni cambiamento di stato.
+BlocConsumer<Bloc, State>: Un widget che combina le funzionalità di BlocBuilder e BlocListener.
+Ha sia un builder (per ricostruire la UI) che un listener (per effetti collaterali).
+BlocSelector<Bloc, State, SelectedState>: Un widget simile a BlocBuilder ma permette di filtrare gli aggiornamenti selezionando una parte specifica dello stato.
+Previene ricostruzioni inutili se la parte selezionata dello stato non cambia.
+Architettura con Bloc/Cubit (Vantaggi Generali):
+Struttura Organizzata: Ogni feature può avere il proprio BLoC/Cubit dedicato, rendendo il codice più facile da localizzare e gestire.
+Manutenibilità: La separazione delle responsabilità semplifica le modifiche e la risoluzione dei bug.
+Flessibilità: Bloc/Cubit possono essere integrati con altre architetture (es. Clean Architecture).
+Strategia di Scelta:
+Inizia con Cubit: Molti consigliano di iniziare con Cubit per la sua semplicità. Se le esigenze diventano più complesse (es. necessità di trasformazione eventi o tracciabilità dettagliata), si può facilmente refattorizzare un Cubit in un BLoC poiché entrambi estendono BlocBase.
+Usa Bloc per complessità: Scegli BLoC quando hai bisogno di gestire eventi specifici, applicare logiche di trasformazione sugli input (es. debounce per un campo di ricerca), o quando la tracciabilità degli eventi è critica per il debugging o l'analisi.

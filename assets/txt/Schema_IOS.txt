@@ -1,1 +1,284 @@
 Schema IOS
+I. Fondamenti del Linguaggio Swift
+
+A. Tipi di Dati e Variabili
+
+Variabili (mutabili) e Costanti (immutabili):
+
+var nomeVariabile: Tipo = valoreIniziale
+let nomeCostante: Tipo = valoreIniziale
+
+Tipi di Dati Primitivi:
+
+-Int: Numeri interi (es. 42).
+
+-Double, Float: Numeri decimali (es. 3.14, 3.14f).
+
+-Bool: Valori booleani (true, false).
+
+-String: Sequenze di caratteri (es. "Ciao mondo").
+
+-Character: Singolo carattere (es. 'A').
+
+Collezioni:
+
+Array: Collezione ordinata di elementi dello stesso tipo ([Tipo],
+
+es.
+
+var myArray = [1, 2, 3]).
+
+Accesso tramite indice (es. myArray[0]).
+
+Metodi comuni:
+
+-append(),
+-remove(at:),
+-count,
+-isEmpty.
+
+Dictionary: Collezione non ordinata di coppie chiave-valore
+([Chiave: Valore],
+es.
+
+var myDict = ["nome": "Mario", "età": 30]).
+Accesso tramite chiave (es.myDict["nome"]).
+
+Metodi comuni:
+
+-updateValue(forKey:),
+
+-removeValue(forKey:),
+
+-count,
+
+-isEmpty.
+
+Set:
+
+Collezione non ordinata di valori unici dello stesso tipo
+(Set<Tipo>,
+
+es.
+
+var mySet: Set = [1, 2, 3]
+
+
+).
+
+Operazioni su insiemi: unione, intersezione, sottrazione.
+
+B. Operatori
+Operatori Aritmetici: +, -, *, /, % (modulo).
+Operatori di Assegnazione: =, +=, -=, *=, /=.
+Operatori di Confronto: ==, !=, <, >, <=, >=.
+Operatori Logici: && (AND), || (OR), ! (NOT).
+Operatore Nil-Coalescing: a ?? b (se a è nil, usa b).
+
+C. Controllo di Flusso
+Condizionali:
+if-else if-else: Esecuzione condizionale di blocchi di codice.
+switch: Corrispondenza di pattern per valori singoli o intervalli.
+case, default, fallthrough (raro).
+Cicli:
+for-in: Iterazione su collezioni o intervalli.
+while: Esecuzione di un blocco finché una condizione è vera.
+repeat-while: Esecuzione di un blocco almeno una volta, poi ripetizione finché una condizione è vera.
+Salti di Controllo:
+break: Esci dal ciclo o dall'istruzione switch.
+continue: Passa all'iterazione successiva del ciclo.
+return: Termina l'esecuzione della funzione e restituisce un valore.
+D. Funzioni e Chiusure (Closures)
+Definizione di Funzioni:
+func nomeFunzione(parametro1: Tipo, parametro2: Tipo) -> TipoDiRitorno { /* codice */ }
+Parametri con etichette esterne e nomi locali.
+Parametri di default.
+Funzioni variadiche.
+Funzioni annidate.
+Chiusure (Closures):
+Blocchi di codice auto-contenuti che possono essere passati e usati nel tuo codice.
+Sintassi concisa.
+Cattura di valori dall'ambiente circostante.
+Escaping e non-escaping closures.
+Trailing closures.
+E. Structs, Classes ed Enums
+Structs (Strutture):
+Tipi di valore (copiati all'assegnazione).
+Utili per aggregare dati correlati.
+Inizializzatori di membri automatici.
+Immutabilità di default per istanze let.
+Classes (Classi):
+Tipi di riferimento (passati per riferimento).
+Supportano ereditarietà, deinizializzatori, type casting.
+Utili per modellare oggetti con identità e comportamento.
+Inizializzatori personalizzati.
+Enums (Enumerazioni):
+Definiscono un gruppo di valori correlati.
+Possono avere valori grezzi (raw values) o valori associati (associated values).
+Utili per modellare stati discreti o opzioni fisse.
+F. Opzionali (Optionals)
+Concetto di Opzionale: Rappresenta un valore che potrebbe essere presente o nil (assenza di valore).
+Sintassi: Tipo? (es. String?).
+Svolgimento (Unwrapping) Sicuro:
+Optional Binding: if let o guard let per svolgere un opzionale in una nuova costante/variabile se non è nil.
+Optional Chaining: ?. per chiamare metodi o accedere a proprietà di un opzionale solo se non è nil.
+Svolgimento Forzato (Non Sicuro): ! (es. someOptional!). Da usare con estrema cautela, solo quando si è assolutamente certi che l'opzionale contenga un valore. Un errore qui causa un crash (runtime error).
+G. Protocolli e Estensioni
+Protocolli:
+Definiscono un "blueprint" di metodi, proprietà e altri requisiti.
+Possono essere adottati da classi, struct ed enum.
+Consentono il polimorfismo e la delega.
+Estensioni (Extensions):
+Aggiungono nuove funzionalità a tipi esistenti (classi, struct, enum, protocolli).
+Non possono aggiungere proprietà memorizzate.
+Utili per organizzare il codice e aggiungere conformità a protocolli.
+H. Gestione degli Errori
+Errori in Swift: I tipi che conformano al protocollo Error.
+Lancio di Errori: throw MyError.someError.
+Propagazione di Errori: throws nelle firme delle funzioni.
+Gestione di Errori:
+do-catch: Blocchi per catturare e gestire errori lanciati.
+try?: Tenta di eseguire un'operazione che potrebbe lanciare un errore; restituisce un opzionale nil se l'errore si verifica.
+try!: Forza l'esecuzione di un'operazione che potrebbe lanciare un errore; crasha se l'errore si verifica (usare con estrema cautela).
+II. Interfaccia Utente (UI) con UIKit / SwiftUI (Panoramica)
+A. Concetti Fondamentali di UIKit
+UIApplication: Il punto di ingresso principale dell'applicazione.
+AppDelegate: Gestisce il ciclo di vita dell'applicazione, eventi globali.
+SceneDelegate (iOS 13+): Gestisce il ciclo di vita delle scene/finestre dell'applicazione.
+UIViewController:
+La base per la gestione di schermate singole nell'app.
+Gestisce la vista e il ciclo di vita della vista.
+Metodi chiave del ciclo di vita:
+viewDidLoad(): La vista è stata caricata in memoria (una sola volta).
+viewWillAppear(_:): La vista sta per apparire sullo schermo.
+viewDidAppear(_:): La vista è apparsa sullo schermo.
+viewWillDisappear(_:): La vista sta per scomparire.
+viewDidDisappear(_:): La vista è scomparsa.
+viewDidLayoutSubviews(): Le sottoviste sono state riorganizzate.
+UIView:
+Il blocco base per la costruzione dell'interfaccia utente.
+Gerarchia di viste (superview e subviews).
+Gestione del layout, rendering.
+Gerarchia delle Viste:
+Ogni UIViewController ha una root view.
+Le subviews sono nidificate all'interno di altre views.
+B. Elementi Comuni della UI (Controlli)
+UILabel: Visualizza testo statico.
+UIButton: Un pulsante che risponde a interazioni utente.
+Target-Action pattern per gestire gli eventi.
+UITextField: Campo di testo per l'input dell'utente.
+Delegate pattern per la gestione degli eventi di input.
+UITextView: Area di testo modificabile multilinea.
+UIImageView: Visualizza immagini.
+UISwitch: Controllo ON/OFF.
+UISlider: Permette di selezionare un valore in un intervallo.
+UISegmentedControl: Controllo per selezionare un segmento da un insieme di opzioni.
+UIActivityIndicatorView: Indicatore di attività (rotella di caricamento).
+UIProgressView: Barra di progresso.
+C. Layout dell'Interfaccia Utente
+Autolayout:
+Sistema basato su vincoli per definire il posizionamento e le dimensioni delle viste.
+Consente alle UI di adattarsi a diverse dimensioni dello schermo e orientamenti.
+Vincoli: Regole che specificano la relazione tra le viste (es. "il bordo superiore di questa vista è 20 punti sotto il bordo inferiore di quest'altra").
+Priorità dei Vincoli: Da 1 a 1000 (1000 = required).
+Intrinseco Content Size: Alcuni controlli hanno una dimensione preferita.
+Content Hugging Priority e Content Compression Resistance Priority: Gestiscono come una vista si resiste a essere allungata o compressa.
+Stack Views (UIStackView):
+Semplificano l'Autolayout organizzando le viste in una colonna o riga.
+Gestiscono automaticamente spaziatura e allineamento.
+Proprietà chiave: axis, alignment, distribution, spacing.
+D. Navigazione tra Schermate
+UINavigationController:
+Gestisce una pila di UIViewController.
+Fornisce una barra di navigazione superiore (UINavigationBar) e un pulsante "Indietro".
+Push/Pop di view controller.
+UITabBarController:
+Mostra più view controller tramite una barra con schede (UITabBar) in fondo allo schermo.
+Ogni scheda rappresenta una sezione diversa dell'app.
+Modals (Presentazione Modale):
+Presentazione di un view controller su un altro, coprendo parzialmente o totalmente lo schermo.
+Usato per attività che richiedono attenzione immediata o input specifico.
+present() e dismiss().
+Segues (Storyboards):
+Definizione visiva delle transizioni tra view controller in un Storyboard.
+Tipi di segue: show, present modally, show detail, custom.
+prepare(for:sender:) per passare dati prima della transizione.
+E. Introduzione a SwiftUI (Differenze Chiave)
+Approccio Dichiarativo: Descrivi come vuoi che sia la tua UI, non i passaggi per costruirla.
+Views come Structs: La maggior parte degli elementi UI sono struct che conformano al protocollo View.
+State Management:
+@State: Proprietà che, quando cambiano, innescano un aggiornamento della UI.
+@Binding: Passa un riferimento a una proprietà @State a una subview.
+@ObservedObject, @StateObject, @EnvironmentObject: Per gestire stati più complessi o condivisi.
+Combinazione di Viste:
+VStack, HStack, ZStack per organizzare gli elementi.
+Modificatori per personalizzare le viste (es. .font(), .padding(), .foregroundColor()).
+Previews: Capacità di vedere immediatamente i cambiamenti della UI in Xcode.
+III. Logica dell'Applicazione e Architettura
+A. Modelli di Progettazione Comuni
+MVC (Model-View-Controller):
+Model: Gestisce i dati e la logica di business. Indipendente dalla UI.
+View: La rappresentazione visiva dei dati. Elementi UI.
+Controller: Funge da intermediario tra Model e View. Risponde agli input dell'utente e aggiorna il Model e la View.
+"Massive View Controller" problem: Tendenza del Controller a diventare troppo grande e ingovernabile.
+Delegation (Delegazione):
+Un oggetto (delegator) affida la responsabilità di gestire certi eventi o dati a un altro oggetto (delegate).
+Utilizzato per callback e comunicazione uno-a-uno.
+Esempi: UITableViewDelegate, UITextFieldDelegate.
+Target-Action:
+Un controllo UI (es. UIButton) invia un messaggio (action) a un oggetto target quando si verifica un evento (es. tocco).
+Utilizzato principalmente con UIControl e sottoclassi.
+Observer Pattern (Notifiche):
+Un oggetto (subject) notifica più oggetti (observers) di un cambiamento di stato.
+NotificationCenter: Sistema di messaggistica broadcast di Cocoa.
+Utile per comunicazione uno-a-molti.
+B. Gestione dei Dati
+Proprietà (Properties):
+Stored Properties: Memorizzano valori.
+Computed Properties: Calcolano valori ogni volta che vengono acceduti.
+Property Observers (willSet, didSet): Eseguono codice prima o dopo che una proprietà cambia.
+Persistenza dei Dati (Panoramica):
+UserDefaults: Per dati leggeri e preferenze dell'utente (key-value store).
+Plist (Property List): Per salvare piccole quantità di dati strutturati (XML).
+Files (File System): Per salvare dati in file (es. JSON, immagini).
+Core Data: Framework di persistenza basato su grafici di oggetti per dati strutturati e complessi.
+Realm / SQLite: Database di terze parti o nativi per dati più complessi e query.
+C. Networking
+URLSession:
+Framework di Apple per la gestione delle richieste di rete.
+Task: dataTask, uploadTask, downloadTask.
+Sessioni: default, ephemeral, background.
+Delegati per la gestione degli eventi della sessione.
+API RESTful:
+Standard comune per la comunicazione client-server via HTTP.
+Metodi HTTP: GET (recupera), POST (crea), PUT (aggiorna), DELETE (cancella).
+JSON come formato di scambio dati comune.
+Codable (Encodable & Decodable):
+Protocolli Swift per la codifica e decodifica di tipi di dati da e verso rappresentazioni esterne (es. JSON, Plist).
+Semplifica il parsing dei dati JSON.
+D. Concorrenza e Threading
+Main Thread (UI Thread):
+Responsabile dell'aggiornamento dell'interfaccia utente.
+Tutte le operazioni UI devono essere eseguite su questo thread per evitare blocchi e glitch.
+Grand Central Dispatch (GCD):
+Framework per gestire le code di operazioni in background in modo efficiente.
+Coda Seriale: Esegue un'operazione alla volta, in ordine.
+Coda Concorrente: Esegue più operazioni contemporaneamente, in ordine.
+DispatchQueue.main: La coda principale per le operazioni UI.
+DispatchQueue.global(): Code concorrenti in background con diverse priorità.
+async, sync: Per inviare blocchi di codice alle code.
+Operazioni Asincrone:
+Le operazioni che richiedono tempo (networking, accesso al disco) devono essere eseguite in background per non bloccare la UI.
+Al completamento, l'aggiornamento della UI deve essere riportato sul main thread.
+async/await (Swift Concurrency):
+Nuove parole chiave in Swift 5.5+ per semplificare il codice asincrono.
+Rende il codice asincrono più leggibile e meno propenso a errori rispetto a completion handlers o GCD diretto per scenari complessi.
+Task: Per creare un nuovo contesto di esecuzione concorrente.
+E. Gestione della Memoria
+ARC (Automatic Reference Counting):
+Swift utilizza ARC per gestire automaticamente la memoria.
+Quando il conteggio dei riferimenti di un'istanza arriva a zero, la memoria viene deallocata.
+Reference Cycles (Cicli di Riferimento):
+Quando due o più oggetti si referenziano reciprocamente con riferimenti forti, impedendo ad ARC di deallocarli.
+weak reference: Un riferimento che non incrementa il conteggio dei riferimenti dell'oggetto referenziato. Diventa nil se l'oggetto referenziato viene deallocato. Usato per relazioni many-to-one o quando l'oggetto referenziato ha una vita più lunga.
+unowned reference: Un riferimento che non incrementa il conteggio dei riferimenti e assume che l'oggetto referenziato esista sempre durante la vita dell'oggetto referenziante. Se l'oggetto referenziato è deallocato prima, causerà un crash. Usato quando il ciclo di vita dell'oggetto referenziato è uguale o più lungo.

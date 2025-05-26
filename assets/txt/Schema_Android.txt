@@ -189,11 +189,13 @@ Operatore Not-Null Asserted Call (!!): Forza l'accesso a un valore nullable, ma 
 
 Funzioni di Estensione: Aggiungere nuove funzioni a classi esistenti senza modificarle.
 
+
 fun String.capitalizzaPrimaLettera(): String {
     return this.substring(0, 1).uppercase() + this.substring(1)
 }
 val nome = "paolo"
 println(nome.capitalizzaPrimaLettera()) // Output: Paolo
+
 
 II. Basi di XML per Layout Android
 
