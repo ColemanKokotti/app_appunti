@@ -3,6 +3,7 @@ import 'package:appunti/utils/formatters/title_formatter.dart';
 import 'package:flutter/material.dart';
 import 'base_formatter.dart';
 import 'code_block_formatter.dart';
+import 'list_item_formatter.dart';
 
 class NotesFormatter {
   static List<Widget> formatNotes(BuildContext context, String content, String subjectName) {
@@ -44,12 +45,45 @@ class NotesFormatter {
 
           // Crea un widget di paragrafo completo con tutti i contenuti raccolti
           if (paragraphWidgets.isNotEmpty) {
-            widgets.add(ParagraphFormatter.buildCompleteParagraph(context, currentParagraph, paragraphWidgets));
+            // Verifica se è un elemento di lista o un paragrafo normale
+            if (BaseFormatter.isListItemStart(currentParagraph)) {
+              widgets.add(ListItemFormatter.buildListItemParagraph(context, currentParagraph, paragraphWidgets));
+            } else {
+              widgets.add(ParagraphFormatter.buildCompleteParagraph(context, currentParagraph, paragraphWidgets));
+            }
             paragraphWidgets = [];
           }
         }
 
         // Nuovo paragrafo
+        currentParagraph = trimmedLine;
+        isInParagraph = true;
+      }
+      // Identifica elementi di lista (- lettera.)
+      else if (BaseFormatter.isListItemStart(trimmedLine)) {
+        // Se era già in un paragrafo, salva il contenuto precedente
+        if (isInParagraph) {
+          if (paragraphContent.isNotEmpty) {
+            // Aggiunge i testi normali come RichText
+            paragraphWidgets.add(
+                ParagraphFormatter.buildParagraphTextContent(context, paragraphContent)
+            );
+            paragraphContent = [];
+          }
+
+          // Crea un widget di paragrafo completo con tutti i contenuti raccolti
+          if (paragraphWidgets.isNotEmpty) {
+            // Verifica se è un elemento di lista o un paragrafo normale
+            if (BaseFormatter.isListItemStart(currentParagraph)) {
+              widgets.add(ListItemFormatter.buildListItemParagraph(context, currentParagraph, paragraphWidgets));
+            } else {
+              widgets.add(ParagraphFormatter.buildCompleteParagraph(context, currentParagraph, paragraphWidgets));
+            }
+            paragraphWidgets = [];
+          }
+        }
+
+        // Nuovo elemento di lista
         currentParagraph = trimmedLine;
         isInParagraph = true;
       }
@@ -129,7 +163,12 @@ class NotesFormatter {
       }
 
       if (paragraphWidgets.isNotEmpty) {
-        widgets.add(ParagraphFormatter.buildCompleteParagraph(context, currentParagraph, paragraphWidgets));
+        // Verifica se è un elemento di lista o un paragrafo normale
+        if (BaseFormatter.isListItemStart(currentParagraph)) {
+          widgets.add(ListItemFormatter.buildListItemParagraph(context, currentParagraph, paragraphWidgets));
+        } else {
+          widgets.add(ParagraphFormatter.buildCompleteParagraph(context, currentParagraph, paragraphWidgets));
+        }
       }
     }
 
@@ -137,7 +176,12 @@ class NotesFormatter {
     if (CodeBlockFormatter.isInCodeBlock) {
       if (isInParagraph) {
         paragraphWidgets.add(CodeBlockFormatter.buildCodeBlockWidget());
-        widgets.add(ParagraphFormatter.buildCompleteParagraph(context, currentParagraph, paragraphWidgets));
+        // Verifica se è un elemento di lista o un paragrafo normale
+        if (BaseFormatter.isListItemStart(currentParagraph)) {
+          widgets.add(ListItemFormatter.buildListItemParagraph(context, currentParagraph, paragraphWidgets));
+        } else {
+          widgets.add(ParagraphFormatter.buildCompleteParagraph(context, currentParagraph, paragraphWidgets));
+        }
       } else {
         widgets.add(CodeBlockFormatter.buildCodeBlockWidget());
       }

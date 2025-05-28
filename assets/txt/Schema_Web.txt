@@ -23,24 +23,32 @@ Definizione: Linguaggio di scripting per la logica e l'interattività.
 Ruolo: Aggiunge comportamento dinamico alla pagina.
 
 B. Boilerplate HTML
-1. <!doctype html>: Dichiarazione del tipo di documento (HTML5).
+<!doctype html>:
+Dichiarazione del tipo di documento (HTML5).
 
-2. <html lang="en">: Elemento radice del documento, specifica la lingua.
+<html lang="en">:
+Elemento radice del documento, specifica la lingua.
 
-3. <head>: Contiene metadati e link a risorse esterne (non visibile all'utente).
+<head>:
+Contiene metadati e link a risorse esterne (non visibile all'utente).
 
-4. <meta charset="utf-8">: Specifica la codifica dei caratteri (standard).
+<meta charset="utf-8">:
+Specifica la codifica dei caratteri (standard).
 
-5. <title>Website Title</title>: Titolo della pagina, mostrato nella barra del browser.
+<title>Website Title</title>:
+Titolo della pagina, mostrato nella barra del browser.
 
-6. <meta name="description" content="...">: Descrizione della pagina per i motori di ricerca.
+<meta name="description" content="...">:
+Descrizione della pagina per i motori di ricerca.
 
-7. <meta name="author" content="...">: Autore della pagina.
+<meta name="author" content="...">:
+Autore della pagina.
 
-8. <link rel="stylesheet" href="./css/styles.css?v=1.0">:
+<link rel="stylesheet" href="./css/styles.css?v=1.0">:
 Collega un foglio di stile CSS esterno. Il ?v=1.0 è per il versioning e la cache.
 
-9. <body>: Contiene il contenuto visibile della pagina.
+<body>:
+Contiene il contenuto visibile della pagina.
 
 10.<script src="./js/scripts.js"></script>:
 Collega un file JavaScript esterno. Posizionamento alla fine del <body> per ottimizzare la velocità di caricamento.
@@ -79,7 +87,7 @@ defer: Non blocca il browser, lo script viene caricato in background ed eseguito
 async: Non blocca il browser, lo script viene caricato ed eseguito appena pronto. Nessuna garanzia sull'ordine di esecuzione.
 
 II. Elementi HTML
-A. Terminologia Fondamentale
+-A. Terminologia Fondamentale
 Elemento: Blocco costitutivo delle pagine web (es. p, h1, div).
 
 Tag: Marcatore di inizio (<tagname>) e fine (</tagname>) di un elemento.
@@ -92,49 +100,69 @@ Attributo: Fornisce informazioni aggiuntive sull'elemento (es. class, id, src, h
 
 Valore: Il valore assegnato a un attributo, racchiuso tra virgolette.
 
-B. Struttura Base della Pagina
+-B. Struttura Base della Pagina
 
-1. <!DOCTYPE html>: (Vedi I.B)
+<!DOCTYPE html>: (Vedi I.B)
 
-2. <html>: Elemento radice.
+<html>: Elemento radice.
 
-3. <head>: (Vedi I.B)
+<head>: (Vedi I.B)
 
-4. <body>: Contenuto visibile.
+<body>: Contenuto visibile.
 
-5. Nesting: Gli elementi sono "nidificati" l'uno nell'altro, seguendo una gerarchia.
+Nesting: Gli elementi sono "nidificati" l'uno nell'altro, seguendo una gerarchia.
 
-6. Commenti (``): Non visibili nel browser, utili per organizzare il codice.
+Commenti (``): Non visibili nel browser, utili per organizzare il codice.
 
-C. Elementi di Testo Comuni
-<p> (Paragraph): Paragrafi di testo. Lo spazio bianco multiplo viene ignorato dal browser.
 
-<h1> - <h6> (Headings): Titoli di diverse gerarchie (dall'H1, il più importante, all'H6, il meno importante).
+-C. Elementi di Testo Comuni
 
-<em> (Emphasized Text): Testo enfatizzato (solitamente corsivo), con significato semantico.
 
-<strong> (Strong Importance Text): Testo con forte importanza (solitamente grassetto), con significato semantico.
+<p> (Paragraph):
+Paragrafi di testo. Lo spazio bianco multiplo viene ignorato dal browser.
 
-<b> (Bold Text) e <i> (Italic Text): Testo in grassetto o corsivo per scopi puramente stilistici (da usare con cautela, preferire CSS).
+<h1> - <h6> (Headings):
+Titoli di diverse gerarchie (dall'H1, il più importante, all'H6, il meno importante).
+
+<em> (Emphasized Text):
+Testo enfatizzato (solitamente corsivo), con significato semantico.
+
+<strong> (Strong Importance Text):
+Testo con forte importanza (solitamente grassetto), con significato semantico.
+
+<b> (Bold Text) e <i> (Italic Text):
+Testo in grassetto o corsivo per scopi puramente stilistici (da usare con cautela, preferire CSS).
 
 <br> (Line Break): Inserisce un'interruzione di riga.
 
-<hr> (Thematic Break): Definisce un cambio tematico nel contenuto (linea orizzontale).
+<hr> (Thematic Break):
+Definisce un cambio tematico nel contenuto (linea orizzontale).
 
-D. Elementi di Collegamento (Anchor)
-<a> (Anchor): Crea collegamenti ipertestuali.
 
-href attribute: Specifica l'URL di destinazione.
+-D. Elementi di Collegamento (Anchor)
 
-title attribute: Testo descrittivo mostrato al passaggio del mouse.
+
+<a> (Anchor):
+Crea collegamenti ipertestuali.
+
+href attribute:
+Specifica l'URL di destinazione.
+
+title attribute:
+Testo descrittivo mostrato al passaggio del mouse.
+
+
 
 Target Attributes:
 
-_blank: Apre il documento collegato in una nuova finestra/scheda.
+_blank:
+Apre il documento collegato in una nuova finestra/scheda.
 
-_self (default): Apre nella stessa finestra/scheda.
+_self (default):
+Apre nella stessa finestra/scheda.
 
 _parent, _top, framename (meno comuni).
+
 
 Link ad Ancore (all'interno della stessa pagina):
 
@@ -148,70 +176,104 @@ Relativi: Percorso del file relativo alla posizione del documento corrente (es. 
 
 Assoluti: Percorso completo del file, inclusi dominio (es. https://www.example.com/img/file.jpg).
 
-E. Elementi Multimediali
-<img> (Image): Incorpora un'immagine.
+-E. Elementi Multimediali
 
-src attribute: Percorso dell'immagine.
+<img> (Image):
+Incorpora un'immagine.
 
-alt attribute: Testo alternativo per accessibilità e SEO (obbligatorio).
+src attribute:
+Percorso dell'immagine.
 
-loading="lazy": Suggerisce al browser di caricare l'immagine solo quando è vicina al viewport.
+alt attribute:
+Testo alternativo per accessibilità e SEO (obbligatorio).
 
-<figure> e <figcaption>: Contenitore per contenuto autonomo (es. immagini, diagrammi) con una didascalia.
+loading="lazy":
+Suggerisce al browser di caricare l'immagine solo quando è vicina al viewport.
 
-F. Liste
-<ul> (Unordered List): Lista non ordinata (elementi con puntini).
+<figure> e <figcaption>:
+Contenitore per contenuto autonomo (es. immagini, diagrammi) con una didascalia.
 
-<ol> (Ordered List): Lista ordinata (elementi con numeri o lettere).
+-F. Liste
+<ul> (Unordered List):
+Lista non ordinata (elementi con puntini).
+
+<ol> (Ordered List):
+Lista ordinata (elementi con numeri o lettere).
 
 <li> (List Item): Elemento di una lista.
 
-G. Tabelle
-<table>: Contenitore per la tabella.
 
-<thead>: Contenitore per la riga di intestazione.
+-G. Tabelle
 
-<tbody>: Contenitore per le righe di dati.
 
-<tr> (Table Row): Riga della tabella.
+<table>:
+Contenitore per la tabella.
 
-<th> (Table Header): Cella di intestazione della tabella.
+<thead>:
+Contenitore per la riga di intestazione.
 
-<td> (Table Data): Cella di dati della tabella.
+<tbody>:
+Contenitore per le righe di dati.
 
-colspan attribute: Specifica quante colonne una cella deve estendersi orizzontalmente.
+<tr> (Table Row):
+Riga della tabella.
 
-rowspan attribute: Specifica quante righe una cella deve estendersi verticalmente.
+<th> (Table Header):
+Cella di intestazione della tabella.
 
-H. Codici Carattere
+<td> (Table Data):
+Cella di dati della tabella.
+
+colspan attribute:
+Specifica quante colonne una cella deve estendersi orizzontalmente.
+
+rowspan attribute:
+Specifica quante righe una cella deve estendersi verticalmente.
+
+-H. Codici Carattere
 Utilizzo di entità HTML per caratteri speciali (es. &copy; per ©, &lt; per <).
 
-I. Elementi Semantici HTML5
+-I. Elementi Semantici HTML5
 Definizione: Nuovi elementi che attribuiscono un significato strutturale e semantico al loro contenuto, migliorando l'accessibilità e la SEO. Sono tutti elementi a livello di blocco.
 
 Esempi:
 
-<header>: Contenuto introduttivo o gruppo di elementi di navigazione.
+<header>:
+Contenuto introduttivo o gruppo di elementi di navigazione.
 
-<nav>: Sezione di link di navigazione.
+<nav>:
+Sezione di link di navigazione.
 
-<main>: Contenuto principale del documento.
+<main>:
+Contenuto principale del documento.
 
-<section>: Sezione generica di contenuto.
+<section>:
+Sezione generica di contenuto.
 
-<article>: Contenuto autonomo e indipendente (es. un post di blog).
+<article>:
+Contenuto autonomo e indipendente (es. un post di blog).
 
-<aside>: Contenuto correlato ma separato dal contenuto principale (es. sidebar).
+<aside>:
+Contenuto correlato ma separato dal contenuto principale (es. sidebar).
 
-<footer>: Contenuto di chiusura (es. copyright, link correlati).
+<footer>:
+Contenuto di chiusura (es. copyright, link correlati).
 
-J. Elementi Deprecati
+
+
+-J. Elementi Deprecati
 Elementi o attributi obsoleti da non utilizzare in nuove implementazioni (es. center, font).
 
-K. <div> e <span>
-<div>: Elemento a livello di blocco generico, usato per raggruppare elementi per scopi di styling o scripting. Ogni div inizia su una nuova riga.
+-K. <div> e <span>
 
-<span>: Elemento inline generico, usato per applicare stili a piccole porzioni di testo senza interrompere il flusso.
+<div>:
+Elemento a livello di blocco generico, usato per raggruppare elementi per scopi di styling o scripting.
+Ogni div inizia su una nuova riga.
+
+<span>:
+Elemento inline generico, usato per applicare stili a piccole porzioni di testo senza interrompere il flusso.
+
+
 
 III. HTML Forms: Input Utente
 A. L'Elemento <form>
@@ -230,62 +292,91 @@ post: I dati non sono visibili nell'URL, adatti per informazioni sensibili o upl
 target: Dove aprire il risultato dell'invio del form (_blank, _self, ecc.).
 
 B. Elementi Base dei Form
-<label>: Definisce un'etichetta per un elemento <input>. Migliora l'accessibilità.
+<label>:
+Definisce un'etichetta per un elemento <input>. Migliora l'accessibilità.
 
-<input type="text">: Campo di testo a riga singola.
+<input type="text">:
+Campo di testo a riga singola.
 
-placeholder: Testo di suggerimento che scompare all'input.
+placeholder:
+Testo di suggerimento che scompare all'input.
 
-<input type="password">: Campo di testo mascherato per password.
+<input type="password">:
+Campo di testo mascherato per password.
 
-<input type="radio">: Pulsanti radio, consentono di selezionare una sola opzione da un gruppo.
+<input type="radio">:
+Pulsanti radio, consentono di selezionare una sola opzione da un gruppo.
 
-name: Raggruppa i pulsanti radio.
+name:
+Raggruppa i pulsanti radio.
 
-value: Valore inviato al server.
+value:
+Valore inviato al server.
 
-checked: Preseleziona un'opzione.
+checked:
+Preseleziona un'opzione.
 
-<input type="checkbox">: Caselle di controllo, consentono di selezionare zero o più opzioni.
+<input type="checkbox">:
+Caselle di controllo, consentono di selezionare zero o più opzioni.
 
 name, value, checked (simili ai radio button).
 
-<select> (Dropdown Menu): Menu a discesa per selezionare opzioni.
+<select> (Dropdown Menu):
+Menu a discesa per selezionare opzioni.
 
-<option>: Ogni singola opzione.
+<option>:
+Ogni singola opzione.
 
-selected: Preseleziona un'opzione.
+selected:
+Preseleziona un'opzione.
 
-multiple: Consente la selezione di più opzioni.
+multiple:
+Consente la selezione di più opzioni.
 
-<input type="file">: Permette all'utente di caricare un file locale.
+<input type="file">:
+Permette all'utente di caricare un file locale.
 
-<textarea>: Campo di testo multi-riga.
+<textarea>:
+Campo di testo multi-riga.
 
-rows, cols: Definiscono le dimensioni visibili.
+rows, cols:
+Definiscono le dimensioni visibili.
 
-<input type="submit">: Pulsante per inviare i dati del form.
+<input type="submit">:
+Pulsante per inviare i dati del form.
 
-<input type="reset">: Pulsante per ripristinare i controlli del form ai valori predefiniti.
+<input type="reset">:
+Pulsante per ripristinare i controlli del form ai valori predefiniti.
 
-<fieldset> e <legend>: Raggruppano logicamente i controlli del form con un titolo (<legend>). Importante per l'accessibilità.
+<fieldset> e <legend>:
+Raggruppano logicamente i controlli del form con un titolo (<legend>). Importante per l'accessibilità.
+
 
 C. Tipi di Input HTML5 (Smarter Input Types)
 Nuovi tipi di input per validazione e restrizione dell'input utente.
 
-type="email": Per indirizzi email validi.
 
-type="url": Per URL.
+type="email":
+Per indirizzi email validi.
 
-type="number": Per input numerici.
+type="url":
+Per URL.
 
-min, max, step: Limiti e incrementi.
+type="number":
+Per input numerici.
 
-type="search": Per campi di ricerca.
+min, max, step:
+Limiti e incrementi.
 
-Altri tipi: date, color, range, tel, etc.
+type="search":
+Per campi di ricerca.
 
-Considerazioni: Non tutti i browser supportano tutti i tipi allo stesso modo, l'esperienza utente può variare.
+Altri tipi:
+date, color, range, tel, etc.
+
+
+Considerazioni:
+Non tutti i browser supportano tutti i tipi allo stesso modo, l'esperienza utente può variare.
 
 D. Validazione dei Form
 Definizione: Meccanismo per garantire la correttezza dell'input utente.
@@ -311,6 +402,7 @@ OBBLIGATORIA.
 Eseguita dal server dopo la ricezione dei dati.
 
 Protegge da utenti malintenzionati o da dati inviati da altre fonti.
+
 
 IV. Regole CSS
 A. Introduzione a CSS
@@ -573,6 +665,7 @@ Reset box-sizing: Spesso impostato globalmente con html { box-sizing: border-box
 
 Margin Collapsing: I margini verticali (superiore e inferiore) di elementi adiacenti collassano nel margine più grande dei due. Non avviene per i margini orizzontali.
 
+
 VII. Posizionamento e Display
 A. Proprietà display
 display: inline: (Vedi VI.A)
@@ -665,6 +758,8 @@ Gli elementi con posizionamento non static appaiono sempre sopra gli elementi st
 
 L'annidamento è importante: un figlio non può essere più alto di un elemento esterno al suo genitore.
 
+
+
 VIII. Pagine Web Responsive
 A. Content-First
 Filosofia: Progettare pensando prima al contenuto, poi al layout e al design.
@@ -731,7 +826,11 @@ srcset attribute: Permette al browser di scegliere l'immagine più appropriata d
 
 sizes attribute: Definisce lo spazio che l'immagine occuperà sullo schermo.
 
-<picture> element: Offre un controllo più fine sull'art direction, permettendo di specificare diverse sorgenti (<source>) per diverse media queries.
+<picture> element:
+Offre un controllo più fine sull'art direction,
+permettendo di specificare diverse sorgenti (<source>) per diverse media queries.
+
+
 
 IX. SCSS (Sassy Cascading Style Sheets)
 A. Cos'è SCSS
@@ -814,27 +913,28 @@ sass:color: Funzioni per manipolare i colori (es. color.mix(), lighten(), color.
 sass:map: Funzioni per lavorare con le mappe (strutture dati chiave-valore).
 
 X. Bootstrap Core
-A. Cos'è Bootstrap
+
+-A. Cos'è Bootstrap
 Definizione: Un framework front-end open-source per lo sviluppo rapido di siti web responsive e mobile-first.
 
 Caratteristiche: Sistema di layout e griglia, design responsive, stili cross-browser consistenti, componenti UI utili, plugin JavaScript, accessibilità.
 
-B. Vantaggi e Svantaggi
+-B. Vantaggi e Svantaggi
 Vantaggi: Ottimo sistema a griglia, supporto cross-browser, leggero e personalizzabile, molti template, buona documentazione e community.
 
 Svantaggi: I siti Bootstrap possono apparire simili se non pesantemente personalizzati, la personalizzazione può richiedere molte sovrascritture, le classi possono essere verbose, mancanza di separazione delle preoccupazioni (HTML usato per la presentazione), v4 richiedeva jQuery (rimosso in v5).
 
 Quando usarlo: Prototipi rapidi, interfacce front-end di base per applicazioni back-end-centriche.
 
-C. Bootstrap 5 (vs. Bootstrap 4)
+-C. Bootstrap 5 (vs. Bootstrap 4)
 Principali Cambiamenti: Rimosso jQuery, rimosso il supporto per IE10/11, sistema a griglia migliorato, nuovi componenti, Bootstrap Icons, supporto per proprietà CSS personalizzate, supporto RTL.
 
-D. Installazione
+-D. Installazione
 CDN (Content Delivery Network): Modo più semplice e veloce per includere Bootstrap (link a CSS e JS nel <head> e prima della chiusura del <body>).
 
 File Compilati: Scaricare i file compilati e includerli localmente.
 
-E. Layout di Bootstrap
+-E. Layout di Bootstrap
 Grid System: Basato su un sistema a 12 colonne.
 
 Breakpoints: Definiti per diverse dimensioni di dispositivo (xs, sm, md, lg, xl, xxl).
@@ -881,7 +981,8 @@ Input groups, layout di form basati su griglia.
 Validazione dei form con stili personalizzati e tooltip.
 
 XI. JavaScript
-A. Variabili (JS-02)
+
+-A. Variabili (JS-02)
 Definizione: Contenitori per memorizzare valori.
 
 Dichiarazione e Inizializzazione:
@@ -938,7 +1039,7 @@ let: Variabili con scope di blocco, limitate al blocco in cui sono definite.
 
 const: Variabili con scope di blocco che non possono essere riassegnate o ridichiarate.
 
-B. Funzioni (JS-03)
+-B. Funzioni (JS-03)
 Definizione: Insiemi di istruzioni riutilizzabili.
 
 Dichiarazione: function nomeFunzione() { istruzioni }.
@@ -1002,7 +1103,7 @@ switch: Alternativa a if/else multipli per confrontare un valore con vari casi.
 
 Fall-through: Possibilità di far eseguire più casi consecutivi senza break.
 
-D. Stringhe (JS-05)
+-D. Stringhe (JS-05)
 Definizione: Utilizzate per manipolare testi e caratteri.
 
 Indicizzazione: Le stringhe sono indicizzate da zero (il primo carattere ha indice 0).
@@ -1076,7 +1177,7 @@ indexOf(): Restituisce l'indice di un elemento, o -1.
 
 includes(): Verifica se un array contiene un elemento.
 
-F. Oggetti (JS-07)
+-F. Oggetti (JS-07)
 Definizione: Strutture dati flessibili che memorizzano proprietà (valori) e metodi (funzioni).
 
 Sintassi:
@@ -1112,7 +1213,7 @@ Tipi primitivi: Copiati per valore.
 
 Oggetti: Copiati per riferimento.
 
-G. Schedulazione delle Funzioni e Oggetto Date (JS-08)
+-G. Schedulazione delle Funzioni e Oggetto Date (JS-08)
 Schedulazione delle Funzioni:
 
 setTimeout(function, milliseconds, param1, ...): Esegue una funzione una volta dopo un intervallo specificato. Può essere cancellato con clearTimeout(timerId).
@@ -1133,7 +1234,7 @@ Metodi get e set: getFullYear(), getMonth(), getTime(), setFullYear(), setDate()
 
 Date.now(): Millisecondi dal 1 gennaio 1970.
 
-H. Il DOM (Document Object Model) (JS-09)
+-H. Il DOM (Document Object Model) (JS-09)
 Definizione: Rappresentazione strutturata di un documento HTML che permette di accedere e manipolare gli elementi della pagina web.
 
 Ispezione del DOM: Tramite strumenti di sviluppo del browser (es. Chrome DevTools, F12).
@@ -1166,7 +1267,7 @@ Preferibile creare nuovi nodi con document.createElement() e aggiungerli con app
 
 Creazione di Nuovi Nodi: let newDiv = document.createElement('div'); newDiv.textContent = 'Nuovo contenuto'; document.body.appendChild(newDiv);.
 
-I. Eventi (JS-10)
+-I. Eventi (JS-10)
 Importanza: Consentono interazioni dinamiche (validazione form, slideshow, giochi).
 
 Aggiunta di Event Listener:
@@ -1201,7 +1302,7 @@ Rimozione degli Event Listener: removeEventListener(), richiede parametri esatti
 
 Animazioni con JavaScript (non raccomandato): Preferibile usare transizioni CSS per animazioni.
 
-J. JSON e AJAX (JS-11)
+-J. JSON e AJAX (JS-11)
 JSON (JavaScript Object Notation):
 
 Formato leggero per lo scambio di dati, alternativo a XML.
@@ -1258,6 +1359,8 @@ fetch('https://fakeapi.example.com/data')
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Errore:', error));
+
+
 
 CORS (Cross-Origin Resource Sharing):
 

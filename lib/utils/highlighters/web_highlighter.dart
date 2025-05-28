@@ -24,208 +24,233 @@ class WebHighlighter {
   static List<TextSpan> _highlightWebLine(String line) {
     final List<TextSpan> spans = [];
 
-    // HTML tag pattern
-    final RegExp htmlTagPattern = RegExp(r'<[^>]+>');
-    // HTML attribute pattern
-    final RegExp htmlAttributePattern = RegExp(r'\s(\w+)=["\''][^\'"]+["\''']');
-    // CSS properties
-    final RegExp cssPropertyPattern = RegExp(r'[\w-]+\s*:');
-    // JavaScript keywords
-    final RegExp jsKeywordPattern = RegExp(
-        r'\b(async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|finally|for|from|function|if|import|in|instanceof|let|new|of|return|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b',
-        caseSensitive: true);
-    // Common patterns
-    final RegExp stringPattern = RegExp(r'"[^"]*"|\''[^\']*\'');
-    final RegExp commentPattern = RegExp(r'//.*|/\*[\s\S]*?\*/|');
-    final RegExp numberPattern = RegExp(r'\b\d+(\.\d+)?(px|em|rem|vh|vw|%)?\b');
+    // Pattern per i commenti (deve essere controllato per primo)
+    final RegExp commentPattern = RegExp(r'//.*$|/\*[\s\S]*?\*/|<!--[\s\S]*?-->');
 
+    // Se la linea è un commento, colorala tutta come commento
     if (commentPattern.hasMatch(line)) {
       final Match match = commentPattern.firstMatch(line)!;
       return HighlighterUtils.applyCommentHighlight(line, match);
     }
 
+    // Pattern per HTML, CSS e JavaScript
+    final RegExp htmlTagPattern = RegExp(r'<[^>]+>');
+    final RegExp htmlAttributePattern = RegExp(r'\s+([a-zA-Z-]+)\s*=\s*(["\''])([^"\']*)\2');
+    final RegExp cssPropertyPattern = RegExp(r'([a-zA-Z-]+)\s*:');
+    final RegExp cssValuePattern = RegExp(r':\s*([^;{}]+)');
+    final RegExp jsKeywordPattern = RegExp(
+        r'\b(async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|export|extends|finally|for|from|function|if|import|in|instanceof|let|new|of|return|super|switch|this|throw|try|typeof|var|void|while|with|yield|document|window|console|alert)\b');
+    final RegExp stringPattern = RegExp(r'"[^"]*"|\''[^\']*\'|`[^`]*`');
+    final RegExp numberPattern = RegExp(r'\b\d+(\.\d+)?(px|em|rem|vh|vw|%|ms|s)?\b');
+    final RegExp selectorPattern = RegExp(r'[.#]?[a-zA-Z][a-zA-Z0-9_-]*(?=\s*{)');
+
     String remaining = line;
+    int currentIndex = 0;
 
-    void processHtmlTag(List<TextSpan> spans, String matchText) {
-      String tagText = matchText;
-      List<TextSpan> tagSpans = [];
-
-      RegExp tagNameRegex = RegExp(r'</?([^\s>]*)');
-      Match? tagNameMatch = tagNameRegex.firstMatch(tagText);
-
-      if (tagNameMatch != null) {
-        String tagOpen = tagNameMatch.group(0)!;
-
-        tagSpans.add(TextSpan(
-          text: tagOpen[0],
-          style: const TextStyle(color: Color(0xFF808080)),
-        ));
-
-        if (tagOpen.length > 1) {
-          tagSpans.add(TextSpan(
-            text: tagOpen.substring(1),
-            style: const TextStyle(
-              color: Color(0xFF569CD6),
-              fontWeight: FontWeight.bold,
-            ),
-          ));
-        }
-
-        String attributesPart = tagText.substring(tagNameMatch.end);
-
-        while (attributesPart.isNotEmpty) {
-          Match? attrNameMatch = htmlAttributePattern.firstMatch(attributesPart);
-
-          if (attrNameMatch != null) {
-            tagSpans.add(TextSpan(
-              text: attrNameMatch.group(1), // Whitespace
-              style: const TextStyle(color: Color(0xFFE6E6E6)),
-            ));
-
-            tagSpans.add(TextSpan(
-              text: attrNameMatch.group(2), // Attribute name
-              style: const TextStyle(color: Color(0xFF9CDCFE)),
-            ));
-
-            tagSpans.add(TextSpan(
-              text: attrNameMatch.group(3), // Equals sign
-              style: const TextStyle(color: Color(0xFFE6E6E6)),
-            ));
-
-            attributesPart = attributesPart.substring(attrNameMatch.end);
-
-            Match? attrValueMatch = stringPattern.firstMatch(attributesPart);
-            if (attrValueMatch != null) {
-              tagSpans.add(TextSpan(
-                text: attrValueMatch.group(0),
-                style: const TextStyle(color: Color(0xFFCE9178)),
-              ));
-              attributesPart = attributesPart.substring(attrValueMatch.end);
-            }
-          } else {
-            tagSpans.add(TextSpan(
-              text: attributesPart,
-              style: const TextStyle(color: Color(0xFF808080)),
-            ));
-            break;
-          }
-        }
-        spans.addAll(tagSpans);
-      } else {
-        spans.add(TextSpan(
-          text: matchText,
-          style: const TextStyle(color: Color(0xFF569CD6)),
-        ));
-      }
-    }
-
-    while (remaining.isNotEmpty) {
-      Match? htmlTagMatch = htmlTagPattern.firstMatch(remaining);
-      Match? cssPropertyMatch = cssPropertyPattern.firstMatch(remaining);
-      Match? jsKeywordMatch = jsKeywordPattern.firstMatch(remaining);
-      Match? stringMatch = stringPattern.firstMatch(remaining);
-      Match? numberMatch = numberPattern.firstMatch(remaining);
-
-      Match? firstMatch;
+    while (remaining.isNotEmpty && currentIndex < line.length) {
+      Match? bestMatch;
       String? matchType;
       int minStart = remaining.length;
 
-      if (htmlTagMatch != null && htmlTagMatch.start < minStart) {
-        firstMatch = htmlTagMatch;
-        matchType = 'htmlTag';
-        minStart = htmlTagMatch.start;
+      // Trova il primo match tra tutti i pattern
+      final matches = {
+        'htmlTag': htmlTagPattern.firstMatch(remaining),
+        'cssProperty': cssPropertyPattern.firstMatch(remaining),
+        'cssValue': cssValuePattern.firstMatch(remaining),
+        'jsKeyword': jsKeywordPattern.firstMatch(remaining),
+        'string': stringPattern.firstMatch(remaining),
+        'number': numberPattern.firstMatch(remaining),
+        'selector': selectorPattern.firstMatch(remaining),
+      };
+
+      for (final entry in matches.entries) {
+        final match = entry.value;
+        if (match != null && match.start < minStart) {
+          bestMatch = match;
+          matchType = entry.key;
+          minStart = match.start;
+        }
       }
 
-      if (cssPropertyMatch != null && cssPropertyMatch.start < minStart) {
-        firstMatch = cssPropertyMatch;
-        matchType = 'cssProperty';
-        minStart = cssPropertyMatch.start;
-      }
-
-      if (jsKeywordMatch != null && jsKeywordMatch.start < minStart) {
-        firstMatch = jsKeywordMatch;
-        matchType = 'jsKeyword';
-        minStart = jsKeywordMatch.start;
-      }
-
-      if (stringMatch != null && stringMatch.start < minStart) {
-        firstMatch = stringMatch;
-        matchType = 'string';
-        minStart = stringMatch.start;
-      }
-
-      if (numberMatch != null && numberMatch.start < minStart) {
-        firstMatch = numberMatch;
-        matchType = 'number';
-        minStart = numberMatch.start;
-      }
-
-      if (firstMatch != null) {
-        if (firstMatch.start > 0) {
-          HighlighterUtils.addNormalText(
-              spans, remaining.substring(0, firstMatch.start));
+      if (bestMatch != null) {
+        // Aggiungi il testo normale prima del match
+        if (bestMatch.start > 0) {
+          spans.add(TextSpan(
+            text: remaining.substring(0, bestMatch.start),
+            style: const TextStyle(color: Color(0xFFE6E6E6)),
+          ));
         }
 
-        final String matchText = firstMatch.group(0)!;
-        Color color;
-        FontWeight weight = FontWeight.normal;
+        final String matchText = bestMatch.group(0)!;
 
         switch (matchType) {
           case 'htmlTag':
-            processHtmlTag(spans, matchText);
+            _processHtmlTag(spans, matchText);
             break;
           case 'cssProperty':
-            color = const Color(0xFF9CDCFE); // Light blue for CSS properties
             spans.add(TextSpan(
               text: matchText,
-              style: TextStyle(
-                color: color,
-                fontWeight: weight,
+              style: const TextStyle(
+                color: Color(0xFF9CDCFE), // Blu chiaro per proprietà CSS
+                fontWeight: FontWeight.w500,
+              ),
+            ));
+            break;
+          case 'cssValue':
+            spans.add(TextSpan(
+              text: matchText,
+              style: const TextStyle(
+                color: Color(0xFFCE9178), // Arancione per valori CSS
               ),
             ));
             break;
           case 'jsKeyword':
-            color = const Color(0xFFC586C0); // Purple for JS keywords
-            weight = FontWeight.bold;
             spans.add(TextSpan(
               text: matchText,
-              style: TextStyle(
-                color: color,
-                fontWeight: weight,
+              style: const TextStyle(
+                color: Color(0xFFC586C0), // Viola per keyword JavaScript
+                fontWeight: FontWeight.bold,
               ),
             ));
             break;
           case 'string':
-            color = const Color(0xFFCE9178); // Orange/brown for strings
             spans.add(TextSpan(
               text: matchText,
-              style: TextStyle(
-                color: color,
-                fontWeight: weight,
+              style: const TextStyle(
+                color: Color(0xFFCE9178), // Arancione per stringhe
               ),
             ));
             break;
           case 'number':
-            color = const Color(0xFFB5CEA8); // Light green for numbers
             spans.add(TextSpan(
               text: matchText,
-              style: TextStyle(
-                color: color,
-                fontWeight: weight,
+              style: const TextStyle(
+                color: Color(0xFFB5CEA8), // Verde chiaro per numeri
+              ),
+            ));
+            break;
+          case 'selector':
+            spans.add(TextSpan(
+              text: matchText,
+              style: const TextStyle(
+                color: Color(0xFFD7BA7D), // Giallo per selettori CSS
+                fontWeight: FontWeight.w500,
               ),
             ));
             break;
           default:
-            HighlighterUtils.addNormalText(spans, matchText);
+            spans.add(TextSpan(
+              text: matchText,
+              style: const TextStyle(color: Color(0xFFE6E6E6)),
+            ));
         }
 
-        remaining = remaining.substring(firstMatch.start + matchText.length);
+        remaining = remaining.substring(bestMatch.start + matchText.length);
+        currentIndex += bestMatch.start + matchText.length;
       } else {
-        HighlighterUtils.addNormalText(spans, remaining);
+        // Nessun match trovato, aggiungi il resto come testo normale
+        spans.add(TextSpan(
+          text: remaining,
+          style: const TextStyle(color: Color(0xFFE6E6E6)),
+        ));
         break;
       }
     }
 
     return spans;
+  }
+
+  static void _processHtmlTag(List<TextSpan> spans, String tagText) {
+    // Pattern per identificare parti del tag HTML
+    final RegExp tagNamePattern = RegExp(r'^</?([^\s>]+)');
+    final RegExp attributePattern = RegExp(r'\s+([a-zA-Z-]+)(?:\s*=\s*(["\''])([^"\']*)\2)?');
+
+    int currentIndex = 0;
+
+    // Trova il nome del tag
+    final tagNameMatch = tagNamePattern.firstMatch(tagText);
+    if (tagNameMatch != null) {
+      // Aggiungi '<' o '</'
+      spans.add(TextSpan(
+        text: tagText.substring(0, tagNameMatch.start + 1),
+        style: const TextStyle(color: Color(0xFF808080)), // Grigio per brackets
+      ));
+
+      // Aggiungi il nome del tag
+      spans.add(TextSpan(
+        text: tagNameMatch.group(1)!,
+        style: const TextStyle(
+          color: Color(0xFF569CD6), // Blu per nome tag
+          fontWeight: FontWeight.bold,
+        ),
+      ));
+
+      currentIndex = tagNameMatch.end;
+
+      // Trova tutti gli attributi
+      String remainingTag = tagText.substring(currentIndex);
+      final attributeMatches = attributePattern.allMatches(remainingTag).toList();
+
+      int lastEnd = 0;
+      for (final attrMatch in attributeMatches) {
+        // Aggiungi spazi prima dell'attributo
+        if (attrMatch.start > lastEnd) {
+          spans.add(TextSpan(
+            text: remainingTag.substring(lastEnd, attrMatch.start),
+            style: const TextStyle(color: Color(0xFFE6E6E6)),
+          ));
+        }
+
+        // Nome attributo
+        spans.add(TextSpan(
+          text: attrMatch.group(1)!,
+          style: const TextStyle(
+            color: Color(0xFF9CDCFE), // Blu chiaro per attributi
+          ),
+        ));
+
+        // Se c'è un valore
+        if (attrMatch.group(2) != null && attrMatch.group(3) != null) {
+          // '=' e quote
+          spans.add(TextSpan(
+            text: '=${attrMatch.group(2)!}',
+            style: const TextStyle(color: Color(0xFFE6E6E6)),
+          ));
+
+          // Valore attributo
+          spans.add(TextSpan(
+            text: attrMatch.group(3)!,
+            style: const TextStyle(
+              color: Color(0xFFCE9178), // Arancione per valori attributo
+            ),
+          ));
+
+          // Quote di chiusura
+          spans.add(TextSpan(
+            text: attrMatch.group(2)!,
+            style: const TextStyle(color: Color(0xFFE6E6E6)),
+          ));
+        }
+
+        lastEnd = attrMatch.end;
+      }
+
+      // Aggiungi il resto del tag (incluso '>')
+      if (lastEnd < remainingTag.length) {
+        spans.add(TextSpan(
+          text: remainingTag.substring(lastEnd),
+          style: const TextStyle(color: Color(0xFF808080)), // Grigio per '>'
+        ));
+      }
+    } else {
+      // Se non riusciamo a parsare il tag, coloralo tutto come tag
+      spans.add(TextSpan(
+        text: tagText,
+        style: const TextStyle(
+          color: Color(0xFF569CD6),
+          fontWeight: FontWeight.bold,
+        ),
+      ));
+    }
   }
 }

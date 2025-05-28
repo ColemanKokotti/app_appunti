@@ -1,0 +1,2 @@
+C:/Users/colea/OneDrive/Desktop/appunti/android/app/.cxx/RelWithDebInfo/1s523gc4/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/colea/OneDrive/Desktop/appunti/android/app/.cxx/RelWithDebInfo/1s523gc4/arm64-v8a/CMakeFiles/rebuild_cache.dir

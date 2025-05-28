@@ -18,6 +18,17 @@ abstract class BaseFormatter {
     ;
   }
 
+  // Nuovo metodo per riconoscere elementi di lista
+  static bool isListItemStart(String line) {
+    final trimmedLine = line.trim();
+
+    // Regex per riconoscere il pattern "- [lettera]."
+    // Supporta sia lettere minuscole che maiuscole
+    final listItemRegex = RegExp(r'^-\s*[a-zA-Z]\.$');
+
+    return listItemRegex.hasMatch(trimmedLine);
+  }
+
   static bool isCodeBlockStart(String trimmedLine) {
     // Riconoscimento del delimitatore di codice Markdown
     if (trimmedLine.startsWith('```')) {
