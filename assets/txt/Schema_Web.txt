@@ -1,1 +1,1266 @@
 Schema Web
+
+I. HTML, CSS e JavaScript: Introduzione
+A. Struttura di una Pagina Web
+HTML (HyperText Markup Language):
+
+Definizione: Linguaggio di markup per la struttura e il contenuto delle pagine web.
+
+Ruolo: Fornisce la struttura scheletrica della pagina.
+
+Elementi: Testo, media, link, ecc.
+
+CSS (Cascading Style Sheets):
+
+Definizione: Linguaggio per la presentazione e lo stile visivo.
+
+Ruolo: Controlla l'aspetto degli elementi HTML (colori, layout, font).
+
+JavaScript:
+
+Definizione: Linguaggio di scripting per la logica e l'interattività.
+
+Ruolo: Aggiunge comportamento dinamico alla pagina.
+
+B. Boilerplate HTML
+1. <!doctype html>: Dichiarazione del tipo di documento (HTML5).
+
+2. <html lang="en">: Elemento radice del documento, specifica la lingua.
+
+3. <head>: Contiene metadati e link a risorse esterne (non visibile all'utente).
+
+4. <meta charset="utf-8">: Specifica la codifica dei caratteri (standard).
+
+5. <title>Website Title</title>: Titolo della pagina, mostrato nella barra del browser.
+
+6. <meta name="description" content="...">: Descrizione della pagina per i motori di ricerca.
+
+7. <meta name="author" content="...">: Autore della pagina.
+
+8. <link rel="stylesheet" href="./css/styles.css?v=1.0">:
+Collega un foglio di stile CSS esterno. Il ?v=1.0 è per il versioning e la cache.
+
+9. <body>: Contiene il contenuto visibile della pagina.
+
+10.<script src="./js/scripts.js"></script>:
+Collega un file JavaScript esterno. Posizionamento alla fine del <body> per ottimizzare la velocità di caricamento.
+
+C. URL (Uniform Resource Locator)
+Definizione: Indirizzo per localizzare una risorsa unica sulla rete (file, applicazione).
+
+Componenti: Protocollo (es. https://), nome utente/password (opzionale), dominio (es. www.example.com), porta (opzionale), percorso (es. /blog/article/search), query string (es. ?hl=en&q=news), frammento (es. #top).
+
+D. Risorse: Inline, Embedded ed External
+CSS:
+
+Inline: Stili applicati direttamente nell'attributo style di un elemento HTML. DA EVITARE (nessuna separazione, riusabilità limitata, caching limitato).
+
+Embedded: Stili definiti all'interno del tag <style> nella sezione <head>. DA EVITARE (nessuna separazione, riusabilità limitata).
+
+External: Stili definiti in un file .css separato e collegati tramite <link>. RACCOMANDATO (separazione, riusabilità, caching, facile manutenzione).
+
+JavaScript:
+
+Inline: Script direttamente nell'attributo on* (es. onclick). DA EVITARE.
+
+Embedded: Script definiti all'interno del tag <script> nel documento HTML. DA EVITARE.
+
+External: Script definiti in un file .js separato e collegati tramite <script src="...">. RACCOMANDATO.
+
+E. Ottimizzazione della Velocità di Caricamento
+Struttura File/Cartelle: Organizzazione logica (es. /css, /js, /img).
+
+Script Placement: Posizionare <script> alla fine del <body> per non bloccare il rendering HTML.
+
+async e defer Attributes:
+
+defer: Non blocca il browser, lo script viene caricato in background ed eseguito dopo il parsing HTML. Mantiene l'ordine di esecuzione.
+
+async: Non blocca il browser, lo script viene caricato ed eseguito appena pronto. Nessuna garanzia sull'ordine di esecuzione.
+
+II. Elementi HTML
+A. Terminologia Fondamentale
+Elemento: Blocco costitutivo delle pagine web (es. p, h1, div).
+
+Tag: Marcatore di inizio (<tagname>) e fine (</tagname>) di un elemento.
+
+Elemento Contenitore: Può contenere altri elementi o contenuto (es. <p>, <div>).
+
+Elemento Stand-Alone (o Vuoto): Non può contenere altro (es. <br>, <img>, <hr>).
+
+Attributo: Fornisce informazioni aggiuntive sull'elemento (es. class, id, src, href).
+
+Valore: Il valore assegnato a un attributo, racchiuso tra virgolette.
+
+B. Struttura Base della Pagina
+
+1. <!DOCTYPE html>: (Vedi I.B)
+
+2. <html>: Elemento radice.
+
+3. <head>: (Vedi I.B)
+
+4. <body>: Contenuto visibile.
+
+5. Nesting: Gli elementi sono "nidificati" l'uno nell'altro, seguendo una gerarchia.
+
+6. Commenti (``): Non visibili nel browser, utili per organizzare il codice.
+
+C. Elementi di Testo Comuni
+<p> (Paragraph): Paragrafi di testo. Lo spazio bianco multiplo viene ignorato dal browser.
+
+<h1> - <h6> (Headings): Titoli di diverse gerarchie (dall'H1, il più importante, all'H6, il meno importante).
+
+<em> (Emphasized Text): Testo enfatizzato (solitamente corsivo), con significato semantico.
+
+<strong> (Strong Importance Text): Testo con forte importanza (solitamente grassetto), con significato semantico.
+
+<b> (Bold Text) e <i> (Italic Text): Testo in grassetto o corsivo per scopi puramente stilistici (da usare con cautela, preferire CSS).
+
+<br> (Line Break): Inserisce un'interruzione di riga.
+
+<hr> (Thematic Break): Definisce un cambio tematico nel contenuto (linea orizzontale).
+
+D. Elementi di Collegamento (Anchor)
+<a> (Anchor): Crea collegamenti ipertestuali.
+
+href attribute: Specifica l'URL di destinazione.
+
+title attribute: Testo descrittivo mostrato al passaggio del mouse.
+
+Target Attributes:
+
+_blank: Apre il documento collegato in una nuova finestra/scheda.
+
+_self (default): Apre nella stessa finestra/scheda.
+
+_parent, _top, framename (meno comuni).
+
+Link ad Ancore (all'interno della stessa pagina):
+
+Creare un elemento con un attributo id (es. <h2 id="chapter4">).
+
+Creare un link che punta a quell'ID (es. <a href="#chapter4">).
+
+Percorsi Relativi vs. Assoluti:
+
+Relativi: Percorso del file relativo alla posizione del documento corrente (es. ./img/file.jpg).
+
+Assoluti: Percorso completo del file, inclusi dominio (es. https://www.example.com/img/file.jpg).
+
+E. Elementi Multimediali
+<img> (Image): Incorpora un'immagine.
+
+src attribute: Percorso dell'immagine.
+
+alt attribute: Testo alternativo per accessibilità e SEO (obbligatorio).
+
+loading="lazy": Suggerisce al browser di caricare l'immagine solo quando è vicina al viewport.
+
+<figure> e <figcaption>: Contenitore per contenuto autonomo (es. immagini, diagrammi) con una didascalia.
+
+F. Liste
+<ul> (Unordered List): Lista non ordinata (elementi con puntini).
+
+<ol> (Ordered List): Lista ordinata (elementi con numeri o lettere).
+
+<li> (List Item): Elemento di una lista.
+
+G. Tabelle
+<table>: Contenitore per la tabella.
+
+<thead>: Contenitore per la riga di intestazione.
+
+<tbody>: Contenitore per le righe di dati.
+
+<tr> (Table Row): Riga della tabella.
+
+<th> (Table Header): Cella di intestazione della tabella.
+
+<td> (Table Data): Cella di dati della tabella.
+
+colspan attribute: Specifica quante colonne una cella deve estendersi orizzontalmente.
+
+rowspan attribute: Specifica quante righe una cella deve estendersi verticalmente.
+
+H. Codici Carattere
+Utilizzo di entità HTML per caratteri speciali (es. &copy; per ©, &lt; per <).
+
+I. Elementi Semantici HTML5
+Definizione: Nuovi elementi che attribuiscono un significato strutturale e semantico al loro contenuto, migliorando l'accessibilità e la SEO. Sono tutti elementi a livello di blocco.
+
+Esempi:
+
+<header>: Contenuto introduttivo o gruppo di elementi di navigazione.
+
+<nav>: Sezione di link di navigazione.
+
+<main>: Contenuto principale del documento.
+
+<section>: Sezione generica di contenuto.
+
+<article>: Contenuto autonomo e indipendente (es. un post di blog).
+
+<aside>: Contenuto correlato ma separato dal contenuto principale (es. sidebar).
+
+<footer>: Contenuto di chiusura (es. copyright, link correlati).
+
+J. Elementi Deprecati
+Elementi o attributi obsoleti da non utilizzare in nuove implementazioni (es. center, font).
+
+K. <div> e <span>
+<div>: Elemento a livello di blocco generico, usato per raggruppare elementi per scopi di styling o scripting. Ogni div inizia su una nuova riga.
+
+<span>: Elemento inline generico, usato per applicare stili a piccole porzioni di testo senza interrompere il flusso.
+
+III. HTML Forms: Input Utente
+A. L'Elemento <form>
+Definizione: Consente di raccogliere dati dall'utente.
+
+Attributi principali:
+
+action: L'URL a cui inviare i dati del form.
+
+method: Il metodo HTTP per l'invio dei dati.
+
+get: I dati sono visibili nell'URL (query string), adatti per ricerche o dati non sensibili. Limite di lunghezza.
+
+post: I dati non sono visibili nell'URL, adatti per informazioni sensibili o upload di file. Nessun limite di lunghezza pratico.
+
+target: Dove aprire il risultato dell'invio del form (_blank, _self, ecc.).
+
+B. Elementi Base dei Form
+<label>: Definisce un'etichetta per un elemento <input>. Migliora l'accessibilità.
+
+<input type="text">: Campo di testo a riga singola.
+
+placeholder: Testo di suggerimento che scompare all'input.
+
+<input type="password">: Campo di testo mascherato per password.
+
+<input type="radio">: Pulsanti radio, consentono di selezionare una sola opzione da un gruppo.
+
+name: Raggruppa i pulsanti radio.
+
+value: Valore inviato al server.
+
+checked: Preseleziona un'opzione.
+
+<input type="checkbox">: Caselle di controllo, consentono di selezionare zero o più opzioni.
+
+name, value, checked (simili ai radio button).
+
+<select> (Dropdown Menu): Menu a discesa per selezionare opzioni.
+
+<option>: Ogni singola opzione.
+
+selected: Preseleziona un'opzione.
+
+multiple: Consente la selezione di più opzioni.
+
+<input type="file">: Permette all'utente di caricare un file locale.
+
+<textarea>: Campo di testo multi-riga.
+
+rows, cols: Definiscono le dimensioni visibili.
+
+<input type="submit">: Pulsante per inviare i dati del form.
+
+<input type="reset">: Pulsante per ripristinare i controlli del form ai valori predefiniti.
+
+<fieldset> e <legend>: Raggruppano logicamente i controlli del form con un titolo (<legend>). Importante per l'accessibilità.
+
+C. Tipi di Input HTML5 (Smarter Input Types)
+Nuovi tipi di input per validazione e restrizione dell'input utente.
+
+type="email": Per indirizzi email validi.
+
+type="url": Per URL.
+
+type="number": Per input numerici.
+
+min, max, step: Limiti e incrementi.
+
+type="search": Per campi di ricerca.
+
+Altri tipi: date, color, range, tel, etc.
+
+Considerazioni: Non tutti i browser supportano tutti i tipi allo stesso modo, l'esperienza utente può variare.
+
+D. Validazione dei Form
+Definizione: Meccanismo per garantire la correttezza dell'input utente.
+
+Scopi: Verificare campi obbligatori, limitare tipi di input, conformità a standard (email, carte di credito), limitare lunghezze.
+
+Punti di Validazione:
+
+Front-end (Client-side):
+
+Eseguita dal browser prima dell'invio.
+
+Avvisa l'utente in tempo reale.
+
+Può usare la validazione HTML5 integrata (limitata e inconsistente tra browser) o JavaScript (maggiore controllo, ma richiede più codice).
+
+NON FIDARSI SOLO DELLA VALIDAZIONE FRONT-END.
+
+Back-end (Server-side):
+
+OBBLIGATORIA.
+
+Eseguita dal server dopo la ricezione dei dati.
+
+Protegge da utenti malintenzionati o da dati inviati da altre fonti.
+
+IV. Regole CSS
+A. Introduzione a CSS
+Definizione: Linguaggio per lo stile e la presentazione degli elementi HTML.
+
+Anatomia di una Regola CSS:
+
+Selettore: Seleziona gli elementi HTML a cui applicare gli stili.
+
+Dichiarazioni: Blocco di proprietà-valore racchiuso tra parentesi graffe {}.
+
+Proprietà: Caratteristica da stilizzare (es. color).
+
+Valore: Il valore della proprietà (es. red).
+
+B. Applicazione di CSS a HTML (Vedi I.D)
+C. Selettori CSS (Vedi V. Selettori CSS)
+D. Proprietà CSS Comuni
+color: Colore del testo.
+
+background-color: Colore di sfondo di un elemento.
+
+Valori Colore: Nomi (es. red), esadecimali (es. #FF0000), RGB (es. rgb(255, 0, 0)), RGBA (con trasparenza), HSL, HSLA.
+
+width: Larghezza di un elemento (funziona per elementi a blocco o con display modificato).
+
+Unità: px, em, rem, vw, vh, %.
+
+font-family: Tipo di carattere.
+
+Elenco di font separati da virgole (stack di font, con un font generico come fallback).
+
+@font-face: Per includere font personalizzati (possono rallentare la pagina).
+
+Google Web Fonts: Font ospitati da Google (possono rallentare la pagina).
+
+font-size: Dimensione del carattere (es. px, em, %).
+
+font (Shorthand): Proprietà abbreviata per font-style, font-weight, font-size, font-family.
+
+Tipografia per Programmatori: font-stack, font-size, line-height, font-weight, font-style, text-align, color, text-decoration.
+
+E. Cascata CSS
+Principio: Determina quale regola CSS viene applicata quando più regole potrebbero influenzare lo stesso elemento.
+
+Priorità (dalla più alta alla più bassa):
+
+Stili Inline: Stili definiti direttamente nell'attributo style.
+
+Selettori ID: (Peso 1-0-0)
+
+Selettori di Classe, Attributo, Pseudo-classi: (Peso 0-1-0)
+
+Selettori di Elemento, Pseudo-elementi: (Peso 0-0-1)
+
+Selettore Universale (*), Combinatori, :not(): (Peso 0-0-0, ma il contenuto di :not() contribuisce al peso).
+
+Specificità: Selettori più specifici hanno priorità più alta.
+
+Ordine della Sorgente: Se la specificità è la stessa, la regola definita più in basso nel file CSS vince.
+
+!important: Sovrascrive qualsiasi altra dichiarazione. DA EVITARE se possibile, rende il debug difficile. Usare solo per sovrascrivere CSS esterni o stili inline.
+
+F. Proprietà Personalizzate CSS (Variabili CSS)
+Sintassi: --nome-variabile: valore; (definizione), var(--nome-variabile); (utilizzo).
+
+Vantaggi:
+
+Riusabilità: Definite una volta, usate più volte.
+
+Dinamicità: Possono essere modificate con JavaScript a runtime.
+
+Fallback: Possibilità di definire un valore di fallback se la variabile non è definita.
+
+Cascata e Ereditarietà: Seguono le normali regole CSS.
+
+:root Pseudo-classe: Spesso usata per definire variabili globali, rappresenta l'elemento <html>.
+
+G. CSS Reset e Normalize
+Problema: I browser hanno stili predefiniti diversi, rendendo l'aspetto delle pagine inconsistente.
+
+Scopo: Normalizzare gli stili predefiniti.
+
+Approcci:
+
+Reset CSS: Rimuove ogni stile predefinito del browser, costringendo lo sviluppatore a stilizzare tutto da zero.
+
+Normalize.css: Rende gli stili predefiniti consistenti tra i browser, mantenendo quelli utili.
+
+Destyle.css: Un'altra alternativa.
+
+Quale usare? Dipende dal progetto. Normalize.css è spesso preferito per la sua modularità e per il mantenimento di stili predefiniti utili.
+
+V. Selettori CSS
+A. Tipi di Selettori
+Selettore Base: Seleziona gli elementi in base a ID, classe o tipo di elemento.
+
+Selettore ID (#id): Seleziona un elemento con un attributo id specifico. Unico per pagina. Ha la specificità più alta tra i selettori base.
+
+Selettore di Classe (.classe): Seleziona elementi con un attributo class specifico. Può essere riusato più volte.
+
+Selettore di Elemento (o Tag, o Tipo) (tagname): Seleziona tutti gli elementi di un certo tipo (es. p, h1). Ha la specificità più bassa tra i selettori base.
+
+Selettore Universale (*): Seleziona tutti gli elementi. Usare con cautela.
+
+B. Selettori Relazionali (Combinatori)
+Combinano più selettori base.
+
+Selettore Discendente (spazio): Seleziona un elemento che è discendente (qualsiasi livello di profondità) di un altro elemento (es. article h2 seleziona tutti gli h2 all'interno di un article).
+
+Selettore Figlio Diretto (>): Seleziona un elemento che è figlio diretto di un altro (es. article > p seleziona i p che sono figli diretti di article).
+
+Selettore Fratello Generale (~): Seleziona un elemento che segue un altro elemento e condivide lo stesso genitore (es. h2 ~ p seleziona tutti i p che seguono un h2 nello stesso genitore).
+
+Selettore Fratello Adiacente (+): Seleziona un elemento che segue direttamente un altro elemento e condivide lo stesso genitore (es. h2 + p seleziona il p immediatamente successivo a un h2 nello stesso genitore).
+
+C. Selettori di Attributo
+Selezionano elementi in base alla presenza o al valore di un attributo.
+
+[attribute]: Seleziona elementi con l'attributo specificato (es. a[target] seleziona tutti i link con l'attributo target).
+
+[attribute="value"]: Seleziona elementi con l'attributo che ha un valore esatto (es. a[href="http://google.com/"]).
+
+[attribute*="value"]: Seleziona elementi con l'attributo il cui valore contiene la stringa specificata (es. a[href*="login"]).
+
+[attribute^="value"]: Seleziona elementi con l'attributo il cui valore inizia con la stringa specificata (es. a[href^="https://"]).
+
+[attribute$="value"]: Seleziona elementi con l'attributo il cui valore termina con la stringa specificata (es. a[href$=".pdf"]).
+
+[attribute~="value"]: Seleziona elementi con l'attributo il cui valore contiene una parola specifica separata da spazi (es. img[alt~='child']).
+
+[attribute|="value"]: Seleziona elementi con l'attributo il cui valore inizia con la stringa specificata seguita da un trattino o è esattamente la stringa (es. p[lang|="en"]).
+
+D. Pseudo-classi (:)
+Selezionano elementi in base al loro stato, posizione all'interno del documento o contenuto. Non sono scritte nel codice HTML.
+
+Pseudo-classi di Stato:
+
+:link: Link non visitato.
+
+:visited: Link visitato.
+
+:hover: Elemento su cui il mouse è posizionato.
+
+:active: Elemento attivato (es. cliccato).
+
+:focus: Elemento che ha il focus (es. tramite tasto Tab).
+
+:enabled, :disabled: Input abilitati o disabilitati.
+
+:checked: Checkbox o radio button selezionati.
+
+:indeterminate: Checkbox o radio button in stato intermedio.
+
+Pseudo-classi Strutturali e di Posizione:
+
+:first-child: Primo figlio del suo genitore.
+
+:last-child: Ultimo figlio del suo genitore.
+
+:only-child: Unico figlio del suo genitore.
+
+:first-of-type: Primo elemento del suo tipo all'interno del genitore.
+
+:last-of-type: Ultimo elemento del suo tipo all'interno del genitore.
+
+:only-of-type: Unico elemento del suo tipo all'interno del genitore.
+
+:nth-child(an+b): Seleziona elementi basati su un'espressione algebrica (es. 2n per pari, 2n+1 per dispari).
+
+:nth-of-type(an+b): Simile a nth-child ma considera solo elementi dello stesso tipo.
+
+:nth-last-child(), :nth-last-of-type(): Contano dal basso.
+
+:empty: Seleziona elementi che non contengono figli (inclusi nodi di testo, ma non commenti o spazi bianchi).
+
+:not(selector) (Negation Pseudo-class): Seleziona elementi che non corrispondono al selettore specificato.
+
+E. Pseudo-elementi (::)
+Creano elementi dinamici che non esistono nell'albero del documento, permettendo di stilizzare parti uniche della pagina.
+
+Solo un pseudo-elemento per selettore.
+
+Pseudo-elementi Testuali:
+
+::first-letter: Seleziona la prima lettera del testo di un elemento a blocco.
+
+::first-line: Seleziona la prima riga di testo di un elemento a blocco.
+
+Pseudo-elementi di Contenuto:
+
+::before: Crea un pseudo-elemento prima del contenuto dell'elemento selezionato.
+
+::after: Crea un pseudo-elemento dopo il contenuto dell'elemento selezionato.
+
+Spesso usati con la proprietà content.
+
+Pseudo-elemento di Frammento:
+
+::selection: Identifica la parte del documento selezionata dall'utente.
+
+F. Combinazione di Selettori
+I selettori possono essere combinati per maggiore specificità (es. .module.news seleziona elementi con entrambe le classi).
+
+VI. Raggruppamento CSS e Box Model
+A. Raggruppamento e Separazione (div e span)
+Elementi a Blocco (display: block):
+
+Appaiono su una nuova riga.
+
+Occupano tutta la larghezza disponibile per default.
+
+Esempi: div, p, h1, section.
+
+Elementi Inline (display: inline):
+
+Appaiono sulla stessa riga.
+
+Non accettano width o height.
+
+margin e padding influenzano solo orizzontalmente.
+
+Esempi: span, a, em, strong, img.
+
+Elementi Inline-Block (display: inline-block):
+
+Combinano caratteristiche di inline e block.
+
+Appaiono sulla stessa riga ma accettano width e height.
+
+B. Proprietà width e height
+width / height: Imposta la larghezza/altezza.
+
+min-width / min-height: Imposta un limite inferiore alla dimensione.
+
+max-width / max-height: Imposta un limite superiore alla dimensione (es. max-width: 100%; per immagini responsive).
+
+calc(): Funzione CSS per calcolare valori di proprietà combinando diverse unità (es. width: calc(50% - 20px)).
+
+C. Il Box Model
+Definizione: Ogni elemento HTML è una scatola rettangolare composta da contenuto, padding, bordo e margine.
+
+Componenti:
+
+Content: L'area dove si trova il contenuto effettivo (testo, immagini).
+
+Padding: Spazio trasparente tra il contenuto e il bordo. Accetta proprietà individuali (padding-top, padding-right, ecc.) o shorthand (padding: top right bottom left;). Il background si estende al padding.
+
+Border: Il bordo intorno al padding. Specificato con border: thickness style color; o proprietà individuali (border-width, border-style, border-color). border-radius per angoli arrotondati.
+
+Margin: Spazio trasparente intorno al bordo, che separa l'elemento da altri elementi. Accetta proprietà individuali (margin-top, margin-right, ecc.) o shorthand.
+
+box-sizing Property:
+
+content-box (default): width e height includono solo il contenuto. Padding e bordo aggiungono alla dimensione totale.
+
+border-box (raccomandato): width e height includono contenuto, padding e bordo. La dimensione totale dell'elemento rimane quella specificata.
+
+Reset box-sizing: Spesso impostato globalmente con html { box-sizing: border-box; } *, *::before, *::after { box-sizing: inherit; }.
+
+Margin Collapsing: I margini verticali (superiore e inferiore) di elementi adiacenti collassano nel margine più grande dei due. Non avviene per i margini orizzontali.
+
+VII. Posizionamento e Display
+A. Proprietà display
+display: inline: (Vedi VI.A)
+
+display: inline-block: (Vedi VI.A)
+
+display: block: (Vedi VI.A)
+
+display: none: Rimuove completamente l'elemento dal flusso del documento. Non occupa spazio e non è interattivo.
+
+B. Nascondere Elementi
+display: none: Rimuove l'elemento e il suo spazio.
+
+visibility: hidden: Nasconde l'elemento ma mantiene il suo spazio nel layout. Non interattivo.
+
+opacity: 0: Nasconde l'elemento, mantiene il suo spazio e rimane interattivo (eventi funzionano).
+
+C. Proprietà background
+Shorthand: Permette di definire più proprietà di sfondo in una singola dichiarazione (es. background: url('image.png') no-repeat center center / cover;).
+
+Proprietà Individuali:
+
+background-image: Immagine di sfondo.
+
+background-position: Posizione dell'immagine.
+
+background-size: Dimensione dell'immagine.
+
+background-repeat: Ripetizione dell'immagine.
+
+background-attachment: Se l'immagine scorre con la pagina (scroll) o è fissa (fixed).
+
+background-origin: Da dove inizia il posizionamento dell'immagine (bordo, padding, contenuto).
+
+background-clip: Come l'immagine viene ritagliata.
+
+background-color: Colore di sfondo.
+
+D. Posizionamento
+position: static (Default):
+
+Gli elementi sono posizionati nel normale flusso della pagina.
+
+Le proprietà top, bottom, left, right vengono ignorate.
+
+position: relative:
+
+L'elemento rimane nel normale flusso.
+
+Può essere spostato dalla sua posizione originale usando top, bottom, left, right.
+
+Non influisce sugli elementi circostanti.
+
+Crea un "contesto di posizionamento" per gli elementi figli posizionati assolutamente.
+
+position: absolute:
+
+Rimuove l'elemento dal normale flusso del documento.
+
+Gli altri elementi si comportano come se non fosse presente.
+
+Posizionato rispetto al suo "blocco contenitore" (il primo antenato non static, altrimenti <html>).
+
+Offset tramite top, bottom, left, right.
+
+position: fixed:
+
+Rimuove l'elemento dal normale flusso.
+
+Posizionato rispetto al viewport (finestra del browser).
+
+Rimane fisso anche durante lo scroll.
+
+position: sticky:
+
+Ibrido tra relative e fixed.
+
+Si comporta come relative finché non raggiunge una soglia specificata, dopodiché si comporta come fixed.
+
+E. z-index Property
+Definizione: Controlla l'ordine di sovrapposizione degli elementi posizionati.
+
+Regole:
+
+L'elemento con il z-index più alto va sopra.
+
+Senza z-index, gli elementi si sovrappongono nell'ordine in cui appaiono nel DOM.
+
+Gli elementi con posizionamento non static appaiono sempre sopra gli elementi static.
+
+L'annidamento è importante: un figlio non può essere più alto di un elemento esterno al suo genitore.
+
+VIII. Pagine Web Responsive
+A. Content-First
+Filosofia: Progettare pensando prima al contenuto, poi al layout e al design.
+
+Vantaggi: Migliora l'esperienza utente, assicura coerenza su tutti i canali, informa il design, evita template inutili.
+
+Proto-content: Utilizzare contenuto reale o bozze anziché "Lorem Ipsum".
+
+B. Mobile-First
+Filosofia: Progettare e sviluppare prima per dispositivi mobili, poi scalare per schermi più grandi.
+
+Motivazioni: Oltre il 50% del traffico web proviene da mobile, Google indicizza mobile-first, migliore UX mobile.
+
+Come Lavorare Mobile-First: Prioritizzare il codice mobile, interazioni intuitive, CTA chiare, caricamento rapido, contenuto ottimizzato per mobile (leggibile, scorrevole).
+
+C. Responsive Design
+Definizione: Un sito web che si adatta automaticamente a qualsiasi dimensione di schermo e dispositivo.
+
+Tecniche: Ottenuto principalmente tramite media queries.
+
+Processo: I designer spesso progettano mobile-first e poi scalano. Gli sviluppatori devono affrontare le complessità del mobile.
+
+D. Breakpoints
+Definizione: Punti di interruzione in cui il layout o lo stile di una pagina web cambiano per adattarsi a diverse dimensioni dello schermo.
+
+Standard: Non ci sono standard fissi, ma esistono larghezze comuni (es. 320px, 480px, 576px, 768px, 992px, 1200px).
+
+Debugging: I browser offrono strumenti di sviluppo per simulare dispositivi e testare i breakpoint.
+
+E. Viewport Meta Tag
+ <meta name="viewport" content="width=device-width, initial-scale=1">:
+
+width=device-width: La larghezza del viewport deve corrispondere alla larghezza del dispositivo.
+
+initial-scale=1: Previene lo zoom iniziale, mostrando il layout in scala 1:1.
+
+Importanza: Essenziale per far funzionare correttamente le media queries sui dispositivi mobili.
+
+F. Media Queries
+Definizione: Regole CSS che consentono di applicare stili solo quando determinate condizioni sono vere (es. larghezza dello schermo).
+
+Sintassi: @media media-type and (media-feature) { css-rules }.
+
+Componenti:
+
+Media Type: all, screen, print, speech.
+
+Media Features: width, min-width, max-width, orientation (landscape/portrait), height, ecc.
+
+Operatori Logici:
+
+and: Tutte le condizioni devono essere vere.
+
+, (or): Almeno una condizione deve essere vera.
+
+not: Nega l'intera condizione.
+
+Esempio: @media screen and (max-width: 767px) { ... }
+
+Attributo media nel tag <link>: Permette di collegare fogli di stile diversi in base alle media queries (meno comune, preferibile un singolo stylesheet con media queries interne).
+
+G. Immagini Responsive
+srcset attribute: Permette al browser di scegliere l'immagine più appropriata da un set di immagini con diverse risoluzioni o larghezze.
+
+sizes attribute: Definisce lo spazio che l'immagine occuperà sullo schermo.
+
+<picture> element: Offre un controllo più fine sull'art direction, permettendo di specificare diverse sorgenti (<source>) per diverse media queries.
+
+IX. SCSS (Sassy Cascading Style Sheets)
+A. Cos'è SCSS
+Definizione: Un pre-processore CSS, un linguaggio di scripting che viene compilato in CSS standard.
+
+Vantaggi: Aggiunge funzionalità dinamiche al CSS, riduce la ripetizione (principio DRY - Don't Repeat Yourself).
+
+Compatibilità: Ogni file CSS valido è un file SCSS valido.
+
+Transpilazione: I file .scss devono essere "transpilati" (compilati) in file .css prima di essere usati dal browser.
+
+B. Setup e Utilizzo
+Installazione: Tramite npm (npm install -g sass) o download diretto.
+
+Esecuzione: sass input.scss output.css o sass --watch input.scss output.css.
+
+Playground: SassMeister, Codepen, Playcode.
+
+C. Sintassi SCSS
+Commenti:
+
+//: Commento SCSS, non appare nel file CSS compilato.
+
+/* ... */: Commento CSS, appare nel file CSS compilato.
+
+Variabili ($):
+
+Definiscono valori riutilizzabili (es. $primary: darkorange;).
+
+Migliorano la manutenibilità e la consistenza.
+
+Nesting:
+
+Permette di annidare le regole CSS, riflettendo la struttura HTML.
+
+Genera selettori discendenti nel CSS compilato (es. .special ul li).
+
+Parent Selector (&):
+
+Rappresenta il selettore genitore nella regola annidata.
+
+Utile per pseudo-classi (&:hover), modificatori di classe (&--urgent), o per combinare selettori complessi.
+
+Ereditarietà (@extend):
+
+Consente a un selettore di ereditare le proprietà di un altro selettore o di un placeholder.
+
+Placeholder (%placeholder-name): Non genera CSS da solo, solo quando @extend è usato.
+
+Vantaggi: Codice CSS compilato più DRY.
+
+Svantaggi: Meno flessibile dei mixin, può accoppiare selettori.
+
+Mixins (@mixin e @include):
+
+@mixin name($param1, $param2...) { ... }: Definisce un blocco di stili riutilizzabile.
+
+@include name($value1, $value2...): Inietta gli stili del mixin nel selettore corrente.
+
+Vantaggi: Accettano argomenti, rendendoli molto flessibili.
+
+Svantaggi: Il codice CSS compilato può essere più grande (non DRY) perché gli stili vengono ripetuti.
+
+Raccomandazione: Usare @extend per stili "uguali per una ragione" (relazione semantica), usare @mixin per stili "uguali solo perché" (riuso di blocchi di codice).
+
+Partials (_filename.scss) e Moduli (@use):
+
+Partials: File SCSS il cui nome inizia con un underscore (_). Non vengono compilati in file CSS separati, ma sono destinati ad essere importati in altri file SCSS.
+
+@use 'filename';: Importa un partial come modulo, rendendo le sue variabili e mixin disponibili con un namespace (es. borders.$circle-borders, borders.round-border()).
+
+@import è il vecchio modo e non dovrebbe più essere usato.
+
+Operatori: SCSS supporta operatori matematici (+, -, *, /) per calcolare valori di proprietà.
+
+Moduli Built-In (Funzioni):
+
+sass:color: Funzioni per manipolare i colori (es. color.mix(), lighten(), color.adjust()).
+
+sass:map: Funzioni per lavorare con le mappe (strutture dati chiave-valore).
+
+X. Bootstrap Core
+A. Cos'è Bootstrap
+Definizione: Un framework front-end open-source per lo sviluppo rapido di siti web responsive e mobile-first.
+
+Caratteristiche: Sistema di layout e griglia, design responsive, stili cross-browser consistenti, componenti UI utili, plugin JavaScript, accessibilità.
+
+B. Vantaggi e Svantaggi
+Vantaggi: Ottimo sistema a griglia, supporto cross-browser, leggero e personalizzabile, molti template, buona documentazione e community.
+
+Svantaggi: I siti Bootstrap possono apparire simili se non pesantemente personalizzati, la personalizzazione può richiedere molte sovrascritture, le classi possono essere verbose, mancanza di separazione delle preoccupazioni (HTML usato per la presentazione), v4 richiedeva jQuery (rimosso in v5).
+
+Quando usarlo: Prototipi rapidi, interfacce front-end di base per applicazioni back-end-centriche.
+
+C. Bootstrap 5 (vs. Bootstrap 4)
+Principali Cambiamenti: Rimosso jQuery, rimosso il supporto per IE10/11, sistema a griglia migliorato, nuovi componenti, Bootstrap Icons, supporto per proprietà CSS personalizzate, supporto RTL.
+
+D. Installazione
+CDN (Content Delivery Network): Modo più semplice e veloce per includere Bootstrap (link a CSS e JS nel <head> e prima della chiusura del <body>).
+
+File Compilati: Scaricare i file compilati e includerli localmente.
+
+E. Layout di Bootstrap
+Grid System: Basato su un sistema a 12 colonne.
+
+Breakpoints: Definiti per diverse dimensioni di dispositivo (xs, sm, md, lg, xl, xxl).
+
+Containers:
+
+Centrano e aggiungono padding orizzontale al contenuto.
+
+Completamente responsive.
+
+max-width del container cambia in base al breakpoint.
+
+Container, Rows e Columns:
+
+container: Contenitore principale.
+
+row: Riga all'interno di un container.
+
+col: Colonna all'interno di una riga.
+
+Concetti Chiave delle Colonne:
+
+col: Colonne a larghezza uguale.
+
+col-6: Colonne a larghezza fissa (6 delle 12 colonne).
+
+col-auto: Larghezza variabile in base al contenuto.
+
+Nesting, colonne responsive (col-md-8), row columns (row-cols-3).
+
+Allineamento verticale e orizzontale, wrapping, ordinamento, offset, gutters.
+
+F. Contenuto di Bootstrap
+Reboot: Bootstrap "resetta" gli stili degli elementi HTML per creare un punto di partenza consistente tra i browser (simile a Normalize.css).
+
+Classi di Utilità: Molte classi per layout, spaziatura, colori, sfondo, bordi, testo.
+
+Forms: Migliora gli elementi dei form e fornisce una UI consistente.
+
+form-check per checkbox/radio stilizzati.
+
+Input groups, layout di form basati su griglia.
+
+Validazione dei form con stili personalizzati e tooltip.
+
+XI. JavaScript
+A. Variabili (JS-02)
+Definizione: Contenitori per memorizzare valori.
+
+Dichiarazione e Inizializzazione:
+
+let x; x = 5;
+
+let y = 2;
+
+Tipi di Dati Primitivi:
+
+String: Sequenza immutabile di caratteri.
+
+Number: Valori numerici (interi o decimali).
+
+Boolean: Valori logici true o false.
+
+Undefined: Variabile dichiarata senza valore assegnato.
+
+Null: Rappresenta un valore esplicitamente vuoto.
+
+Nomi delle Variabili:
+
+Devono iniziare con lettere, $ o _.
+
+Possono contenere lettere, numeri, $ e _.
+
+Case-sensitive (sensibili al maiuscolo/minuscolo).
+
+Convenzione: preferire il camelCase.
+
+Tipizzazione Debole: JavaScript determina il tipo in base al valore e può cambiarlo dinamicamente (es. let x = 2; x = 'Hi';).
+
+Operatori Aritmetici: +, -, *, /, % (modulo). Possibili conversioni implicite.
+
+Operatori di Assegnazione: =, +=, -=, *=, /=, %=.
+
+Operatori di Incremento/Decremento: a++, ++a, a--, --a (differenze nel momento dell'aggiornamento).
+
+Operatori di Confronto: ==, ===, !=, !==, >, >=, <, <=.
+
+==: Confronta solo i valori.
+
+===: Confronta valori e tipi (uguaglianza stretta).
+
+Operatori Logici: && (AND), || (OR), ! (NOT).
+
+Operatori su Stringhe: + e += concatenano stringhe.
+
+Precedenza degli Operatori: Segue una gerarchia (es. moltiplicazione prima dell'addizione). Le parentesi modificano la precedenza.
+
+let e const:
+
+let: Variabili con scope di blocco, limitate al blocco in cui sono definite.
+
+const: Variabili con scope di blocco che non possono essere riassegnate o ridichiarate.
+
+B. Funzioni (JS-03)
+Definizione: Insiemi di istruzioni riutilizzabili.
+
+Dichiarazione: function nomeFunzione() { istruzioni }.
+
+Utilizzo: Chiamata con nomeFunzione().
+
+Parametri e Argomenti:
+
+Parametri: Variabili elencate nella definizione della funzione (es. a, b in function add(a, b)).
+
+Argomenti: Valori effettivi passati alla funzione durante la chiamata (es. 5, 3 in add(5, 3)).
+
+Valori di Ritorno: Il risultato di una funzione può essere restituito con return. Le funzioni possono essere usate in espressioni o richiamarsi a vicenda.
+
+Ricorsione: Le funzioni possono richiamare se stesse (es. algoritmo di Fibonacci), ma possono essere lente se non gestite bene.
+
+Scope delle Variabili:
+
+Locale: Variabili dichiarate all'interno di una funzione o blocco sono accessibili solo lì.
+
+Globale: Variabili dichiarate fuori dalle funzioni sono accessibili ovunque.
+
+Best Practices e Convenzioni:
+
+Indentazione: Utilizzare spazi o tab per leggibilità.
+
+Commenti: Documentare il codice, preferibilmente con lo standard JSDoc.
+
+Arrow Functions:
+
+Sintassi abbreviata: let add = (a, b) => a + b;.
+
+Condividono il contesto this del blocco in cui sono dichiarate.
+
+C. Condizioni e Cicli (JS-04)
+Condizioni (if/else):
+
+if (condition) { // statements }: Esegue istruzioni se la condizione è vera.
+
+if/else: Aggiunge un'azione alternativa se la condizione è falsa.
+
+if/else if/else: Aggiunge ulteriori verifiche di condizioni.
+
+Operatori di Confronto: (Vedi XI.A)
+
+Operatori Logici: (Vedi XI.A)
+
+Valori "Truthy" e "Falsey":
+
+Falsey: false, 0, "" (stringa vuota), null, undefined, NaN. Tutti gli altri valori sono "truthy".
+
+Cicli:
+
+while: Ripete le istruzioni finché una condizione rimane vera.
+
+for: Specifica inizializzazione, condizione e aggiornamento per ripetere azioni.
+
+break: Interrompe prematuramente un ciclo.
+
+switch: Alternativa a if/else multipli per confrontare un valore con vari casi.
+
+Fall-through: Possibilità di far eseguire più casi consecutivi senza break.
+
+D. Stringhe (JS-05)
+Definizione: Utilizzate per manipolare testi e caratteri.
+
+Indicizzazione: Le stringhe sono indicizzate da zero (il primo carattere ha indice 0).
+
+Accesso ai Caratteri:
+
+charAt() (raccomandato).
+
+Notazione con parentesi quadre [] (sconsigliato per compatibilità).
+
+Immutabilità: Le stringhe in JavaScript sono immutabili; ogni operazione crea una nuova stringa.
+
+Metodi Comuni:
+
+concat(): Concatena stringhe.
+
+indexOf(): Restituisce l'indice della prima occorrenza di una sottostringa.
+
+slice(): Estrae una parte della stringa.
+
+toUpperCase()/toLowerCase(): Converte la stringa in maiuscolo/minuscolo.
+
+trim(): Rimuove gli spazi bianchi da entrambi i lati.
+
+replace(): Sostituisce una parte della stringa con un'altra.
+
+split(): Divide una stringa in un array.
+
+Template Strings (Template Literals):
+
+Consentono di includere variabili direttamente con sintassi ${variable}.
+
+Supportano stringhe su più linee.
+
+E. Array (JS-06)
+Definizione: Struttura dati che contiene una lista ordinata di valori di qualsiasi tipo.
+
+Dichiarazione: let characters = ['Stella', 'Daffodil', 'Gwen'];.
+
+Accesso agli Elementi: Indicizzati da zero, si accede con array[index].
+
+Modifica: È possibile cambiare il valore di un elemento (es. myFavorites[0] = 'Celery Root';).
+
+Aggiungere Elementi:
+
+push(): Aggiunge alla fine.
+
+unshift(): Aggiunge all'inizio.
+
+Rimuovere Elementi:
+
+pop(): Rimuove l'ultimo.
+
+shift(): Rimuove il primo.
+
+Ciclo sugli Array: Usare cicli for o metodi come forEach().
+
+Altri Metodi Utili:
+
+splice(): Modifica un array rimuovendo o aggiungendo elementi.
+
+slice(): Ritorna una porzione di un array senza modificarlo.
+
+concat(): Combina due o più array.
+
+sort(): Ordina gli elementi.
+
+find(): Trova il primo elemento che soddisfa una condizione.
+
+indexOf(): Restituisce l'indice di un elemento, o -1.
+
+includes(): Verifica se un array contiene un elemento.
+
+F. Oggetti (JS-07)
+Definizione: Strutture dati flessibili che memorizzano proprietà (valori) e metodi (funzioni).
+
+Sintassi:
+
+let objectName = {
+    propertyName: propertyValue,
+    methodName: function() { /* ... */ }
+};
+
+Accesso alle Proprietà:
+
+Dot notation: object.property.
+
+Bracket notation: object['property'].
+
+Modifica: Modificare, aggiungere o eliminare proprietà usando entrambe le notazioni.
+
+Array di Oggetti: Gli array possono contenere oggetti e possono essere iterati per accedere alle proprietà.
+
+Metodi negli Oggetti: Le proprietà possono essere funzioni, chiamate metodi.
+
+Parola Chiave this: Nei metodi, this si riferisce all'oggetto corrente.
+
+Metodi degli Oggetti Predefiniti:
+
+Object.keys(): Restituisce un array con tutte le proprietà di un oggetto.
+
+Object.freeze(): Rende un oggetto immutabile.
+
+Copia per Valore vs. Copia per Riferimento:
+
+Tipi primitivi: Copiati per valore.
+
+Oggetti: Copiati per riferimento.
+
+G. Schedulazione delle Funzioni e Oggetto Date (JS-08)
+Schedulazione delle Funzioni:
+
+setTimeout(function, milliseconds, param1, ...): Esegue una funzione una volta dopo un intervallo specificato. Può essere cancellato con clearTimeout(timerId).
+
+setInterval(function, milliseconds, param1, ...): Esegue una funzione a intervalli regolari. Può essere cancellato con clearInterval(timerId).
+
+JavaScript è Single-Threaded: Le operazioni asincrone possono essere bloccate da operazioni sincrone lunghe.
+
+Oggetto Date:
+
+Rappresenta una data e un'ora.
+
+Sintassi: new Date(), new Date(year, month, ...), new Date(milliseconds).
+
+Formattazione: ISO (2024-03-25), corte (03/25/2024), lunghe (25 Mar 2024).
+
+Metodi get e set: getFullYear(), getMonth(), getTime(), setFullYear(), setDate(), ecc.
+
+Date.now(): Millisecondi dal 1 gennaio 1970.
+
+H. Il DOM (Document Object Model) (JS-09)
+Definizione: Rappresentazione strutturata di un documento HTML che permette di accedere e manipolare gli elementi della pagina web.
+
+Ispezione del DOM: Tramite strumenti di sviluppo del browser (es. Chrome DevTools, F12).
+
+Accesso agli Elementi del DOM:
+
+document.getElementById(id): Seleziona un elemento per ID (singolo nodo).
+
+document.getElementsByTagName(tag): Seleziona elementi per tag (collezione di nodi).
+
+document.getElementsByClassName(className): Seleziona elementi per classe (collezione di nodi).
+
+document.querySelector(cssSelector): Seleziona il primo elemento che corrisponde a un selettore CSS (singolo nodo).
+
+document.querySelectorAll(cssSelector): Seleziona tutti gli elementi che corrispondono a un selettore CSS (collezione di nodi).
+
+Nota: HTMLCollection e NodeList sono collezioni, non array completi.
+
+Manipolazione degli Attributi: Accedere e modificare attributi (es. img.src = 'newImage.jpg';).
+
+Manipolazione degli Stili: Modificare stili inline con element.style.property (preferibile usare classi CSS).
+
+Manipolazione del Contenuto:
+
+innerHTML: Modifica il contenuto HTML (attenzione a XSS).
+
+textContent: Modifica solo il testo (più sicuro).
+
+Preferibile creare nuovi nodi con document.createElement() e aggiungerli con appendChild() o replaceChildren().
+
+Creazione di Nuovi Nodi: let newDiv = document.createElement('div'); newDiv.textContent = 'Nuovo contenuto'; document.body.appendChild(newDiv);.
+
+I. Eventi (JS-10)
+Importanza: Consentono interazioni dinamiche (validazione form, slideshow, giochi).
+
+Aggiunta di Event Listener:
+
+domNode.addEventListener(eventType, eventListener, useCapture): Ascolta eventi specifici e attiva una funzione (Event Handler).
+
+Tipi di Eventi:
+
+Mouse: click, dblclick, mousemove, mouseover, mouseout.
+
+Tastiera: keydown, keypress, keyup.
+
+Form: focus, blur, change, submit.
+
+Finestra: scroll, resize, load, unload.
+
+Event Object: Contiene dettagli sull'evento (tipo, target, posizione mouse, tasti premuti).
+
+event.target: L'elemento su cui è avvenuto l'evento.
+
+event.preventDefault(): Impedisce l'azione predefinita del browser.
+
+event.stopPropagation(): Ferma la propagazione dell'evento attraverso il DOM.
+
+Bubbling e Capturing:
+
+Bubbling: L'evento si propaga dall'elemento target verso i suoi antenati (default).
+
+Capturing: L'evento si propaga dall'elemento più esterno verso l'elemento target.
+
+Rimozione degli Event Listener: removeEventListener(), richiede parametri esatti.
+
+Animazioni con JavaScript (non raccomandato): Preferibile usare transizioni CSS per animazioni.
+
+J. JSON e AJAX (JS-11)
+JSON (JavaScript Object Notation):
+
+Formato leggero per lo scambio di dati, alternativo a XML.
+
+Facile da leggere/scrivere per umani e macchine.
+
+Strutture di base: coppie chiave-valore (oggetti), liste ordinate di valori (array).
+
+Differenze con oggetti JS: Chiavi tra virgolette doppie, valori possono essere numeri, stringhe, booleani, array, oggetti, null.
+
+Manipolazione in JavaScript:
+
+JSON.stringify(): Converte un oggetto JS in stringa JSON.
+
+JSON.parse(): Converte una stringa JSON in oggetto JS.
+
+AJAX (Asynchronous JavaScript and XML):
+
+Processo per caricare contenuti dinamici in una pagina web senza ricaricare la pagina.
+
+Passaggi: Evento attiva richiesta -> XMLHttpRequest creato -> richiesta inviata al server -> server elabora e risponde -> JS legge risposta e aggiorna pagina.
+
+XMLHttpRequest Esempio:
+
+const request = new XMLHttpRequest();
+const endpoint = 'https://fakeapi.example.com/data';
+request.open('GET', endpoint, true);
+request.addEventListener('load', function () {
+    console.log(JSON.parse(request.responseText));
+});
+request.send();
+
+Metodi HTTP e Operazioni CRUD:
+
+GET: Recupera dati (Read).
+
+POST: Invia dati per creare una risorsa (Create).
+
+PUT: Aggiorna completamente una risorsa (Update).
+
+DELETE: Elimina una risorsa (Delete).
+
+Eventi di Richiesta AJAX: loadstart, progress, loadend, error, readystatechange.
+
+Fetch API:
+
+Alternativa moderna a XMLHttpRequest, semplifica le richieste asincrone.
+
+Basata su Promise.
+
+Esempio:
+
+fetch('https://fakeapi.example.com/data')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Errore:', error));
+
+CORS (Cross-Origin Resource Sharing):
+
+Politica di sicurezza che limita le richieste tra origini diverse (dominio, protocollo, porta).
+
+Il server deve abilitare CORS per consentire le richieste da altre origini.

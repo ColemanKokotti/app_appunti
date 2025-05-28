@@ -106,7 +106,7 @@ class CodeBlockWidget extends StatelessWidget {
     } else if (subject.contains('Flutter')) {
       return 'dart';
     } else if (subject.contains('Web')) {
-      return 'html/css/javascript';
+      return 'web';
     } else {
       return 'generic';
     }
@@ -127,8 +127,8 @@ class CodeBlockWidget extends StatelessWidget {
         return 'Bash';
       case 'dart':
         return 'Dart';
-      case 'html/css/javascript':
-        return 'HTML/CSS/JS';
+      case 'web':
+        return 'WEB';
       default:
         return 'Code';
     }
